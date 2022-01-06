@@ -79,10 +79,13 @@ class PressF(commands.Cog):
             return
         if user.id == self.bot.user.id:
             return
-        if user.id not in self.channels[str(reaction.message.channel.id)]["reacted"]:
-            if str(reaction.emoji) == await self.get_guild_emoji(reaction.message.guild):
-                await reaction.message.channel.send(f"**{user.name}** has paid their respects.")
-                self.channels[str(reaction.message.channel.id)]["reacted"].append(user.id)
+        if user.id not in self.channels[str(reaction.message.channel.id)][
+            "reacted"
+        ] and str(reaction.emoji) == await self.get_guild_emoji(
+            reaction.message.guild
+        ):
+            await reaction.message.channel.send(f"**{user.name}** has paid their respects.")
+            self.channels[str(reaction.message.channel.id)]["reacted"].append(user.id)
 
     @commands.group(name="pressfset", aliases=["pfset"], invoke_without_command=True)
     @commands.admin_or_permissions(administrator=True)
