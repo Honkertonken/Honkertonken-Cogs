@@ -7,8 +7,7 @@ import lavalink
 from redbot.core import commands
 from redbot.core.bot import Red
 from redbot.core.utils import AsyncIter
-from redbot.core.utils.chat_formatting import (bold, humanize_number,
-                                               humanize_timedelta)
+from redbot.core.utils.chat_formatting import bold, humanize_number, humanize_timedelta
 
 _ = lambda s: s
 
