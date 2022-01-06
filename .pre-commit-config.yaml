@@ -11,11 +11,7 @@ repos:
     rev: 5.10.1
     hooks:
       - id: isort
-
-  - repo: https://github.com/PyCQA/flake8
-    rev: 4.0.1
-    hooks:
-      - id: flake8
+        args: ["--profile", "black", "--filter-files"]
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v3.4.0
