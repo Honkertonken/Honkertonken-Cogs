@@ -35,8 +35,7 @@ class Pp(commands.Cog):
         lengths = sorted(lengths.items(), key=lambda x: x[1])
 
         msg = "".join(
-            "**{}'s size:**\n{}\n".format(user.display_name, length)
-            for user, length in lengths
+            "**{}'s size:**\n{}\n".format(user.display_name, length) for user, length in lengths
         )
 
         for page in pagify(msg):
