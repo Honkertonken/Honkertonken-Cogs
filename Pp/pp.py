@@ -17,7 +17,6 @@ class Pp(commands.Cog):
             users = {ctx.author}
 
         lengths = {}
-        msg = ""
         state = random.getstate()
         owner_id = str(ctx.bot.owner_ids)
         bot_owner = int(owner_id.strip("{}"))
@@ -35,8 +34,10 @@ class Pp(commands.Cog):
         random.setstate(state)
         lengths = sorted(lengths.items(), key=lambda x: x[1])
 
-        for user, length in lengths:
-            msg += "**{}'s size:**\n{}\n".format(user.display_name, length)
+        msg = "".join(
+            "**{}'s size:**\n{}\n".format(user.display_name, length)
+            for user, length in lengths
+        )
 
         for page in pagify(msg):
             await ctx.send(page)
