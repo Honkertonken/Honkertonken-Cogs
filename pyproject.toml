@@ -1,0 +1,7 @@
+[tool.black]
+line-length = 99
+target-version = ['py38']
+
+[tool.isort]
+combine_as_imports = true
+filter_files = true
