@@ -38,7 +38,7 @@ repos:
           [
             "--in-place",
             "--remove-unused-variables",
-            "remove-all-unused-imports",
+            "--remove-all-unused-imports",
           ]
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
