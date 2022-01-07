@@ -32,6 +32,12 @@ repos:
         args:
           [--in-place, --remove-all-unused-imports, --remove-unused-variable]
 
+  - repo: https://github.com/sourcery-ai/sourcery
+    rev: v0.9.8
+    hooks:
+      - id: sourcery
+        args: [--in-place]
+
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v3.4.0
     hooks:
