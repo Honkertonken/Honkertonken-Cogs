@@ -16,7 +16,7 @@ Discord User: Honkertonken#9221
 
 To add cogs from this repo to your instance, do these steps:
 
-- `[p]repo add Honkertonken-Cogs https://github.com/Honkertonken/Cogs`
+- `[p]repo add Honkertonken-Cogs https://github.com/Honkertonken/Honkertonken-Cogs`
 - `[p]cog install Honkertonken-Cogs <cog name>`
 - `[p]load <cog name>`
 
