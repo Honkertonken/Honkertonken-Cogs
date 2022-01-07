@@ -33,12 +33,14 @@ To add cogs from this repo to your instance, do these steps:
 
 # Contributing
 
-- This can be done by `pip install -U black isort`
+- This can be done by `pip install -U black isort flake8 autoflake`
 - Then run the below commands to auto format your code
 
 ```py
 black .
-isort .
+isort . --profile black
+flake8 . --ignore E203,E501,E731,W503 --select C,E,F,W --max-line-length 99
+autoflake . --in-place --remove-unused-variables --remove-all-unused-imports
 ```
 
 # Contact
