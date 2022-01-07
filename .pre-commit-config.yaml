@@ -33,10 +33,10 @@ repos:
           [--in-place, --remove-all-unused-imports, --remove-unused-variable]
 
   - repo: https://github.com/sourcery-ai/sourcery
-    rev: v0.9.8
+    rev: v0.9.8 # Get the latest tag from https://github.com/sourcery-ai/sourcery/tags
     hooks:
       - id: sourcery
-        args: [--in-place]
+      # - args: [--in-place]  Automatically apply the refactorings in the hook
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v3.4.0
