@@ -55,7 +55,6 @@ repos:
         args:
           - "--autofix"
           - "--indent=4"
-          - "--no-sort-keys"
       - id: check-case-conflict
       - id: check-merge-conflict
 
