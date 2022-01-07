@@ -11,7 +11,7 @@ repos:
     rev: 5.10.1
     hooks:
       - id: isort
-        args: ["--profile black", "--filter-files"]
+        args: [--profile black, --filter-files]
 
   - repo: https://github.com/PyCQA/flake8
     rev: 4.0.1
@@ -19,16 +19,16 @@ repos:
       - id: flake8
         args:
           [
-            "--ignore E203,E501,E731,W503 ",
-            "--select C,E,F,W ",
-            "--max-line-length 99",
+            --ignore E203,E501,E731,W503,
+            --select C,E,F,W,
+            --max-line-length 99,
           ]
 
   - repo: https://github.com/pycqa/isort
     rev: 5.10.1
     hooks:
       - id: isort
-        args: ["--profile black"]
+        args: [--profile black]
 
   - repo: https://github.com/myint/autoflake
     rev: v1.4
