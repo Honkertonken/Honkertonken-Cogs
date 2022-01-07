@@ -10,13 +10,14 @@
 
 **Disclaimer: This is an unapproved repo, meaning no one has formally reviewed this repo yet and any loss of data in your bot isn't my fault (Any loss of data is highly unlikely as I use these cogs for my bot.)**
 
-Various fun and utility cogs for Red-DiscordBot.
+Various fun and utility cogs for Red-DiscordBot V3.
 Discord User: Honkertonken#9221
 
 # Installation
 
 To add cogs from this repo to your instance, do these steps:
 
+- `[p]load downloader`
 - `[p]repo add Honkertonken-Cogs https://github.com/Honkertonken/Honkertonken-Cogs`
 - `[p]cog install Honkertonken-Cogs <cog name>`
 - `[p]load <cog name>`
