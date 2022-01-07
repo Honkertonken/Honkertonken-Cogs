@@ -11,17 +11,31 @@ repos:
     rev: 5.10.1
     hooks:
       - id: isort
+        args: [--profile black]
 
   - repo: https://github.com/PyCQA/flake8
     rev: 4.0.1
     hooks:
       - id: flake8
+        additional_dependencies: [flake8]
+
+  - repo: https://github.com/pycqa/isort
+    rev: 5.10.1
+    hooks:
+      - id: isort
+        args: [--profile black]
+
+  - repo: https://github.com/myint/autoflake
+    rev: v1.4
+    hooks:
+      - id: autoflake
+        args:
+          [--in-place, --remove-all-unused-imports, --remove-unused-variable]
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v3.4.0
     hooks:
       - id: end-of-file-fixer
-
       - id: mixed-line-ending
         args:
           - "--fix=lf"
@@ -31,7 +45,6 @@ repos:
       - id: check-json
       - id: check-toml
       - id: check-yaml
-
       - id: pretty-format-json
         args:
           - "--autofix"
