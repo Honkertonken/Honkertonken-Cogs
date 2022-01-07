@@ -1,9 +1,9 @@
 {
-    "author": ["Honkertonken"],
-    "description": "Pay respects to a user by pressing f.",
-    "install_msg": "Thanks for installing my cog.",
-    "short": "Press f to pay respects.",
-    "tags": ["pressf", "respects", "f"],
-    "type": "COG",
-    "end_user_data_statement": "This cog does not persistently store data or metadata about users."
+  "author": ["Honkertonken"],
+  "description": "Pay respects to a user by pressing f.",
+  "install_msg": "Thanks for installing my cog.",
+  "short": "Press f to pay respects.",
+  "tags": ["pressf", "respects", "f"],
+  "type": "COG",
+  "end_user_data_statement": "This cog does not persistently store data or metadata about users."
 }
