@@ -1,8 +1,16 @@
 {
-  "author": ["Honkertonken"],
-  "install_msg": "Thanks for checking out my cogs!\nFor issues, bugs, or suggestions you can always dm me at Honkertonken#9221",
-  "name": "Honkertonken-Cogs",
-  "short": "Cogs by/edited Honkertonken",
-  "description": "Cogs made or edited by Honkertonken",
-  "tags": ["fun", "utility", "stats", "honker", "honkertonken"]
+    "author": [
+        "Honkertonken"
+    ],
+    "install_msg": "Thanks for checking out my cogs!\nFor issues, bugs, or suggestions you can always dm me at Honkertonken#9221",
+    "name": "Honkertonken-Cogs",
+    "short": "Cogs by/edited Honkertonken",
+    "description": "Cogs made or edited by Honkertonken",
+    "tags": [
+        "fun",
+        "utility",
+        "stats",
+        "honker",
+        "honkertonken"
+    ]
 }
