@@ -46,10 +46,6 @@ repos:
       - id: check-toml
       - id: check-yaml
       - id: pretty-format-json
-        args:
-          - "--autofix"
-          - "--indent=4"
-          - "--no-sort-keys"
       - id: check-case-conflict
       - id: check-merge-conflict
 
@@ -57,7 +53,7 @@ ci:
   autofix_commit_msg: |
     [pre-commit.ci] auto fixes from pre-commit.com hooks.
   autofix_prs: true
-  autoupdate_branch: 'master'
+  autoupdate_branch: "master"
   autoupdate_commit_msg: "[pre-commit.ci] pre-commit autoupdate"
   autoupdate_schedule: weekly
   skip: []

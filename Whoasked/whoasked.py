@@ -14,6 +14,10 @@ def reply(ctx):
 class WhoAsked(commands.Cog):
     """When you just have to ask who the hell asked?"""
 
+    async def red_delete_data_for_user(self, **kwargs):
+        """Nothing to delete"""
+        return
+
     @commands.command()
     async def whoasked(self, ctx, *, reply_or_message: str = None):
         """Who Asked?"""

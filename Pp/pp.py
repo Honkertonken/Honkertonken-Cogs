@@ -8,6 +8,10 @@ from redbot.core.utils.chat_formatting import pagify
 class Pp(commands.Cog):
     """pp"""
 
+    async def red_delete_data_for_user(self, **kwargs):
+        """Nothing to delete"""
+        return
+
     @commands.command()
     async def pp(self, ctx, *users: discord.Member):
         """Detects user's pp length

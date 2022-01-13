@@ -26,12 +26,14 @@ To add cogs from this repo to your instance, do these steps:
 
 # About Cogs
 
-| Cog      | Description                                                                | Authors                 |
-| -------- | -------------------------------------------------------------------------- | ----------------------- |
-| Whoasked | Who the hell asked? This cog/ command was inspired by KableKompany#0001    | Honkertonken            |
-| Pp       | Detect the length of someones (or your) pp. Note: 100% accurate            | Honkertonken            |
-| BotStats | Get a shit ton of stats. Originally made by Draper slightly tweaked by me. | Draper, Honkertonken    |
-| Pressf   | A customizable pressf cog, pay some respects.                              | Aikaterna, Honkertonken |
+| Cog      | Description                                                                            | Authors                 |
+| -------- | -------------------------------------------------------------------------------------- | ----------------------- |
+| Whoasked | Who the hell asked? This cog/ command was inspired by KableKompany#0001.               | Honkertonken            |
+| Pp       | Detect the length of someones (or your) pp. Note: 100% accurate.                       | Honkertonken            |
+| BotStats | Get a shit ton of stats. Originally made by Draper slightly tweaked by me.             | Draper, Honkertonken    |
+| Pressf   | A customizable pressf cog, pay some respects.                                          | Aikaterna, Honkertonken |
+| Sdm      | A simple dm to directly send raw text to the specified user, supports id and mentions. | Honkerotnken            |
+| Tsd      | In discord docs for Phenom4n4n's Tags/Slashtags cog.                                   | Honkertonken            |
 
 # Contributing
 
