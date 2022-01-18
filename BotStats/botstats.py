@@ -44,48 +44,6 @@ class BotStats(commands.Cog):
     async def botinfo(self, ctx: commands.Context):
         """Show bot information."""
         async with ctx.typing():
-            vc_regions = {
-                "eu-west": _("EU West ") + "\U0001F1EA\U0001F1FA",
-                "eu-central": _("EU Central ") + "\U0001F1EA\U0001F1FA",
-                "europe": _("Europe ") + "\U0001F1EA\U0001F1FA",
-                "london": _("London ") + "\U0001F1EC\U0001F1E7",
-                "frankfurt": _("Frankfurt ") + "\U0001F1E9\U0001F1EA",
-                "amsterdam": _("Amsterdam ") + "\U0001F1F3\U0001F1F1",
-                "us-west": _("US West ") + "\U0001F1FA\U0001F1F8",
-                "us-east": _("US East ") + "\U0001F1FA\U0001F1F8",
-                "us-south": _("US South ") + "\U0001F1FA\U0001F1F8",
-                "us-central": _("US Central ") + "\U0001F1FA\U0001F1F8",
-                "singapore": _("Singapore ") + "\U0001F1F8\U0001F1EC",
-                "sydney": _("Sydney ") + "\U0001F1E6\U0001F1FA",
-                "brazil": _("Brazil ") + "\U0001F1E7\U0001F1F7",
-                "hongkong": _("Hong Kong ") + "\U0001F1ED\U0001F1F0",
-                "russia": _("Russia ") + "\U0001F1F7\U0001F1FA",
-                "japan": _("Japan ") + "\U0001F1EF\U0001F1F5",
-                "southafrica": _("South Africa ") + "\U0001F1FF\U0001F1E6",
-                "india": _("India ") + "\U0001F1EE\U0001F1F3",
-                "dubai": _("Dubai ") + "\U0001F1E6\U0001F1EA",
-                "south-korea": _("South Korea ") + "\U0001f1f0\U0001f1f7",
-                "EU West": _("EU West ") + "\U0001F1EA\U0001F1FA",
-                "EU Central": _("EU Central ") + "\U0001F1EA\U0001F1FA",
-                "Europe": _("Europe ") + "\U0001F1EA\U0001F1FA",
-                "London": _("London ") + "\U0001F1EC\U0001F1E7",
-                "Frankfurt": _("Frankfurt ") + "\U0001F1E9\U0001F1EA",
-                "Amsterdam": _("Amsterdam ") + "\U0001F1F3\U0001F1F1",
-                "US West": _("US West ") + "\U0001F1FA\U0001F1F8",
-                "US East": _("US East ") + "\U0001F1FA\U0001F1F8",
-                "US South": _("US South ") + "\U0001F1FA\U0001F1F8",
-                "US Central": _("US Central ") + "\U0001F1FA\U0001F1F8",
-                "Singapore": _("Singapore ") + "\U0001F1F8\U0001F1EC",
-                "Sydney": _("Sydney ") + "\U0001F1E6\U0001F1FA",
-                "Brazil": _("Brazil ") + "\U0001F1E7\U0001F1F7",
-                "Hong Kong": _("Hong Kong ") + "\U0001F1ED\U0001F1F0",
-                "Russia": _("Russia ") + "\U0001F1F7\U0001F1FA",
-                "Japan": _("Japan ") + "\U0001F1EF\U0001F1F5",
-                "South Africa": _("South Africa ") + "\U0001F1FF\U0001F1E6",
-                "India": _("India ") + "\U0001F1EE\U0001F1F3",
-                "Dubai": _("Dubai ") + "\U0001F1E6\U0001F1EA",
-                "South Korea": _("South Korea ") + "\U0001f1f0\U0001f1f7",
-            }
             verif = {
                 "none": _("None"),
                 "low": _("Low"),
@@ -651,18 +609,6 @@ class BotStats(commands.Cog):
                     ),
                 ),
             )
-
-        region_data = ""
-        if not bot_has_stats:
-            for r, value in sorted(region_count.items(), reverse=False):
-                if value:
-                    region_data += f"{bold(humanize_number(value))} - {vc_regions.get(r)}\n"
-        else:
-            for r, value in sorted(self.bot.stats.guilds_regions.__dict__.items(), reverse=False):
-                if value:
-                    region_data += f"{bold(humanize_number(value))} - {vc_regions.get(r)}\n"
-        if region_data:
-            data.add_field(name=_("Regions:"), value=region_data)
 
         features_data = ""
         if not bot_has_stats:
