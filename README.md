@@ -47,7 +47,7 @@ To add cogs from this repo to your instance, do these steps:
 ```py
 black .
 isort . --profile black
-autoflake . --in-place --remove-unused-variables --remove-all-unused-imports --recursive
+autoflake . --in-place --remove-unused-variables --remove-all-unused-imports --recursive --exclude=*.__init__.py
 ```
 
 # Contact
