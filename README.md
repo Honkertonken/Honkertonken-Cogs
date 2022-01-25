@@ -9,7 +9,6 @@
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/Honkertonken/Cogs-V3/master.svg)](https://results.pre-commit.ci/latest/github/Honkertonken/Cogs-V3/master)
 [![Black](https://img.shields.io/badge/Black-Passing-blue)](https://github.com/psf/black)
 [![Isort](https://img.shields.io/badge/Isort-Passing-orange)](https://github.com/PyCQA/isort)
-[![Flake8](https://img.shields.io/badge/Flake8-Passing-red)](https://github.com/PyCQA/flake8)
 [![Autoflake](https://img.shields.io/badge/Autoflake-Passing-green)](https://github.com/myint/autoflake)
 
 **Disclaimer: This is an unapproved repo, meaning no one has formally reviewed this repo yet and any loss of data in your bot isn't my fault (Any loss of data is highly unlikely as I use these cogs for my bot.)**
@@ -41,13 +40,12 @@ To add cogs from this repo to your instance, do these steps:
 
 # Contributing
 
-- This can be done by `pip install -U black isort flake8 autoflake`
+- This can be done by `pip install -U black isort autoflake`
 - Then run the below commands to auto format your code
 
 ```py
 black .
 isort . --profile black
-flake8 . --ignore E203,E501,E731,W503 --select C,E,F,W --max-line-length 99
 autoflake . --in-place --remove-unused-variables --remove-all-unused-imports --recursive
 ```
 
