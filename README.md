@@ -48,7 +48,7 @@ To add cogs from this repo to your instance, do these steps:
 black .
 isort . --profile black
 flake8 . --ignore E203,E501,E731,W503 --select C,E,F,W --max-line-length 99
-autoflake . --in-place --remove-unused-variables --remove-all-unused-imports
+autoflake . --in-place --remove-unused-variables --remove-all-unused-imports --recursive
 ```
 
 # Contact
