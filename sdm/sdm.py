@@ -17,7 +17,7 @@ class Sdm(commands.Cog):
 
     @commands.command()
     @commands.is_owner()
-    async def sdm(self, ctx, user: discord.Member, *, message: str):
+    async def sdm(self, ctx, user: discord.User, *, message: str):
         """Directly dm raw text to someone."""
         destination = get(ctx.bot.get_all_members(), id=user.id)
         if not destination:
