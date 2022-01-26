@@ -387,7 +387,7 @@ class TagScriptDocumentation(commands.Cog):
         """
         e = discord.Embed(
             title="Tags Documentation",
-            url="https://phen-cogs.readthedocs.io/en/latest/tags/tse_blocks.html#strf-block",
+            url="https://phen-cogs.readthedocs.io/en/latest/tags/tse_blocks.html#strftime-block",
             type="image",
         )
         e.set_image(url="https://i.imgur.com/K8jObGF.png")
