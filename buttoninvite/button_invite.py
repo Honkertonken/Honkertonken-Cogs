@@ -224,19 +224,21 @@ class ButtonInvite(commands.Cog):
                 name="\N{Zero Width Space}",
                 value=f"[{link_text}](https://discord.com/oauth2/authorize?client_id={self.bot.user.id}&scope=bot+applications.commands&permissions={permissions})",
             )
+            button = url_button.URLButton(
+                f"{await self.config.invite_description()}",
+                f"https://discord.com/oauth2/authorize?client_id={self.bot.user.id}&scope=bot+applications.commands&permissions={permissions}",
+            )
+
         else:
             embed.add_field(
                 name="\N{Zero Width Space}",
                 value=f"[{link_text}](https://discord.com/oauth2/authorize?client_id={self.bot.user.id}&scope=bot&permissions={permissions})",
             )
-        embed.set_footer(text=emb_footer)
-        button = url_button.URLButton(
-            f"{await self.config.invite_description()}",
-            if command_scope:
+            button = url_button.URLButton(
+                f"{await self.config.invite_description()}",
                 f"https://discord.com/oauth2/authorize?client_id={self.bot.user.id}&scope=bot+applications.commands&permissions={permissions}",
-            else:
-                f"https://discord.com/oauth2/authorize?client_id={self.bot.user.id}&scope=bot&permissions={permissions}"
-        )
+            )
+        embed.set_footer(text=emb_footer)
         await url_button.send_message(self.bot, ctx.channel.id, embed=embed, url_button=button)
 
 
