@@ -79,7 +79,7 @@ class ButtonInvite(commands.Cog):
 
     @commands.is_owner()
     @invset.command()
-    async def setpermissions(self, ctx, *, text: int = ""):
+    async def permissions(self, ctx, *, text: int = ""):
         """
         Set the default permissions value for your bot. Get the permissions value from https://discordapi.com/permissions.html.
         If left blank, resets permissions value to none.
@@ -96,9 +96,9 @@ class ButtonInvite(commands.Cog):
 
     @commands.is_owner()
     @invset.command()
-    async def commandscope(self, ctx, value: bool = None):
+    async def scope(self, ctx, value: bool = None):
         """
-        ***Add the `applications.commands` scope to your invite URL.***
+        Add the `applications.commands` scope to your invite URL.
 
         This allows the usage of slash commands on the servers that invited your bot with that scope.
         Note that previous servers that invited the bot without the scope cannot have slash commands, they will have to invite the bot a second time.
