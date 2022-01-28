@@ -24,6 +24,7 @@ class ButtonInvite(commands.Cog):
             "description": "Thanks for choosing to invite {bot} to your server.",
             "invite_description": "Invite me!",
             "setpermissions": "",
+            "commandscope": False,
             "footer": "{bot} Hosted by {owner}",
             "author": "{bot}",
             "link_text": "Add {bot} to your server.",
@@ -55,7 +56,7 @@ class ButtonInvite(commands.Cog):
         Use `{bot}` in your message to display bot name.
         Enter `None` to disable the description.
         """
-        if text == "":
+        if not text:
             await self.config.description.clear()
             return await ctx.send("Embed description set to default.")
         elif text == "None":
@@ -70,7 +71,7 @@ class ButtonInvite(commands.Cog):
         """
         Set the button description.
         """
-        if text == "":
+        if not text:
             await self.config.invite_description.clear()
             return await ctx.send("Button description set to default.")
         await self.config.invite_description.set(text)
@@ -78,7 +79,7 @@ class ButtonInvite(commands.Cog):
 
     @commands.is_owner()
     @invset.command()
-    async def setpermissions(self, ctx, *, text: int = ""):
+    async def permissions(self, ctx, *, text: int = ""):
         """
         Set the default permissions value for your bot. Get the permissions value from https://discordapi.com/permissions.html.
         If left blank, resets permissions value to none.
@@ -95,13 +96,33 @@ class ButtonInvite(commands.Cog):
 
     @commands.is_owner()
     @invset.command()
+    async def scope(self, ctx, value: bool = None):
+        """
+        Add the `applications.commands` scope to your invite URL.
+
+        This allows the usage of slash commands on the servers that invited your bot with that scope.
+        Note that previous servers that invited the bot without the scope cannot have slash commands, they will have to invite the bot a second time.
+        """
+        if value:
+            await self.config.commandscope.set(True)
+            await ctx.send(
+                "The `applications.commands` scope set to `True` and added to invite URL."
+            )
+        else:
+            await self.config.commandscope.set(False)
+            await ctx.send(
+                "The `applications.commands` scope set to `False` and removed from invite URL."
+            )
+
+    @commands.is_owner()
+    @invset.command()
     async def footer(self, ctx, *, text: str = ""):
         """
         Set the embed footer. Leave blank for default author.
         Use `{bot}` in your message to display bot name.
         Enter `None` to disable the description.
         """
-        if text == "":
+        if not text:
             await self.config.footer.clear()
             return await ctx.send("Embed footer set to default.")
         elif text == "None":
@@ -118,7 +139,7 @@ class ButtonInvite(commands.Cog):
         Use `{bot}` in your message to display bot name.
         Enter `None` to disable the author.
         """
-        if text == "":
+        if not text:
             await self.config.author.clear()
             return await ctx.send("Embed author set to default.")
         elif text == "None":
@@ -135,7 +156,7 @@ class ButtonInvite(commands.Cog):
         Use `{bot}` in your message to display bot name.
         Enter `None` to disable the link text.
         """
-        if text == "":
+        if not text:
             await self.config.link_text.clear()
             return await ctx.send("Embed link text set to default.")
         elif text == "None":
@@ -150,7 +171,7 @@ class ButtonInvite(commands.Cog):
         """
         Set the embed thumbnail url. Leave blank for default thumbnail.
         """
-        if link == "":
+        if not link:
             await self.config.thumbnail.clear()
             return await ctx.send("Embed thumbnail set to default.")
         regex = "^https?://(?:[a-z0-9\-]+\.)+[a-z]{2,6}(?:/[^/#?]+)+\.(?:jpg|gif|png)$"
@@ -167,7 +188,7 @@ class ButtonInvite(commands.Cog):
         """
         Set the embed icon url. Leave blank for default icon.
         """
-        if link == "":
+        if not link:
             await self.config.icon_url.clear()
             return await ctx.send("Embed icon set to default.")
         regex = "^https?://(?:[a-z0-9\-]+\.)+[a-z]{2,6}(?:/[^/#?]+)+\.(?:jpg|gif|png)$"
@@ -185,6 +206,7 @@ class ButtonInvite(commands.Cog):
         """
         bot_info = await self.bot.application_info()
         permissions = await self.config.setpermissions()
+        command_scope = await self.config.commandscope()
         footer1 = (await self.config.footer()).replace("{bot}", self.bot.user.name)
         emb_footer = str(footer1).replace("{owner}", str(bot_info.owner))
         link_text = (await self.config.link_text()).replace("{bot}", self.bot.user.name)
@@ -197,10 +219,16 @@ class ButtonInvite(commands.Cog):
             icon_url=(await self.config.icon_url()),
         )
         embed.set_thumbnail(url=(await self.config.thumbnail()))
-        embed.add_field(
-            name="⠀",
-            value=f"[{link_text}](https://discord.com/oauth2/authorize?client_id={self.bot.user.id}&scope=bot&permissions={ permissions})",
-        )
+        if command_scope:
+            embed.add_field(
+                name="\N{Zero Width Space}",
+                value=f"[{link_text}](https://discord.com/oauth2/authorize?client_id={self.bot.user.id}&scope=bot+applications.commands&permissions={permissions})",
+            )
+        else:
+            embed.add_field(
+                name="\N{Zero Width Space}",
+                value=f"[{link_text}](https://discord.com/oauth2/authorize?client_id={self.bot.user.id}&scope=bot&permissions={permissions})",
+            )
         embed.set_footer(text=emb_footer)
         button = url_button.URLButton(
             f"{await self.config.invite_description()}",
@@ -211,7 +239,6 @@ class ButtonInvite(commands.Cog):
 
 def setup(bot):
     global old_invite
-    old_invite = bot.get_command("invite")
-    if old_invite:
+    if old_invite := bot.get_command("invite"):
         bot.remove_command(old_invite.name)
     bot.add_cog(ButtonInvite(bot))
