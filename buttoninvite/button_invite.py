@@ -93,13 +93,13 @@ class ButtonInvite(commands.Cog):
             return await ctx.send("Permissions value disabled")
         await self.config.setpermissions.set(text)
         await ctx.send("Permissions set")
-        
+
     @commands.is_owner()
     @invset.command()
     async def commandscope(self, ctx, value: bool = None):
         """
         ***Add the `applications.commands` scope to your invite URL.***
-        
+
         This allows the usage of slash commands on the servers that invited your bot with that scope.
         Note that previous servers that invited the bot without the scope cannot have slash commands, they will have to invite the bot a second time.
         """
@@ -219,7 +219,7 @@ class ButtonInvite(commands.Cog):
         embed.add_field(
             name="\N{Zero Width Space}",
             value=f"[{link_text}](https://discord.com/oauth2/authorize?client_id={self.bot.user.id}&scope=bot+applications.commands&permissions={permissions})",
-        )    
+        )
         else:
         embed.add_field(
             name="\N{Zero Width Space}",
