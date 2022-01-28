@@ -45,11 +45,11 @@ class ButtonInvite(commands.Cog):
 
     @commands.is_owner()
     @commands.group()
-    async def invset(self, ctx):
-        """Settings for embedinvite cog."""
+    async def invitesettings(self, ctx):
+        """Settings for buttoninvite cog."""
 
     @commands.is_owner()
-    @invset.command()
+    @invitesettings.command()
     async def description(self, ctx, *, text: str = ""):
         """
         Set the embed description.Leave blank for default description.
@@ -66,7 +66,7 @@ class ButtonInvite(commands.Cog):
         await ctx.send(f"Embed description set to :\n`{text}`")
 
     @commands.is_owner()
-    @invset.command()
+    @invitesettings.command()
     async def button(self, ctx, *, text: str = ""):
         """
         Set the button description.
@@ -78,7 +78,7 @@ class ButtonInvite(commands.Cog):
         await ctx.send(f"Button description set to :\n`{text}`")
 
     @commands.is_owner()
-    @invset.command()
+    @invitesettings.command()
     async def permissions(self, ctx, *, text: int = ""):
         """
         Set the default permissions value for your bot. Get the permissions value from https://discordapi.com/permissions.html.
@@ -95,7 +95,7 @@ class ButtonInvite(commands.Cog):
         await ctx.send("Permissions set")
 
     @commands.is_owner()
-    @invset.command()
+    @invitesettings.command()
     async def scope(self, ctx, value: bool = None):
         """
         Add the `applications.commands` scope to your invite URL.
@@ -115,7 +115,7 @@ class ButtonInvite(commands.Cog):
             )
 
     @commands.is_owner()
-    @invset.command()
+    @invitesettings.command()
     async def footer(self, ctx, *, text: str = ""):
         """
         Set the embed footer. Leave blank for default author.
@@ -132,7 +132,7 @@ class ButtonInvite(commands.Cog):
         await ctx.send(f"Embed footer set to :\n`{text}`")
 
     @commands.is_owner()
-    @invset.command()
+    @invitesettings.command()
     async def author(self, ctx, *, text: str = ""):
         """
         Set the embed author. Leave blank for default author.
@@ -149,7 +149,7 @@ class ButtonInvite(commands.Cog):
         await ctx.send(f"Embed author set to :\n`{text}`")
 
     @commands.is_owner()
-    @invset.command()
+    @invitesettings.command()
     async def text(self, ctx, *, text: str = ""):
         """
         Set the embed link text. Leave blank for default link text.
@@ -166,7 +166,7 @@ class ButtonInvite(commands.Cog):
         await ctx.send(f"Embed link text set to :\n`{text}`")
 
     @commands.is_owner()
-    @invset.command()
+    @invitesettings.command()
     async def thumbnail(self, ctx, *, link: str = ""):
         """
         Set the embed thumbnail url. Leave blank for default thumbnail.
@@ -183,7 +183,7 @@ class ButtonInvite(commands.Cog):
         await ctx.send(f"Embed thumbnail set to :\n`{link}`")
 
     @commands.is_owner()
-    @invset.command()
+    @invitesettings.command()
     async def icon(self, ctx, *, link: str = ""):
         """
         Set the embed icon url. Leave blank for default icon.
