@@ -24,6 +24,7 @@ class ButtonInvite(commands.Cog):
             "description": "Thanks for choosing to invite {bot} to your server.",
             "invite_description": "Invite me!",
             "setpermissions": "",
+            "commandscope": False,
             "footer": "{bot} Hosted by {owner}",
             "author": "{bot}",
             "link_text": "Add {bot} to your server.",
@@ -92,6 +93,22 @@ class ButtonInvite(commands.Cog):
             return await ctx.send("Permissions value disabled")
         await self.config.setpermissions.set(text)
         await ctx.send("Permissions set")
+        
+    @commands.is_owner()
+    @invset.command()
+    async def commandscope(self, ctx, value: bool = None):
+        """
+        ***Add the `applications.commands` scope to your invite URL.***
+        
+        This allows the usage of slash commands on the servers that invited your bot with that scope.
+        Note that previous servers that invited the bot without the scope cannot have slash commands, they will have to invite the bot a second time.
+        """
+        if value:
+            await self.config.commandscope.set(True)
+            await ctx.send("The `applications.commands` scope set to `True` and added to invite URL.")
+        else:
+            await self.config.commandscope.set(False)
+            await ctx.send("The `applications.commands` scope set to `False` and removed from invite URL.")
 
     @commands.is_owner()
     @invset.command()
@@ -185,6 +202,7 @@ class ButtonInvite(commands.Cog):
         """
         bot_info = await self.bot.application_info()
         permissions = await self.config.setpermissions()
+        command_scope = await self.config.commandscope()
         footer1 = (await self.config.footer()).replace("{bot}", self.bot.user.name)
         emb_footer = str(footer1).replace("{owner}", str(bot_info.owner))
         link_text = (await self.config.link_text()).replace("{bot}", self.bot.user.name)
@@ -197,9 +215,15 @@ class ButtonInvite(commands.Cog):
             icon_url=(await self.config.icon_url()),
         )
         embed.set_thumbnail(url=(await self.config.thumbnail()))
+        if command_scope:
         embed.add_field(
-            name="⠀",
-            value=f"[{link_text}](https://discord.com/oauth2/authorize?client_id={self.bot.user.id}&scope=bot&permissions={ permissions})",
+            name="\N{Zero Width Space}",
+            value=f"[{link_text}](https://discord.com/oauth2/authorize?client_id={self.bot.user.id}&scope=bot+applications.commands&permissions={permissions})",
+        )    
+        else:
+        embed.add_field(
+            name="\N{Zero Width Space}",
+            value=f"[{link_text}](https://discord.com/oauth2/authorize?client_id={self.bot.user.id}&scope=bot&permissions={permissions})",
         )
         embed.set_footer(text=emb_footer)
         button = url_button.URLButton(
