@@ -56,7 +56,7 @@ class ButtonInvite(commands.Cog):
         Use `{bot}` in your message to display bot name.
         Enter `None` to disable the description.
         """
-        if text == "":
+        if not text:
             await self.config.description.clear()
             return await ctx.send("Embed description set to default.")
         elif text == "None":
@@ -71,7 +71,7 @@ class ButtonInvite(commands.Cog):
         """
         Set the button description.
         """
-        if text == "":
+        if not text:
             await self.config.invite_description.clear()
             return await ctx.send("Button description set to default.")
         await self.config.invite_description.set(text)
@@ -122,7 +122,7 @@ class ButtonInvite(commands.Cog):
         Use `{bot}` in your message to display bot name.
         Enter `None` to disable the description.
         """
-        if text == "":
+        if not text:
             await self.config.footer.clear()
             return await ctx.send("Embed footer set to default.")
         elif text == "None":
@@ -139,7 +139,7 @@ class ButtonInvite(commands.Cog):
         Use `{bot}` in your message to display bot name.
         Enter `None` to disable the author.
         """
-        if text == "":
+        if not text:
             await self.config.author.clear()
             return await ctx.send("Embed author set to default.")
         elif text == "None":
@@ -156,7 +156,7 @@ class ButtonInvite(commands.Cog):
         Use `{bot}` in your message to display bot name.
         Enter `None` to disable the link text.
         """
-        if text == "":
+        if not text:
             await self.config.link_text.clear()
             return await ctx.send("Embed link text set to default.")
         elif text == "None":
@@ -171,7 +171,7 @@ class ButtonInvite(commands.Cog):
         """
         Set the embed thumbnail url. Leave blank for default thumbnail.
         """
-        if link == "":
+        if not link:
             await self.config.thumbnail.clear()
             return await ctx.send("Embed thumbnail set to default.")
         regex = "^https?://(?:[a-z0-9\-]+\.)+[a-z]{2,6}(?:/[^/#?]+)+\.(?:jpg|gif|png)$"
@@ -188,7 +188,7 @@ class ButtonInvite(commands.Cog):
         """
         Set the embed icon url. Leave blank for default icon.
         """
-        if link == "":
+        if not link:
             await self.config.icon_url.clear()
             return await ctx.send("Embed icon set to default.")
         regex = "^https?://(?:[a-z0-9\-]+\.)+[a-z]{2,6}(?:/[^/#?]+)+\.(?:jpg|gif|png)$"
@@ -239,7 +239,6 @@ class ButtonInvite(commands.Cog):
 
 def setup(bot):
     global old_invite
-    old_invite = bot.get_command("invite")
-    if old_invite:
+    if old_invite := bot.get_command("invite"):
         bot.remove_command(old_invite.name)
     bot.add_cog(ButtonInvite(bot))
