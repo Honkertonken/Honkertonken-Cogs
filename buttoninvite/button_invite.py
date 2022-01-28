@@ -236,7 +236,7 @@ class ButtonInvite(commands.Cog):
             )
             button = url_button.URLButton(
                 f"{await self.config.invite_description()}",
-                f"https://discord.com/oauth2/authorize?client_id={self.bot.user.id}&scope=bot+applications.commands&permissions={permissions}",
+                f"https://discord.com/oauth2/authorize?client_id={self.bot.user.id}&scope=bot&permissions={permissions}",
             )
         embed.set_footer(text=emb_footer)
         await url_button.send_message(self.bot, ctx.channel.id, embed=embed, url_button=button)
