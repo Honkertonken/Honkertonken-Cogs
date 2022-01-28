@@ -216,15 +216,15 @@ class ButtonInvite(commands.Cog):
         )
         embed.set_thumbnail(url=(await self.config.thumbnail()))
         if command_scope:
-        embed.add_field(
-            name="\N{Zero Width Space}",
-            value=f"[{link_text}](https://discord.com/oauth2/authorize?client_id={self.bot.user.id}&scope=bot+applications.commands&permissions={permissions})",
-        )
+            embed.add_field(
+                name="\N{Zero Width Space}",
+                value=f"[{link_text}](https://discord.com/oauth2/authorize?client_id={self.bot.user.id}&scope=bot+applications.commands&permissions={permissions})",
+            )
         else:
-        embed.add_field(
-            name="\N{Zero Width Space}",
-            value=f"[{link_text}](https://discord.com/oauth2/authorize?client_id={self.bot.user.id}&scope=bot&permissions={permissions})",
-        )
+            embed.add_field(
+                name="\N{Zero Width Space}",
+                value=f"[{link_text}](https://discord.com/oauth2/authorize?client_id={self.bot.user.id}&scope=bot&permissions={permissions})",
+            )
         embed.set_footer(text=emb_footer)
         button = url_button.URLButton(
             f"{await self.config.invite_description()}",
