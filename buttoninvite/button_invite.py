@@ -105,10 +105,14 @@ class ButtonInvite(commands.Cog):
         """
         if value:
             await self.config.commandscope.set(True)
-            await ctx.send("The `applications.commands` scope set to `True` and added to invite URL.")
+            await ctx.send(
+                "The `applications.commands` scope set to `True` and added to invite URL."
+            )
         else:
             await self.config.commandscope.set(False)
-            await ctx.send("The `applications.commands` scope set to `False` and removed from invite URL.")
+            await ctx.send(
+                "The `applications.commands` scope set to `False` and removed from invite URL."
+            )
 
     @commands.is_owner()
     @invset.command()
