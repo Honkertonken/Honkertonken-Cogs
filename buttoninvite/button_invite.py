@@ -174,7 +174,7 @@ class ButtonInvite(commands.Cog):
         if not link:
             await self.config.thumbnail.clear()
             return await ctx.send("Embed thumbnail set to default.")
-        regex = "^https?://(?:[a-z0-9\-]+\.)+[a-z]{2,6}(?:/[^/#?]+)+\.(?:jpg|gif|png)$"
+        regex = r"^https?://(?:[a-z0-9\-]+\.)+[a-z]{2,6}(?:/[^/#?]+)+\.(?:jpg|gif|png)$"
         url = re.findall(regex, link)
         urls = [x[0] for x in url]
         if not urls:
@@ -191,7 +191,7 @@ class ButtonInvite(commands.Cog):
         if not link:
             await self.config.icon_url.clear()
             return await ctx.send("Embed icon set to default.")
-        regex = "^https?://(?:[a-z0-9\-]+\.)+[a-z]{2,6}(?:/[^/#?]+)+\.(?:jpg|gif|png)$"
+        regex = r"^https?://(?:[a-z0-9\-]+\.)+[a-z]{2,6}(?:/[^/#?]+)+\.(?:jpg|gif|png)$"
         url = re.findall(regex, link)
         urls = [x[0] for x in url]
         if not urls:
