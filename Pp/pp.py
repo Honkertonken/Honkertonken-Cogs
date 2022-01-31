@@ -28,7 +28,7 @@ class Pp(commands.Cog):
         for user in users:
             random.seed(str(user.id))
 
-            if ctx.bot.user.id == user.id or user.id == bot_owner:
+            if user.id in (ctx.bot.user.id, bot_owner):
                 length = 35
             else:
                 length = random.randint(0, 30)
