@@ -35,7 +35,6 @@ class ButtonInvite(commands.Cog):
         self.config.register_global(**default)
 
     def cog_unload(self):
-        global old_invite
         if old_invite:
             try:
                 self.bot.remove_command("invite")
