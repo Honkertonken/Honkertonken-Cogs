@@ -242,7 +242,6 @@ class ButtonInvite(commands.Cog):
 
 
 def setup(bot):
-    global old_invite
     if old_invite := bot.get_command("invite"):
         bot.remove_command(old_invite.name)
     bot.add_cog(ButtonInvite(bot))
