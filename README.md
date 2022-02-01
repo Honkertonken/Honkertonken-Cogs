@@ -8,7 +8,7 @@
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/Honkertonken/Cogs-V3/master.svg)](https://results.pre-commit.ci/latest/github/Honkertonken/Cogs-V3/master)
 [![Black](https://img.shields.io/badge/Black-Passing-blue)](https://github.com/psf/black)
-[![Isort](https://img.shields.io/badge/Isort-Passing-orange)](https://github.com/PyCQA/isort)
+[![Imports: isort](https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336)](https://pycqa.github.io/isort/)
 [![Autoflake](https://img.shields.io/badge/Autoflake-Passing-green)](https://github.com/myint/autoflake)
 
 **Disclaimer: This is an unapproved repo, meaning no one has formally reviewed this repo yet and any loss of data in your bot isn't my fault (Any loss of data is highly unlikely as I use these cogs for my bot.)**
