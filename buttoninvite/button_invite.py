@@ -35,7 +35,6 @@ class ButtonInvite(commands.Cog):
         self.config.register_global(**default)
 
     def cog_unload(self):
-        global old_invite
         if old_invite:
             try:
                 self.bot.remove_command("invite")
@@ -45,11 +44,11 @@ class ButtonInvite(commands.Cog):
 
     @commands.is_owner()
     @commands.group()
-    async def invset(self, ctx):
-        """Settings for embedinvite cog."""
+    async def invitesettings(self, ctx):
+        """Settings for buttoninvite cog."""
 
     @commands.is_owner()
-    @invset.command()
+    @invitesettings.command()
     async def description(self, ctx, *, text: str = ""):
         """
         Set the embed description.Leave blank for default description.
@@ -66,7 +65,7 @@ class ButtonInvite(commands.Cog):
         await ctx.send(f"Embed description set to :\n`{text}`")
 
     @commands.is_owner()
-    @invset.command()
+    @invitesettings.command()
     async def button(self, ctx, *, text: str = ""):
         """
         Set the button description.
@@ -78,7 +77,7 @@ class ButtonInvite(commands.Cog):
         await ctx.send(f"Button description set to :\n`{text}`")
 
     @commands.is_owner()
-    @invset.command()
+    @invitesettings.command()
     async def permissions(self, ctx, *, text: int = ""):
         """
         Set the default permissions value for your bot. Get the permissions value from https://discordapi.com/permissions.html.
@@ -95,7 +94,7 @@ class ButtonInvite(commands.Cog):
         await ctx.send("Permissions set")
 
     @commands.is_owner()
-    @invset.command()
+    @invitesettings.command()
     async def scope(self, ctx, value: bool = None):
         """
         Add the `applications.commands` scope to your invite URL.
@@ -115,7 +114,7 @@ class ButtonInvite(commands.Cog):
             )
 
     @commands.is_owner()
-    @invset.command()
+    @invitesettings.command()
     async def footer(self, ctx, *, text: str = ""):
         """
         Set the embed footer. Leave blank for default author.
@@ -132,7 +131,7 @@ class ButtonInvite(commands.Cog):
         await ctx.send(f"Embed footer set to :\n`{text}`")
 
     @commands.is_owner()
-    @invset.command()
+    @invitesettings.command()
     async def author(self, ctx, *, text: str = ""):
         """
         Set the embed author. Leave blank for default author.
@@ -149,7 +148,7 @@ class ButtonInvite(commands.Cog):
         await ctx.send(f"Embed author set to :\n`{text}`")
 
     @commands.is_owner()
-    @invset.command()
+    @invitesettings.command()
     async def text(self, ctx, *, text: str = ""):
         """
         Set the embed link text. Leave blank for default link text.
@@ -166,7 +165,7 @@ class ButtonInvite(commands.Cog):
         await ctx.send(f"Embed link text set to :\n`{text}`")
 
     @commands.is_owner()
-    @invset.command()
+    @invitesettings.command()
     async def thumbnail(self, ctx, *, link: str = ""):
         """
         Set the embed thumbnail url. Leave blank for default thumbnail.
@@ -174,7 +173,7 @@ class ButtonInvite(commands.Cog):
         if not link:
             await self.config.thumbnail.clear()
             return await ctx.send("Embed thumbnail set to default.")
-        regex = "^https?://(?:[a-z0-9\-]+\.)+[a-z]{2,6}(?:/[^/#?]+)+\.(?:jpg|gif|png)$"
+        regex = r"^https?://(?:[a-z0-9\-]+\.)+[a-z]{2,6}(?:/[^/#?]+)+\.(?:jpg|gif|png)$"
         url = re.findall(regex, link)
         urls = [x[0] for x in url]
         if not urls:
@@ -183,7 +182,7 @@ class ButtonInvite(commands.Cog):
         await ctx.send(f"Embed thumbnail set to :\n`{link}`")
 
     @commands.is_owner()
-    @invset.command()
+    @invitesettings.command()
     async def icon(self, ctx, *, link: str = ""):
         """
         Set the embed icon url. Leave blank for default icon.
@@ -191,7 +190,7 @@ class ButtonInvite(commands.Cog):
         if not link:
             await self.config.icon_url.clear()
             return await ctx.send("Embed icon set to default.")
-        regex = "^https?://(?:[a-z0-9\-]+\.)+[a-z]{2,6}(?:/[^/#?]+)+\.(?:jpg|gif|png)$"
+        regex = r"^https?://(?:[a-z0-9\-]+\.)+[a-z]{2,6}(?:/[^/#?]+)+\.(?:jpg|gif|png)$"
         url = re.findall(regex, link)
         urls = [x[0] for x in url]
         if not urls:
@@ -236,14 +235,13 @@ class ButtonInvite(commands.Cog):
             )
             button = url_button.URLButton(
                 f"{await self.config.invite_description()}",
-                f"https://discord.com/oauth2/authorize?client_id={self.bot.user.id}&scope=bot+applications.commands&permissions={permissions}",
+                f"https://discord.com/oauth2/authorize?client_id={self.bot.user.id}&scope=bot&permissions={permissions}",
             )
         embed.set_footer(text=emb_footer)
         await url_button.send_message(self.bot, ctx.channel.id, embed=embed, url_button=button)
 
 
 def setup(bot):
-    global old_invite
     if old_invite := bot.get_command("invite"):
         bot.remove_command(old_invite.name)
     bot.add_cog(ButtonInvite(bot))
