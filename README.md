@@ -10,6 +10,7 @@
 [![Black](https://img.shields.io/badge/Black-Passing-blue)](https://github.com/psf/black)
 [![Imports: isort](https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336)](https://pycqa.github.io/isort/)
 [![Autoflake](https://img.shields.io/badge/Autoflake-Passing-green)](https://github.com/myint/autoflake)
+[![DeepSource](https://static.deepsource.io/deepsource-badge-light-mini.svg)](https://deepsource.io/gh/pycqa/isort/?ref=repository-badge)
 
 **Disclaimer: This is an unapproved repo, meaning no one has formally reviewed this repo yet and any loss of data in your bot isn't my fault (Any loss of data is highly unlikely as I use these cogs for my bot.)**
 
@@ -29,14 +30,16 @@ To add cogs from this repo to your instance, do these steps:
 
 # About Cogs
 
-| Cog          | Description                                                                            | Authors                 |
-| ------------ | -------------------------------------------------------------------------------------- | ----------------------- |
-| Whoasked     | Who the hell asked? This cog/ command was inspired by KableKompany#0001.               | Honkertonken            |
-| Pp           | Detect the length of someones (or your) pp. Note: 100% accurate.                       | Honkertonken            |
-| Pressf       | A customizable pressf cog, pay some respects.                                          | Aikaterna, Honkertonken |
-| Sdm          | A simple dm to directly send raw text to the specified user, supports id and mentions. | Honkerotnken            |
-| Tsd          | In discord docs for Phenom4n4n's Tags/Slashtags cog.                                   | Honkertonken            |
-| ButtonInvite | A highly customizable invite cog with buttons! Does not use any extra lib.             | Honkertonken            |
+| Cog            | Description                                                                     | Authors                 |
+| -------------- | ------------------------------------------------------------------------------- | ----------------------- |
+| Whoasked       | Who the hell asked? This cog/ command was inspired by KableKompany#0001.        | Honkertonken            |
+| Pp             | Detect the length of someones (or your) pp. Note: 100% accurate.                | Honkertonken            |
+| Pressf         | A customizable pressf cog, pay some respects.                                   | Aikaterna, Honkertonken |
+| Sdm            | A dm to directly send raw text to the specified user, supports id and mentions. | Honkerotnken            |
+| Tsd            | In discord docs for Phenom4n4n's Tags/Slashtags cog.                            | Honkertonken            |
+| ButtonInvite   | A highly customizable invite cog with buttons! Does not use any extra lib.      | Honkertonken            |
+| BlackFormatter | Format your code with black. Supports attachments, replies & code blocks.       | Honkertonken            |
+| IsortFormatter | Format your code with isort. Supports attachments, replies & code blocks.       | Honkertonken            |
 
 # Contributing
 
