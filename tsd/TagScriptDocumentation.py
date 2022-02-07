@@ -25,8 +25,12 @@ class TagScriptDocumentation(commands.Cog):
         """
         Tag Script Documentation
         """
+        prefixes = await self.bot.get_prefix(ctx.message.channel)
+        if f"<@!{self.bot.user.id}> " in prefixes:
+            prefixes.remove(f"<@!{self.bot.user.id}> ")
+        sorted_prefixes = sorted(prefixes, key=len)
         await ctx.send(
-            "That doesn't look like a valid block use `[p]tsd list` to see a list of all tagscript blocks."
+            f"That doesn't look like a valid block use `{sorted_prefixes[0]}tsd list` to see a list of all tagscript blocks."
         )
 
     @tsd.command(name="args", aliases=["arg"])
