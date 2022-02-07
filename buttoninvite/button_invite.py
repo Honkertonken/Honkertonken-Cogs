@@ -38,7 +38,7 @@ class ButtonInvite(commands.Cog):
         if old_invite:
             try:
                 self.bot.remove_command("invite")
-            except:
+            except Exception:
                 pass
             self.bot.add_command(old_invite)
 
