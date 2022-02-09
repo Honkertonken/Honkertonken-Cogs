@@ -40,6 +40,7 @@ To add cogs from this repo to your instance, do these steps:
 | ButtonInvite   | A highly customizable invite cog with buttons! Does not use any extra lib.      | Honkertonken            |
 | BlackFormatter | Format your code with black. Supports attachments, replies & code blocks.       | Honkertonken            |
 | IsortFormatter | Format your code with isort. Supports attachments, replies & code blocks.       | Honkertonken            |
+| ReactionLog    | A simple reaction logger cog.                                                   | Honkertonken            |
 
 # Contributing
 
