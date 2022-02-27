@@ -20,14 +20,14 @@ Discord User: Honkertonken#9221
 # Installation
 
 To add cogs from this repo to your instance, do these steps:
+```ini
+- [p]load downloader
+- [p]repo add Honkertonken-Cogs https://github.com/Honkertonken/Honkertonken-Cogs
+- [p]cog install Honkertonken-Cogs <cog name>
+- [p]load <cog name>
 
-- `[p]load downloader`
-- `[p]repo add Honkertonken-Cogs https://github.com/Honkertonken/Honkertonken-Cogs`
-- `[p]cog install Honkertonken-Cogs <cog name>`
-- `[p]load <cog name>`
-
-`Note: [p] here refers to your prefix.`
-
+Note: [p] here refers to your prefix.
+```
 # About Cogs
 
 | Cog            | Description                                                                     | Authors                 |
@@ -55,4 +55,4 @@ autoflake . --in-place --remove-unused-variables --remove-all-unused-imports --r
 
 # Contact
 
-If you encounter bugs or just want to contact to me you can always shoot me a dm at Honkertonken#9221. For feature requests, issues, bugs, or suggestions open a PR/issue on this repo.
+If you encounter bugs or just want to contact to me you can always shoot me a dm at Honkertonken#9221 or ping me in the `#support_othercogs` channel. . For feature requests, issues, bugs, or suggestions open a PR/issue on this repo.
