@@ -17,7 +17,7 @@ class Black(commands.Cog):
     @commands.command()
     async def black(self, ctx, *, data: Optional[str]):
         """
-        Format a python file with black.
+        Format your python code with black.
         """
         try:
             code = await get_data(ctx, data)

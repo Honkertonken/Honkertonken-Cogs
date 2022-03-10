@@ -17,7 +17,7 @@ class Isort(commands.Cog):
     @commands.command()
     async def isort(self, ctx, *, data: Optional[str]):
         """
-        Format a python file with isort.
+        Format your python code with isort.
         """
         try:
             code = await get_data(ctx, data)

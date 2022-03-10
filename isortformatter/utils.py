@@ -65,7 +65,7 @@ async def send_output(ctx: commands.Context, text: str) -> None:
     """Send output as a codeblock or file, depending on file limits. Handles no attachment perm."""
 
     if (len(text)) < 1980 and text.count("\n") < 20:
-        await ctx.send(box(text, lang="json"))
+        await ctx.send(box(text, lang="py"))
     else:
         if ctx.guild and not ctx.channel.permissions_for(ctx.me).attach_files:
             return await ctx.send(
