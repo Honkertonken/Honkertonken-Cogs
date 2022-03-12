@@ -2,6 +2,15 @@ import discord
 from redbot.core import commands
 
 
+async def embedify(self, ctx, url, img_link):
+    e = discord.Embed(title="Tags Documentation", type="image", url=url)
+    e.set_image(url=img_link)
+    await ctx.reply(embed=e, mention_author=False)
+
+
+docs_link = "https://phen-cogs.readthedocs.io/en/latest/tags/"
+
+
 class TagScriptDocumentation(commands.Cog):
     """
     A simple in discord documentation for Phenom4n4n's tags cog.
@@ -38,377 +47,348 @@ class TagScriptDocumentation(commands.Cog):
         """
         Tag Script Args Block.
         """
-        e = discord.Embed(
-            title="Tags Documentation",
-            url="https://phen-cogs.readthedocs.io/en/latest/tags/default_variables.html#args-block",
-            type="image",
+        await embedify(
+            self,
+            ctx,
+            docs_link + "default_variables.html#args-block",
+            "https://i.imgur.com/6tdrc2D.png",
         )
-        e.set_image(url="https://i.imgur.com/6tdrc2D.png")
-        await ctx.reply(embed=e, mention_author=False)
 
     @tsd.command(name="uses", aliases=["use"])
     async def uses(self, ctx):
         """
         Tag Script Uses Block.
         """
-        e = discord.Embed(
-            title="Tags Documentation",
-            url="https://phen-cogs.readthedocs.io/en/latest/tags/default_variables.html#uses-block",
-            type="image",
+        await embedify(
+            self,
+            ctx,
+            docs_link + "default_variables.html#uses-block",
+            "https://i.imgur.com/NggRXeb.png",
         )
-        e.set_image(url="https://i.imgur.com/NggRXeb.png")
-        await ctx.reply(embed=e, mention_author=False)
 
     @tsd.command(name="author")
     async def author(self, ctx):
         """
         Tag Script Author Block.
         """
-        e = discord.Embed(
-            title="Tags Documentation",
-            url="https://phen-cogs.readthedocs.io/en/latest/tags/default_variables.html#author-block",
-            type="image",
+        await embedify(
+            self,
+            ctx,
+            docs_link + "default_variables.html#author-block",
+            "https://i.imgur.com/vtvF4U3.png",
         )
-        e.set_image(url="https://i.imgur.com/vtvF4U3.png")
-        await ctx.reply(embed=e, mention_author=False)
 
     @tsd.command(name="target")
     async def target(self, ctx):
         """
         Tag Script Target Block.
         """
-        e = discord.Embed(
-            title="Tags Documentation",
-            url="https://phen-cogs.readthedocs.io/en/latest/tags/default_variables.html#target-block}",
-            type="image",
+        await embedify(
+            self,
+            ctx,
+            docs_link + "default_variables.html#target-block",
+            "https://i.imgur.com/9Kx44NL.png",
         )
-        e.set_image(url="https://i.imgur.com/9Kx44NL.png")
-        await ctx.reply(embed=e, mention_author=False)
 
     @tsd.command(name="channel")
     async def channel(self, ctx):
         """
         Tag Script Channel Block.
         """
-        e = discord.Embed(
-            title="Tags Documentation",
-            url="https://phen-cogs.readthedocs.io/en/latest/tags/default_variables.html#channel-block",
-            type="image",
+        await embedify(
+            self,
+            ctx,
+            docs_link + "default_variables.html#channel-block",
+            "https://i.imgur.com/xX6vGOH.png",
         )
-        e.set_image(url="https://i.imgur.com/xX6vGOH.png")
-        await ctx.reply(embed=e, mention_author=False)
 
     @tsd.command(name="server")
     async def server(self, ctx):
         """
         Tag Script Server Block.
         """
-        e = discord.Embed(
-            title="Tags Documentation",
-            url="https://phen-cogs.readthedocs.io/en/latest/tags/default_variables.html#server-block",
-            type="image",
+        await embedify(
+            self,
+            ctx,
+            docs_link + "default_variables.html#server-block",
+            "https://i.imgur.com/2Oj8A49.png",
         )
-        e.set_image(url="https://i.imgur.com/2Oj8A49.png")
-        await ctx.reply(embed=e, mention_author=False)
 
     @tsd.command(name="require")
     async def require(self, ctx):
         """
         Tag Script Require Block.
         """
-        e = discord.Embed(
-            title="Tags Documentation",
-            url="https://phen-cogs.readthedocs.io/en/latest/tags/parsing_blocks.html#require-block",
-            type="image",
+        await embedify(
+            self,
+            ctx,
+            docs_link + "parsing_blocks.html#require-block",
+            "https://i.imgur.com/FOPupFX.png",
         )
-        e.set_image(url="https://i.imgur.com/FOPupFX.png")
-        await ctx.reply(embed=e, mention_author=False)
 
     @tsd.command(name="blacklist", aliases=["bl"])
     async def blacklist(self, ctx):
         """
         Tag Script Blacklist Block.
         """
-        e = discord.Embed(
-            title="Tags Documentation",
-            url="https://phen-cogs.readthedocs.io/en/latest/tags/parsing_blocks.html#blacklist-block",
-            type="image",
+        await embedify(
+            self,
+            ctx,
+            docs_link + "parsing_blocks.html#blacklist-block",
+            "https://i.imgur.com/y88vo3I.png",
         )
-        e.set_image(url="https://i.imgur.com/y88vo3I.png")
-        await ctx.reply(embed=e, mention_author=False)
 
     @tsd.command(name="cooldown", aliases=["cd"])
     async def cooldown(self, ctx):
         """
         Tag Script Cooldown Block.
         """
-        e = discord.Embed(
-            title="Tags Documentation",
-            url="https://phen-cogs.readthedocs.io/en/latest/tags/parsing_blocks.html#cooldown-block",
-            type="image",
+        await embedify(
+            self,
+            ctx,
+            docs_link + "parsing_blocks.html#cooldown-block",
+            "https://i.imgur.com/PYTpqIT.png",
         )
-        e.set_image(url="https://i.imgur.com/PYTpqIT.png")
-        await ctx.reply(embed=e, mention_author=False)
 
     @tsd.command(name="embed")
     async def embed(self, ctx):
         """
         Tag Script Embed Block.
         """
-        e = discord.Embed(
-            title="Tags Documentation",
-            url="https://phen-cogs.readthedocs.io/en/latest/tags/parsing_blocks.html#embed-block",
-            type="image",
+        await embedify(
+            self,
+            ctx,
+            docs_link + "parsing_blocks.html#embed-block",
+            "https://i.imgur.com/OYYY02h.png",
         )
-        e.set_image(url="https://i.imgur.com/OYYY02h.png")
-        await ctx.reply(embed=e, mention_author=False)
 
     @tsd.command(name="redirect")
     async def redirect(self, ctx):
         """
         Tag Script Redirect Block.
         """
-        e = discord.Embed(
-            title="Tags Documentation",
-            url="https://phen-cogs.readthedocs.io/en/latest/tags/parsing_blocks.html#redirect-block",
-            type="image",
+        await embedify(
+            self,
+            ctx,
+            docs_link + "parsing_blocks.html#redirect-block",
+            "https://i.imgur.com/y168a4z.png",
         )
-        e.set_image(url="https://i.imgur.com/y168a4z.png")
-        await ctx.reply(embed=e, mention_author=False)
 
     @tsd.command(name="delete", aliases=["del"])
     async def delete(self, ctx):
         """
         Tag Script Delete Block.
         """
-        e = discord.Embed(
-            title="Tags Documentation",
-            url="https://phen-cogs.readthedocs.io/en/latest/tags/parsing_blocks.html#delete-block",
-            type="image",
+        await embedify(
+            self,
+            ctx,
+            docs_link + "parsing_blocks.html#delete-block",
+            "https://i.imgur.com/GrF7Q0l.png",
         )
-        e.set_image(url="https://i.imgur.com/GrF7Q0l.png")
-        await ctx.reply(embed=e, mention_author=False)
 
     @tsd.command(name="react", aliases=["reactu"])
     async def react(self, ctx):
         """
         Tag Script React(u) Block.
         """
-        e = discord.Embed(
-            title="Tags Documentation",
-            url="https://phen-cogs.readthedocs.io/en/latest/tags/parsing_blocks.html#react-block",
-            type="image",
+        await embedify(
+            self,
+            ctx,
+            docs_link + "parsing_blocks.html#react-block",
+            "https://i.imgur.com/kvtFLVg.png",
         )
-        e.set_image(url="https://i.imgur.com/kvtFLVg.png")
-        await ctx.reply(embed=e, mention_author=False)
 
     @tsd.command(name="command", aliases=["cmd"])
     async def command(self, ctx):
         """
         Tag Script Command Block.
         """
-        e = discord.Embed(
-            title="Tags Documentation",
-            url="https://phen-cogs.readthedocs.io/en/latest/tags/parsing_blocks.html#command-block",
-            type="image",
+        await embedify(
+            self,
+            ctx,
+            docs_link + "parsing_blocks.html#command-block",
+            "https://i.imgur.com/i4VlWod.png",
         )
-        e.set_image(url="https://i.imgur.com/i4VlWod.png")
-        await ctx.reply(embed=e, mention_author=False)
 
     @tsd.command(name="override")
     async def override(self, ctx):
         """
         Tag Script Override Block.
         """
-        e = discord.Embed(
-            title="Tags Documentation",
-            url="https://phen-cogs.readthedocs.io/en/latest/tags/parsing_blocks.html#override-block",
-            type="image",
+        await embedify(
+            self,
+            ctx,
+            docs_link + "parsing_blocks.html#override-block",
+            "https://i.imgur.com/eukhyED.png",
         )
-        e.set_image(url="https://i.imgur.com/eukhyED.png")
-        await ctx.reply(embed=e, mention_author=False)
 
     @tsd.command(name="assignment", aliases=["var", "let"])
     async def assignment(self, ctx):
         """
         Tag Script Assignment Block.
         """
-        e = discord.Embed(
-            title="Tags Documentation",
-            url="https://phen-cogs.readthedocs.io/en/latest/tags/tse_blocks.html#assignment-block",
-            type="image",
+        await embedify(
+            self,
+            ctx,
+            docs_link + "tse_blocks.html#assignment-block",
+            "https://i.imgur.com/xnD2WrL.png",
         )
-        e.set_image(url="https://i.imgur.com/xnD2WrL.png")
-        await ctx.reply(embed=e, mention_author=False)
 
     @tsd.command(name="random", aliases=["rand"])
     async def random(self, ctx):
         """
         Tag Script Random Block.
         """
-        e = discord.Embed(
-            title="Tags Documentation",
-            url="https://phen-cogs.readthedocs.io/en/latest/tags/tse_blocks.html#random-block}",
-            type="image",
+        await embedify(
+            self,
+            ctx,
+            docs_link + "tse_blocks.html#random-block",
+            "https://i.imgur.com/ATFCFee.png",
         )
-        e.set_image(url="https://i.imgur.com/ATFCFee.png")
-        await ctx.reply(embed=e, mention_author=False)
 
     @tsd.command(name="math")
     async def math(self, ctx):
         """
         Tag Script Math Block.
         """
-        e = discord.Embed(
-            title="Tags Documentation",
-            url="https://phen-cogs.readthedocs.io/en/latest/tags/tse_blocks.html#math-block",
-            type="image",
+        await embedify(
+            self,
+            ctx,
+            docs_link + "tse_blocks.html#math-block",
+            "https://i.imgur.com/iXa3wUu.png",
         )
-        e.set_image(url="https://i.imgur.com/iXa3wUu.png")
-        await ctx.reply(embed=e, mention_author=False)
 
     @tsd.command(name="range")
     async def range(self, ctx):
         """
         Tag Script Range Block.
         """
-        e = discord.Embed(
-            title="Tags Documentation",
-            url="https://phen-cogs.readthedocs.io/en/latest/tags/tse_blocks.html#range-block}",
-            type="image",
+        await embedify(
+            self,
+            ctx,
+            docs_link + "tse_blocks.html#range-block",
+            "https://i.imgur.com/UIriMjH.png",
         )
-        e.set_image(url="https://i.imgur.com/UIriMjH.png")
-        await ctx.reply(embed=e, mention_author=False)
 
     @tsd.command(name="if")
     async def _if(self, ctx):
         """
         Tag Script If Block.
         """
-        e = discord.Embed(
-            title="Tags Documentation",
-            url="https://phen-cogs.readthedocs.io/en/latest/tags/tse_blocks.html#if-block",
-            type="image",
+        await embedify(
+            self,
+            ctx,
+            docs_link + "tse_blocks.html#if-block",
+            "https://i.imgur.com/I1ApnQZ.png",
         )
-        e.set_image(url="https://i.imgur.com/I1ApnQZ.png")
-        await ctx.reply(embed=e, mention_author=False)
 
     @tsd.command(name="break")
     async def _break(self, ctx):
         """
         Tag Script Break Block.
         """
-        e = discord.Embed(
-            title="Tags Documentation",
-            url="https://phen-cogs.readthedocs.io/en/latest/tags/tse_blocks.html#break-block",
-            type="image",
+        await embedify(
+            self,
+            ctx,
+            docs_link + "tse_blocks.html#break-block",
+            "https://i.imgur.com/qt89NtC.png",
         )
-        e.set_image(url="https://i.imgur.com/qt89NtC.png")
-        await ctx.reply(embed=e, mention_author=False)
 
     @tsd.command(name="all")
     async def all(self, ctx):
         """
         Tag Script All Block.
         """
-        e = discord.Embed(
-            title="Tags Documentation",
-            url="https://phen-cogs.readthedocs.io/en/latest/tags/tse_blocks.html#all-block}",
-            type="image",
+        await embedify(
+            self,
+            ctx,
+            docs_link + "tse_blocks.html#all-block",
+            "https://i.imgur.com/A39SCc0.png",
         )
-        e.set_image(url="https://i.imgur.com/A39SCc0.png")
-        await ctx.reply(embed=e, mention_author=False)
 
     @tsd.command(name="any")
     async def any(self, ctx):
         """
         Tag Script Any Block.
         """
-        e = discord.Embed(
-            title="Tags Documentation",
-            url="https://phen-cogs.readthedocs.io/en/latest/tags/tse_blocks.html#any-block",
-            type="image",
+        await embedify(
+            self,
+            ctx,
+            docs_link + "tse_blocks.html#any-block",
+            "https://i.imgur.com/x0rlNv9.png",
         )
-        e.set_image(url="https://i.imgur.com/x0rlNv9.png")
-        await ctx.reply(embed=e, mention_author=False)
 
     @tsd.command(name="fiftyfifty", aliases=["5050"])
     async def fiftyfifty(self, ctx):
         """
         Tag Script Fiftyfifty Block.
         """
-        e = discord.Embed(
-            title="Tags Documentation",
-            url="https://phen-cogs.readthedocs.io/en/latest/tags/tse_blocks.html#fifty-fifty-block",
-            type="image",
+        await embedify(
+            self,
+            ctx,
+            docs_link + "tse_blocks.html#fifty-fifty-block",
+            "https://i.imgur.com/LdjKymz.png",
         )
-        e.set_image(url="https://i.imgur.com/LdjKymz.png")
-        await ctx.reply(embed=e, mention_author=False)
 
     @tsd.command(name="stop")
     async def stop(self, ctx):
         """
         Tag Script Stop Block.
         """
-        e = discord.Embed(
-            title="Tags Documentation",
-            url="https://phen-cogs.readthedocs.io/en/latest/tags/tse_blocks.html#stop-block",
-            type="image",
+        await embedify(
+            self,
+            ctx,
+            docs_link + "tse_blocks.html#stop-block",
+            "https://i.imgur.com/81y8q99.png",
         )
-        e.set_image(url="https://i.imgur.com/81y8q99.png")
-        await ctx.reply(embed=e, mention_author=False)
 
     @tsd.command(name="replace")
     async def replace(self, ctx):
         """
         Tag Script Replace Block.
         """
-        e = discord.Embed(
-            title="Tags Documentation",
-            url="https://phen-cogs.readthedocs.io/en/latest/tags/tse_blocks.html#replace-block",
-            type="image",
+        await embedify(
+            self,
+            ctx,
+            docs_link + "tse_blocks.html#replace-block",
+            "https://i.imgur.com/wnXXpEf.png",
         )
-        e.set_image(url="https://i.imgur.com/wnXXpEf.png")
-        await ctx.reply(embed=e, mention_author=False)
 
     @tsd.command(name="urlencode")
     async def urlencode(self, ctx):
         """
         Tag Script Urlencode Block.
         """
-        e = discord.Embed(
-            title="Tags Documentation",
-            url="https://phen-cogs.readthedocs.io/en/latest/tags/tse_blocks.html#urlencode-block",
-            type="image",
+        await embedify(
+            self,
+            ctx,
+            docs_link + "tse_blocks.html#urlencode-block",
+            "https://i.imgur.com/jYwLzXa.png",
         )
-        e.set_image(url="https://i.imgur.com/jYwLzXa.png")
-        await ctx.reply(embed=e, mention_author=False)
 
     @tsd.command(name="strftime", aliases=["strf"])
     async def strftime(self, ctx):
         """
         Tag Script Strftime Block.
         """
-        e = discord.Embed(
-            title="Tags Documentation",
-            url="https://phen-cogs.readthedocs.io/en/latest/tags/tse_blocks.html#strftime-block",
-            type="image",
+        await embedify(
+            self,
+            ctx,
+            docs_link + "tse_blocks.html#strftime-block",
+            "https://i.imgur.com/K8jObGF.png",
         )
-        e.set_image(url="https://i.imgur.com/K8jObGF.png")
-        await ctx.reply(embed=e, mention_author=False)
 
     @tsd.command(name="substring")
     async def subtring(self, ctx):
         """
         Tag Script Substring Block.
         """
-        e = discord.Embed(
-            title="Tags Documentation",
-            url="https://phen-cogs.readthedocs.io/en/latest/tags/tse_blocks.html#substring-block",
-            type="image",
+        await embedify(
+            self,
+            ctx,
+            docs_link + "tse_blocks.html#substring-block",
+            "https://i.imgur.com/fQce8aa.png",
         )
-        e.set_image(url="https://i.imgur.com/fQce8aa.png")
-        await ctx.reply(embed=e, mention_author=False)
 
     @tsd.command(name="list", aliases=["view"])
     async def list(self, ctx):
