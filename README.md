@@ -20,6 +20,7 @@ Discord User: Honkertonken#9221
 # Installation
 
 To add cogs from this repo to your instance, do these steps:
+
 ```ini
 - [p]load downloader
 - [p]repo add Honkertonken-Cogs https://github.com/Honkertonken/Honkertonken-Cogs
@@ -28,6 +29,7 @@ To add cogs from this repo to your instance, do these steps:
 
 Note: [p] here refers to your prefix.
 ```
+
 # About Cogs
 
 | Cog            | Description                                                                     | Authors                 |
@@ -41,6 +43,7 @@ Note: [p] here refers to your prefix.
 | BlackFormatter | Format your code with black. Supports attachments, replies & code blocks.       | Honkertonken            |
 | IsortFormatter | Format your code with isort. Supports attachments, replies & code blocks.       | Honkertonken            |
 | ReactionLog    | A simple reaction logger cog.                                                   | Honkertonken            |
+| AmariLevel     | View your amari rank. Note: Requires you have to have a api key                 | Honkertonken            |
 
 # Contributing
 
