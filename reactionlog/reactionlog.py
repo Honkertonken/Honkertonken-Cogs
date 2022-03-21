@@ -35,7 +35,7 @@ class ReactionLog(commands.Cog):
         """
         Set the reaction log channel.
         """
-        if ctx.channel.permissions_for(channel.guild.me).send_messages == True:
+        if ctx.channel.permissions_for(channel.guild.me).send_messages is True:
             await self.config.guild(ctx.guild).channel.set(channel.id)
             await ctx.send(f"The reaction log channel has been set to {channel.mention}")
         else:

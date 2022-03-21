@@ -1,7 +1,10 @@
+from typing import Optional
+
 import isort
 from redbot.core import commands
 
-from .utils import *
+from .errors import NoData
+from .utils import get_data, send_output
 
 
 class Isort(commands.Cog):
@@ -30,6 +33,3 @@ class Isort(commands.Cog):
 
         except isort.exceptions.FileSkipped:
             await ctx.send("There was nothing to change in this code.")
-
-        except isort.exceptions.FileSkipped:
-            await ctx.send("The code is invalid check your code and try again.")

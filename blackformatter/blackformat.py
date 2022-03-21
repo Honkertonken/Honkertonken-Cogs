@@ -1,7 +1,10 @@
+from typing import Optional
+
 import black
 from redbot.core import commands
 
-from .utils import *
+from .errors import NoData
+from .utils import get_data, send_output
 
 
 class Black(commands.Cog):
