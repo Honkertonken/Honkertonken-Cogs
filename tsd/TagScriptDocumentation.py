@@ -50,7 +50,7 @@ class TagScriptDocumentation(commands.Cog):
         await embedify(
             self,
             ctx,
-            f'{docs_link}default_variables.html#args-block',
+            f"{docs_link}default_variables.html#args-block",
             "https://i.imgur.com/6tdrc2D.png",
         )
 
@@ -62,7 +62,7 @@ class TagScriptDocumentation(commands.Cog):
         await embedify(
             self,
             ctx,
-            f'{docs_link}default_variables.html#uses-block',
+            f"{docs_link}default_variables.html#uses-block",
             "https://i.imgur.com/NggRXeb.png",
         )
 
@@ -74,7 +74,7 @@ class TagScriptDocumentation(commands.Cog):
         await embedify(
             self,
             ctx,
-            f'{docs_link}default_variables.html#author-block',
+            f"{docs_link}default_variables.html#author-block",
             "https://i.imgur.com/vtvF4U3.png",
         )
 
@@ -86,7 +86,7 @@ class TagScriptDocumentation(commands.Cog):
         await embedify(
             self,
             ctx,
-            f'{docs_link}default_variables.html#target-block',
+            f"{docs_link}default_variables.html#target-block",
             "https://i.imgur.com/9Kx44NL.png",
         )
 
@@ -98,7 +98,7 @@ class TagScriptDocumentation(commands.Cog):
         await embedify(
             self,
             ctx,
-            f'{docs_link}default_variables.html#channel-block',
+            f"{docs_link}default_variables.html#channel-block",
             "https://i.imgur.com/xX6vGOH.png",
         )
 
@@ -110,7 +110,7 @@ class TagScriptDocumentation(commands.Cog):
         await embedify(
             self,
             ctx,
-            f'{docs_link}default_variables.html#server-block',
+            f"{docs_link}default_variables.html#server-block",
             "https://i.imgur.com/2Oj8A49.png",
         )
 
@@ -122,7 +122,7 @@ class TagScriptDocumentation(commands.Cog):
         await embedify(
             self,
             ctx,
-            f'{docs_link}parsing_blocks.html#require-block',
+            f"{docs_link}parsing_blocks.html#require-block",
             "https://i.imgur.com/FOPupFX.png",
         )
 
@@ -134,7 +134,7 @@ class TagScriptDocumentation(commands.Cog):
         await embedify(
             self,
             ctx,
-            f'{docs_link}parsing_blocks.html#blacklist-block',
+            f"{docs_link}parsing_blocks.html#blacklist-block",
             "https://i.imgur.com/y88vo3I.png",
         )
 
@@ -146,7 +146,7 @@ class TagScriptDocumentation(commands.Cog):
         await embedify(
             self,
             ctx,
-            f'{docs_link}parsing_blocks.html#cooldown-block',
+            f"{docs_link}parsing_blocks.html#cooldown-block",
             "https://i.imgur.com/PYTpqIT.png",
         )
 
@@ -158,7 +158,7 @@ class TagScriptDocumentation(commands.Cog):
         await embedify(
             self,
             ctx,
-            f'{docs_link}parsing_blocks.html#embed-block',
+            f"{docs_link}parsing_blocks.html#embed-block",
             "https://i.imgur.com/OYYY02h.png",
         )
 
@@ -170,7 +170,7 @@ class TagScriptDocumentation(commands.Cog):
         await embedify(
             self,
             ctx,
-            f'{docs_link}parsing_blocks.html#redirect-block',
+            f"{docs_link}parsing_blocks.html#redirect-block",
             "https://i.imgur.com/y168a4z.png",
         )
 
@@ -182,7 +182,7 @@ class TagScriptDocumentation(commands.Cog):
         await embedify(
             self,
             ctx,
-            f'{docs_link}parsing_blocks.html#delete-block',
+            f"{docs_link}parsing_blocks.html#delete-block",
             "https://i.imgur.com/GrF7Q0l.png",
         )
 
@@ -194,7 +194,7 @@ class TagScriptDocumentation(commands.Cog):
         await embedify(
             self,
             ctx,
-            f'{docs_link}parsing_blocks.html#react-block',
+            f"{docs_link}parsing_blocks.html#react-block",
             "https://i.imgur.com/kvtFLVg.png",
         )
 
@@ -206,7 +206,7 @@ class TagScriptDocumentation(commands.Cog):
         await embedify(
             self,
             ctx,
-            f'{docs_link}parsing_blocks.html#command-block',
+            f"{docs_link}parsing_blocks.html#command-block",
             "https://i.imgur.com/i4VlWod.png",
         )
 
@@ -218,7 +218,7 @@ class TagScriptDocumentation(commands.Cog):
         await embedify(
             self,
             ctx,
-            f'{docs_link}parsing_blocks.html#override-block',
+            f"{docs_link}parsing_blocks.html#override-block",
             "https://i.imgur.com/eukhyED.png",
         )
 
@@ -230,7 +230,7 @@ class TagScriptDocumentation(commands.Cog):
         await embedify(
             self,
             ctx,
-            f'{docs_link}tse_blocks.html#assignment-block',
+            f"{docs_link}tse_blocks.html#assignment-block",
             "https://i.imgur.com/xnD2WrL.png",
         )
 
@@ -242,7 +242,7 @@ class TagScriptDocumentation(commands.Cog):
         await embedify(
             self,
             ctx,
-            f'{docs_link}tse_blocks.html#random-block',
+            f"{docs_link}tse_blocks.html#random-block",
             "https://i.imgur.com/ATFCFee.png",
         )
 
@@ -254,7 +254,7 @@ class TagScriptDocumentation(commands.Cog):
         await embedify(
             self,
             ctx,
-            f'{docs_link}tse_blocks.html#math-block',
+            f"{docs_link}tse_blocks.html#math-block",
             "https://i.imgur.com/iXa3wUu.png",
         )
 
@@ -266,7 +266,7 @@ class TagScriptDocumentation(commands.Cog):
         await embedify(
             self,
             ctx,
-            f'{docs_link}tse_blocks.html#range-block',
+            f"{docs_link}tse_blocks.html#range-block",
             "https://i.imgur.com/UIriMjH.png",
         )
 
@@ -278,7 +278,7 @@ class TagScriptDocumentation(commands.Cog):
         await embedify(
             self,
             ctx,
-            f'{docs_link}tse_blocks.html#if-block',
+            f"{docs_link}tse_blocks.html#if-block",
             "https://i.imgur.com/I1ApnQZ.png",
         )
 
@@ -290,7 +290,7 @@ class TagScriptDocumentation(commands.Cog):
         await embedify(
             self,
             ctx,
-            f'{docs_link}tse_blocks.html#break-block',
+            f"{docs_link}tse_blocks.html#break-block",
             "https://i.imgur.com/qt89NtC.png",
         )
 
@@ -302,7 +302,7 @@ class TagScriptDocumentation(commands.Cog):
         await embedify(
             self,
             ctx,
-            f'{docs_link}tse_blocks.html#all-block',
+            f"{docs_link}tse_blocks.html#all-block",
             "https://i.imgur.com/A39SCc0.png",
         )
 
@@ -314,7 +314,7 @@ class TagScriptDocumentation(commands.Cog):
         await embedify(
             self,
             ctx,
-            f'{docs_link}tse_blocks.html#any-block',
+            f"{docs_link}tse_blocks.html#any-block",
             "https://i.imgur.com/x0rlNv9.png",
         )
 
@@ -326,7 +326,7 @@ class TagScriptDocumentation(commands.Cog):
         await embedify(
             self,
             ctx,
-            f'{docs_link}tse_blocks.html#fifty-fifty-block',
+            f"{docs_link}tse_blocks.html#fifty-fifty-block",
             "https://i.imgur.com/LdjKymz.png",
         )
 
@@ -338,7 +338,7 @@ class TagScriptDocumentation(commands.Cog):
         await embedify(
             self,
             ctx,
-            f'{docs_link}tse_blocks.html#stop-block',
+            f"{docs_link}tse_blocks.html#stop-block",
             "https://i.imgur.com/81y8q99.png",
         )
 
@@ -350,7 +350,7 @@ class TagScriptDocumentation(commands.Cog):
         await embedify(
             self,
             ctx,
-            f'{docs_link}tse_blocks.html#replace-block',
+            f"{docs_link}tse_blocks.html#replace-block",
             "https://i.imgur.com/wnXXpEf.png",
         )
 
@@ -362,7 +362,7 @@ class TagScriptDocumentation(commands.Cog):
         await embedify(
             self,
             ctx,
-            f'{docs_link}tse_blocks.html#urlencode-block',
+            f"{docs_link}tse_blocks.html#urlencode-block",
             "https://i.imgur.com/jYwLzXa.png",
         )
 
@@ -374,7 +374,7 @@ class TagScriptDocumentation(commands.Cog):
         await embedify(
             self,
             ctx,
-            f'{docs_link}tse_blocks.html#strftime-block',
+            f"{docs_link}tse_blocks.html#strftime-block",
             "https://i.imgur.com/K8jObGF.png",
         )
 
@@ -386,7 +386,7 @@ class TagScriptDocumentation(commands.Cog):
         await embedify(
             self,
             ctx,
-            f'{docs_link}tse_blocks.html#substring-block',
+            f"{docs_link}tse_blocks.html#substring-block",
             "https://i.imgur.com/fQce8aa.png",
         )
 
