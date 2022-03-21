@@ -73,10 +73,7 @@ class ReactionLog(commands.Cog):
         Check your reactionlog settings.
         """
         channel = await self.config.guild(ctx.guild).channel()
-        if channel:
-            channel_mention = f"<#{channel}>"
-        else:
-            channel_mention = "Not Set"
+        channel_mention = f"<#{channel}>" if channel else "Not Set"
         reaction_add = await self.config.guild(ctx.guild).reaction_add_enable()
         reaction_remove = await self.config.guild(ctx.guild).reaction_remove_enable()
         e = discord.Embed(title="Reaction Log Settings", color=await ctx.embed_color())
@@ -134,15 +131,12 @@ class ReactionLog(commands.Cog):
     async def on_reaction_clear(self, message: discord.Message, reaction: discord.Reaction):
         logs_channel = await self.config.guild(message.guild).channel()
         logs = self.bot.get_channel(logs_channel)
-        emojis = []
         if await self.config.guild(message.guild).reaction_remove_enable():
+            emojis = []
             for i in reaction:
                 emojis.append(i.emoji)
                 reactions = ", ".join(map(str, emojis))
-            embed = discord.Embed(
-                title=f"Multiple reactions were removed.",
-                color=0xFF0000,
-            )
+            embed = discord.Embed(title="Multiple reactions were removed.", color=0xFF0000)
             embed.add_field(
                 name="Reactions:",
                 value=f"{str(reactions).strip('[]')}",
