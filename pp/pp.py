@@ -33,7 +33,7 @@ class Pp(commands.Cog):
             else:
                 length = random.randint(0, 30)
 
-            lengths[user] = "8{}D".format("=" * length)
+            lengths[user] = f'8{"=" * length}D'
 
         random.setstate(state)
         lengths = sorted(lengths.items(), key=lambda x: x[1])
