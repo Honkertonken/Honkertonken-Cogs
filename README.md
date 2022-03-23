@@ -45,6 +45,7 @@ Note: [p] here refers to your prefix.
 | IsortFormatter | Format your code with isort. Supports attachments, replies & code blocks.       | Honkertonken            |
 | ReactionLog    | A simple reaction logger cog.                                                   | Honkertonken            |
 | AmariLevel     | View your amari rank. Note: Requires you have to have a api key                 | Honkertonken            |
+| Jokes          | Get some jokes from the joke api.                                               | Honkertonken            |
 
 # Contributing
 

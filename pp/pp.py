@@ -8,6 +8,9 @@ from redbot.core.utils.chat_formatting import pagify
 class Pp(commands.Cog):
     """pp"""
 
+    def __init__(self, bot):
+        self.bot = bot
+
     async def red_delete_data_for_user(self, **kwargs):
         """Nothing to delete"""
         return
