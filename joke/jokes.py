@@ -28,7 +28,7 @@ class Jokes(commands.Cog):
         """
         Get a random dark joke.
         """
-        j = await Jokes()
+        j = await jokes()
         joke = await j.get_joke(response_format="txt", category=["dark"])
         await ctx.send(joke)
 
@@ -37,7 +37,7 @@ class Jokes(commands.Cog):
         """
         Get a random pun.
         """
-        j = await Jokes()
+        j = await jokes()
         joke = await j.get_joke(response_format="txt", category=["pun"])
         await ctx.send(joke)
 
@@ -46,7 +46,7 @@ class Jokes(commands.Cog):
         """
         Get a random dev joke.
         """
-        j = await Jokes()
+        j = await jokes()
         joke = await j.get_joke(response_format="txt", category=["programming"])
         await ctx.send(joke)
 
@@ -55,7 +55,7 @@ class Jokes(commands.Cog):
         """
         Get a random 2 part joke.
         """
-        j = await Jokes()
+        j = await jokes()
         joke = await j.get_joke(
             response_format="txt",
             joke_type="twopart",
@@ -68,7 +68,7 @@ class Jokes(commands.Cog):
         """
         Get a random 1 part joke.
         """
-        j = await Jokes()
+        j = await jokes()
         joke = await j.get_joke(
             response_format="txt",
             joke_type="single",
@@ -81,7 +81,7 @@ class Jokes(commands.Cog):
         """
         Search for a random joke with a specific query.
         """
-        j = await Jokes()
+        j = await jokes()
         joke = await j.get_joke(
             response_format="txt",
             search_string=str(query),
@@ -97,7 +97,7 @@ class Jokes(commands.Cog):
         10 is the max number of jokes you can get at once.
         """
         if int(number) < 10:
-            j = await Jokes()
+            j = await jokes()
             joke = await j.get_joke(
                 response_format="txt",
                 amount=int(number),
