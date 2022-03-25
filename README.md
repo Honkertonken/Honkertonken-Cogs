@@ -46,6 +46,7 @@ Note: [p] here refers to your prefix.
 | ReactionLog    | A simple reaction logger cog.                                                   | Honkertonken            |
 | AmariLevel     | View your amari rank. Note: Requires you have to have a api key                 | Honkertonken            |
 | Jokes          | Get some jokes from the joke api.                                               | Honkertonken            |
+| AutoKick       | AutoKick users on join. A neat alternative to banning them.                     | Honkertonken            |
 
 # Contributing
 
