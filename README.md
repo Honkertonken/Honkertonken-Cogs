@@ -47,6 +47,7 @@ Note: [p] here refers to your prefix.
 | AmariLevel     | View your amari rank. Note: Requires you have to have a api key                 | Honkertonken            |
 | Jokes          | Get some jokes from the joke api.                                               | Honkertonken            |
 | AutoKick       | AutoKick users on join. A neat alternative to banning them.                     | Honkertonken            |
+| HiBack         | Replies to "I'm X" with "Hi, X".                                                | Honkertonken            |
 
 # Contributing
 
