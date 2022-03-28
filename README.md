@@ -38,7 +38,7 @@ Note: [p] here refers to your prefix.
 | Whoasked       | Who the hell asked? This cog/ command was inspired by KableKompany#0001.        | Honkertonken            |
 | Pp             | Detect the length of someones (or your) pp. Note: 100% accurate.                | Honkertonken            |
 | Pressf         | A customizable pressf cog, pay some respects.                                   | Aikaterna, Honkertonken |
-| Sdm            | A dm to directly send raw text to the specified user, supports id and mentions. | Honkerotnken            |
+| Sdm            | A dm to directly send raw text to the specified user, supports id and mentions. | Honkertonken            |
 | Tsd            | In discord docs for Phenom4n4n's Tags/Slashtags cog.                            | Honkertonken            |
 | ButtonInvite   | A highly customizable invite cog with buttons! Does not use any extra lib.      | Honkertonken            |
 | BlackFormatter | Format your code with black. Supports attachments, replies & code blocks.       | Honkertonken            |
