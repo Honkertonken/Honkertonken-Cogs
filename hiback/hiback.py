@@ -23,6 +23,7 @@ class HiBack(commands.Cog):
         default_guild = {
             "enabled": True,
             "dad": False,
+            "blacklisted_ids": [],
         }
         self.config.register_guild(**default_guild)
 
@@ -62,6 +63,28 @@ class HiBack(commands.Cog):
         else:
             await ctx.send('"Im dad" shall not be added to auto hi back messages.')
 
+    @hibackset.command(aliases=["blacklist", "bl"])
+    async def add(self, ctx, user: discord.User):
+        """
+        Add a user to get exempted by auto hi back messages.
+        """
+        async with ctx.typing():
+            ids = await self.config.guild(ctx.guild).blacklisted_ids()
+            ids.append(user.id)
+            await self.config.guild(ctx.guild).blacklisted_ids.set(ids)
+        await ctx.send(f"{user} will be exempted from auto hi back messages.")
+
+    @hibackset.command(aliases=["unblacklist", "unbl"])
+    async def remove(self, ctx, user: discord.User):
+        """
+        Remove a user from getting exempted by auto hi back messages.
+        """
+        async with ctx.typing():
+            ids = await self.config.guild(ctx.guild).blacklisted_ids()
+            ids.remove(user.id)
+            await self.config.guild(ctx.guild).blacklisted_ids.set(ids)
+        await ctx.send(f"{user} will not be exempted from auto hi back messages.")
+
     @commands.Cog.listener()
     @commands.guild_only()
     async def on_message_without_command(self, message):
@@ -73,6 +96,7 @@ class HiBack(commands.Cog):
                 or message.author.id == self.bot.user.id
                 or message.author.bot
                 or message.clean_content is None
+                or message.author.id in await self.config.guild(message.guild).blacklisted_ids()
             ):
                 return
             content = message.clean_content
