@@ -51,13 +51,14 @@ Note: [p] here refers to your prefix.
 
 # Contributing
 
-- This can be done by `pip install -U black isort autoflake`
+- This can be done by `pip install -U black isort autoflake docformatter`
 - Then run the below commands to auto format your code
 
 ```py
 black .
 isort . --profile black
-autoflake . --in-place --remove-unused-variables --remove-all-unused-imports --recursive --exclude=__init__.py,
+autoflake . --in-place --remove-unused-variables --remove-all-unused-imports --recursive --remove-init-module-imports,
+docformatter . --in-place --recursive --blank --make-summary-newline --make-summary-multi-line
 ```
 
 # Contact

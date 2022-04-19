@@ -22,7 +22,7 @@ repos:
             --remove-all-unused-imports,
             --remove-unused-variable,
             --recursive,
-            --exclude=__init__.py,
+            --remove-init-module-imports,
           ]
 
   - repo: https://github.com/myint/docformatter
