@@ -9,7 +9,9 @@ class Sdm(commands.Cog):
     """
 
     async def red_delete_data_for_user(self, **kwargs):
-        """Nothing to delete"""
+        """
+        Nothing to delete.
+        """
         return
 
     def __init__(self, bot):
@@ -18,7 +20,9 @@ class Sdm(commands.Cog):
     @commands.command()
     @commands.is_owner()
     async def sdm(self, ctx, user: discord.User, *, message: str):
-        """Directly dm raw text to someone."""
+        """
+        Directly dm raw text to someone.
+        """
         destination = get(ctx.bot.get_all_members(), id=user.id)
         if not destination:
             return await ctx.send(

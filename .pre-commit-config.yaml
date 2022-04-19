@@ -2,7 +2,7 @@ default_language_version:
   python: python3.9
 repos:
   - repo: https://github.com/psf/black
-    rev: "22.3.0"
+    rev: 22.3.0
     hooks:
       - id: black
 
@@ -25,8 +25,21 @@ repos:
             --exclude=__init__.py,
           ]
 
+  - repo: https://github.com/myint/docformatter
+    rev: v1.4
+    hooks:
+      - id: docformatter
+        args:
+          [
+            --in-place,
+            --recursive,
+            --blank,
+            --pre-summary-newline,
+            --make-summary-multi-line,
+          ]
+
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.1.0
+    rev: v4.2.0
     hooks:
       - id: end-of-file-fixer
       - id: mixed-line-ending
@@ -39,10 +52,7 @@ repos:
       - id: check-toml
       - id: check-yaml
       - id: pretty-format-json
-        args:
-          - "--autofix"
-          - "--indent=4"
-          - "--no-sort-keys"
+        args: [--autofix, --indent=4, --no-sort-keys]
       - id: check-case-conflict
       - id: check-merge-conflict
 

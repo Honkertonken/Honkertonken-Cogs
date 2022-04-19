@@ -12,14 +12,19 @@ class Pp(commands.Cog):
         self.bot = bot
 
     async def red_delete_data_for_user(self, **kwargs):
-        """Nothing to delete"""
+        """
+        Nothing to delete.
+        """
         return
 
     @commands.command()
     async def pp(self, ctx, *users: discord.Member):
-        """Detects user's pp length
-        This is 100% accurate.
-        Enter multiple users for an accurate comparison!"""
+        """
+        Detects user's pp length This is 100% accurate.
+
+        Enter multiple users for an accurate comparison!
+
+        """
         if not users:
             users = {ctx.author}
 

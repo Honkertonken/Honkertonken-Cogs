@@ -14,11 +14,15 @@ docs_link = "https://phen-cogs.readthedocs.io/en/latest/tags/"
 class TagScriptDocumentation(commands.Cog):
     """
     A simple in discord documentation for Phenom4n4n's tags cog.
+
     https://github.com/phenom4n4n/phen-cogs
+
     """
 
     async def red_delete_data_for_user(self, **kwargs):
-        """Nothing to delete"""
+        """
+        Nothing to delete.
+        """
         return
 
     def __init__(self, bot):
@@ -32,7 +36,7 @@ class TagScriptDocumentation(commands.Cog):
     )
     async def tsd(self, ctx):
         """
-        Tag Script Documentation
+        Tag Script Documentation.
         """
         prefixes = await self.bot.get_prefix(ctx.message.channel)
         if f"<@!{self.bot.user.id}> " in prefixes:

@@ -15,7 +15,9 @@ class ButtonInvite(commands.Cog):
     """
 
     async def red_delete_data_for_user(self, **kwargs):
-        """Nothing to delete"""
+        """
+        Nothing to delete.
+        """
         return
 
     @commands.Cog.listener()
@@ -51,15 +53,19 @@ class ButtonInvite(commands.Cog):
     @commands.is_owner()
     @commands.group()
     async def invitesettings(self, ctx):
-        """Settings for buttoninvite cog."""
+        """
+        Settings for buttoninvite cog.
+        """
 
     @commands.is_owner()
     @invitesettings.command()
     async def description(self, ctx, *, text: str = ""):
         """
         Set the embed description.Leave blank for default description.
-        Use `{bot}` in your message to display bot name.
-        Enter `None` to disable the description.
+
+        Use `{bot}` in your message to display bot name. Enter `None` to
+        disable the description.
+
         """
         if not text:
             await self.config.description.clear()
@@ -86,9 +92,13 @@ class ButtonInvite(commands.Cog):
     @invitesettings.command()
     async def permissions(self, ctx, *, text: int = ""):
         """
-        Set the default permissions value for your bot. Get the permissions value from https://discordapi.com/permissions.html.
-        If left blank, resets permissions value to none.
-        Enter `None` to disable the permissions value.
+        Set the default permissions value for your bot.
+
+        Get the permissions value from
+        https://discordapi.com/permissions.html. If left blank, resets
+        permissions value to none. Enter `None` to disable the
+        permissions value.
+
         """
         if text == "":
             await self.config.setpermissions.clear()
@@ -105,8 +115,11 @@ class ButtonInvite(commands.Cog):
         """
         Add the `applications.commands` scope to your invite URL.
 
-        This allows the usage of slash commands on the servers that invited your bot with that scope.
-        Note that previous servers that invited the bot without the scope cannot have slash commands, they will have to invite the bot a second time.
+        This allows the usage of slash commands on the servers that
+        invited your bot with that scope. Note that previous servers
+        that invited the bot without the scope cannot have slash
+        commands, they will have to invite the bot a second time.
+
         """
         if value:
             await self.config.commandscope.set(True)
@@ -123,9 +136,11 @@ class ButtonInvite(commands.Cog):
     @invitesettings.command()
     async def footer(self, ctx, *, text: str = ""):
         """
-        Set the embed footer. Leave blank for default author.
-        Use `{bot}` in your message to display bot name.
-        Enter `None` to disable the description.
+        Set the embed footer.
+
+        Leave blank for default author. Use `{bot}` in your message to
+        display bot name. Enter `None` to disable the description.
+
         """
         if not text:
             await self.config.footer.clear()
@@ -140,9 +155,11 @@ class ButtonInvite(commands.Cog):
     @invitesettings.command()
     async def author(self, ctx, *, text: str = ""):
         """
-        Set the embed author. Leave blank for default author.
-        Use `{bot}` in your message to display bot name.
-        Enter `None` to disable the author.
+        Set the embed author.
+
+        Leave blank for default author. Use `{bot}` in your message to
+        display bot name. Enter `None` to disable the author.
+
         """
         if not text:
             await self.config.author.clear()
@@ -157,9 +174,11 @@ class ButtonInvite(commands.Cog):
     @invitesettings.command()
     async def text(self, ctx, *, text: str = ""):
         """
-        Set the embed link text. Leave blank for default link text.
-        Use `{bot}` in your message to display bot name.
-        Enter `None` to disable the link text.
+        Set the embed link text.
+
+        Leave blank for default link text. Use `{bot}` in your message
+        to display bot name. Enter `None` to disable the link text.
+
         """
         if not text:
             await self.config.link_text.clear()
@@ -174,7 +193,10 @@ class ButtonInvite(commands.Cog):
     @invitesettings.command()
     async def thumbnail(self, ctx, *, link: str = ""):
         """
-        Set the embed thumbnail url. Leave blank for default thumbnail.
+        Set the embed thumbnail url.
+
+        Leave blank for default thumbnail.
+
         """
         if not link:
             await self.config.thumbnail.clear()
@@ -191,7 +213,10 @@ class ButtonInvite(commands.Cog):
     @invitesettings.command()
     async def icon(self, ctx, *, link: str = ""):
         """
-        Set the embed icon url. Leave blank for default icon.
+        Set the embed icon url.
+
+        Leave blank for default icon.
+
         """
         if not link:
             await self.config.icon_url.clear()

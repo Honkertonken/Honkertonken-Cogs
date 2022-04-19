@@ -7,10 +7,14 @@ from redbot.core.utils.common_filters import filter_mass_mentions
 
 
 class PressF(commands.Cog):
-    """Pay some respects."""
+    """
+    Pay some respects.
+    """
 
     async def red_delete_data_for_user(self, **kwargs):
-        """Nothing to delete"""
+        """
+        Nothing to delete.
+        """
         return
 
     def __init__(self, bot: Red):
@@ -31,7 +35,9 @@ class PressF(commands.Cog):
     @commands.command()
     @commands.bot_has_permissions(add_reactions=True)
     async def pressf(self, ctx, *, user: discord.User = None):
-        """Pay respects by pressing F"""
+        """
+        Pay respects by pressing F.
+        """
         emoji = await self.get_guild_emoji(ctx.guild)
         if str(ctx.channel.id) in self.channels:
             return await ctx.send(
@@ -96,8 +102,11 @@ class PressF(commands.Cog):
     @pressfset.command(name="emoji", usage="<emoji>")
     @commands.admin_or_permissions(administrator=True)
     async def emoji(self, ctx, emoji: discord.Emoji):
-        """Customize the pressf command. reaction emoji
-        The bot must have access to the emoji to be used.
+        """
+        Customize the pressf command.
+
+        reaction emoji The bot must have access to the emoji to be used.
+
         """
         await self.set_guild_emoji(ctx.guild, emoji)
         await ctx.reply(f"The new pressf emoji has been set to {emoji}")

@@ -11,7 +11,9 @@ search = re.compile(
 
 
 class HiBack(commands.Cog):
-    """Replies to "I'm X" with "Hi, X"."""
+    """
+    Replies to "I'm X" with "Hi, X".
+    """
 
     def __init__(self, bot):
         self.bot = bot
@@ -28,7 +30,9 @@ class HiBack(commands.Cog):
         self.config.register_guild(**default_guild)
 
     async def red_delete_data_for_user(self, **kwargs):
-        """Nothing to delete."""
+        """
+        Nothing to delete.
+        """
         return
 
     @commands.group()
@@ -88,7 +92,9 @@ class HiBack(commands.Cog):
     @commands.Cog.listener()
     @commands.guild_only()
     async def on_message_without_command(self, message):
-        """Handle on_message."""
+        """
+        Handle on_message.
+        """
         if await self.config.guild(message.guild).enabled():
             if (
                 not isinstance(message.channel, discord.TextChannel)

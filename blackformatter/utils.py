@@ -9,7 +9,9 @@ from .errors import AttachmentInvalid, AttachmentPermsError, NoData
 
 # thanks vexed
 def cleanup(py: str) -> str:
-    """Remove codeblocks, if present."""
+    """
+    Remove codeblocks, if present.
+    """
     if py.startswith("```") and py.endswith("```"):
 
         py = py.strip("```py")
@@ -62,7 +64,12 @@ async def get_data(ctx: commands.Context, data: Optional[str]) -> str:
 
 
 async def send_output(ctx: commands.Context, text: str) -> None:
-    """Send output as a codeblock or file, depending on file limits. Handles no attachment perm."""
+    """
+    Send output as a codeblock or file, depending on file limits.
+
+    Handles no attachment perm.
+
+    """
 
     if (len(text)) < 1980 and text.count("\n") < 20:
         await ctx.send(box(text, lang="py"))

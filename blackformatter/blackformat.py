@@ -8,13 +8,17 @@ from .utils import get_data, send_output
 
 
 class Black(commands.Cog):
-    """Run black on code."""
+    """
+    Run black on code.
+    """
 
     def __init__(self, bot):
         self.bot = bot
 
     async def red_delete_data_for_user(self, **kwargs):
-        """Nothing to delete"""
+        """
+        Nothing to delete.
+        """
         return
 
     @commands.command()

@@ -3,13 +3,17 @@ from redbot.core import commands
 
 
 class Jokes(commands.Cog):
-    """Get some jokes from the Joke API."""
+    """
+    Get some jokes from the Joke API.
+    """
 
     def __init__(self, bot):
         self.bot = bot
 
     async def red_delete_data_for_user(self):
-        """Nothing to delete"""
+        """
+        Nothing to delete.
+        """
         return
 
     @commands.command()
@@ -95,6 +99,7 @@ class Jokes(commands.Cog):
         Get multiple random joke(s).
 
         10 is the max number of jokes you can get at once.
+
         """
         if int(number) < 10:
             j = await jokes()
