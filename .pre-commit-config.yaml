@@ -22,7 +22,7 @@ repos:
             --remove-all-unused-imports,
             --remove-unused-variable,
             --recursive,
-            --remove-init-module-imports,
+            --ignore-init-module-imports,
           ]
 
   - repo: https://github.com/myint/docformatter
