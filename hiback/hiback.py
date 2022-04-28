@@ -95,34 +95,30 @@ class HiBack(commands.Cog):
         """
         Handle on_message.
         """
-        if await self.config.guild(message.guild).enabled():
-            if (
-                not isinstance(message.channel, discord.TextChannel)
-                or message.type != discord.MessageType.default
-                or message.author.id == self.bot.user.id
-                or message.author.bot
-                or message.clean_content is None
-                or message.author.id in await self.config.guild(message.guild).blacklisted_ids()
+        if not await self.config.guild(message.guild).enabled():
+            return
+        if (
+            not isinstance(message.channel, discord.TextChannel)
+            or message.type != discord.MessageType.default
+            or message.author.id == self.bot.user.id
+            or message.author.bot
+            or message.clean_content is None
+            or message.author.id in await self.config.guild(message.guild).blacklisted_ids()
+        ):
+            return
+        content = message.clean_content
+        dad = ", im dad" if await self.config.guild(message.guild).dad() else " "
+        if search.search(content):
+            try:
+                back = search.search(content).group(1)
+                await message.reply(
+                    f"Hi {back}{dad}",
+                    allowed_mentions=discord.AllowedMentions(
+                        everyone=False, roles=False, users=False
+                    ),
+                )
+            except (
+                discord.HTTPException,
+                discord.Forbidden,
             ):
-                return
-            content = message.clean_content
-            if await self.config.guild(message.guild).dad():
-                dad = ", im dad"
-            else:
-                dad = " "
-            if search.search(content):
-                try:
-                    back = search.search(content).group(1)
-                    await message.reply(
-                        f"Hi {back}{dad}",
-                        allowed_mentions=discord.AllowedMentions(
-                            everyone=False, roles=False, users=False
-                        ),
-                    )
-                except (
-                    discord.HTTPException,
-                    discord.Forbidden,
-                ):
-                    pass
-        else:
-            pass
+                pass

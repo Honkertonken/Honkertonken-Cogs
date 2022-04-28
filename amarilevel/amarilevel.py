@@ -22,8 +22,7 @@ class AmariLevel(commands.Cog):
         token = (await self.bot.get_shared_api_tokens("amari")).get("auth")
         amari = AmariClient(token)
         bot_info = await self.bot.application_info()
-        amari_bot = ctx.guild.get_member(339254240012664832)
-        if amari_bot:
+        if amari_bot := ctx.guild.get_member(339254240012664832):
             if not member:
                 member = ctx.author
                 try:
