@@ -144,9 +144,3 @@ class AutoKick(commands.Cog):
                         await logs.send(
                             f"{member} could not be auto kicked. Please make sure i have necessary permissions and try again."
                         )
-                    else:
-                        pass
-            else:
-                pass
-        else:
-            pass
