@@ -32,7 +32,9 @@ async def send_message(
     embed: Optional[discord.Embed] = None,
     url_button: Optional[URLButton] = None,
 ):
-    """Send a message with a URL button, with pure dpy 1.7."""
+    """
+    Send a message with a URL button, with pure dpy 1.7.
+    """
     payload = {}
 
     if content:
