@@ -58,7 +58,7 @@ Note: [p] here refers to your prefix.
 black .
 isort . --profile black
 autoflake . --in-place --remove-unused-variables --remove-all-unused-imports --recursive --remove-init-module-imports,
-docformatter . --in-place --recursive --blank --make-summary-newline --make-summary-multi-line
+docformatter . --in-place --recursive --blank --pre-summary-newline --make-summary-multi-line,
 ```
 
 # Contact
