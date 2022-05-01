@@ -1,4 +1,4 @@
-# Cogs v3
+# Honkertonken-Cogs V3
 
 [![Red-DiscordBot](https://img.shields.io/badge/Red--DiscordBot-V3-red.svg)](https://github.com/Cog-Creators/Red-DiscordBot)
 [![Discord.py](https://img.shields.io/badge/Discord.py-rewrite-blue.svg)](https://github.com/Rapptz/discord.py/tree/rewrite)
@@ -57,8 +57,8 @@ Note: [p] here refers to your prefix.
 ```py
 black .
 isort . --profile black
-autoflake . --in-place --remove-unused-variables --remove-all-unused-imports --recursive --remove-init-module-imports,
-docformatter . --in-place --recursive --blank --pre-summary-newline --make-summary-multi-line,
+autoflake . --in-place --remove-unused-variables --remove-all-unused-imports --recursive --remove-init-module-imports
+docformatter . --in-place --recursive --blank --pre-summary-newline --make-summary-multi-line
 ```
 
 # Contact
