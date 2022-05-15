@@ -11,8 +11,8 @@ class AmariLevel(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    async def cog_unload(self):
-        await self.amari.close()
+    def cog_unload(self):
+        self.bot.loop.create_task(self.amari.close())
 
     @commands.command()
     async def amari(self, ctx, *member: discord.Member):
