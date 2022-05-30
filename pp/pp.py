@@ -30,13 +30,11 @@ class Pp(commands.Cog):
 
         lengths = {}
         state = random.getstate()
-        owner_id = str(ctx.bot.owner_ids)
-        bot_owner = int(owner_id.strip("{}"))
 
         for user in users:
             random.seed(str(user.id))
 
-            if user.id in (ctx.bot.user.id, bot_owner):
+            if user.id in (ctx.bot.user.id, ctx.bot.owner_ids):
                 length = 35
             else:
                 length = random.randint(0, 30)
