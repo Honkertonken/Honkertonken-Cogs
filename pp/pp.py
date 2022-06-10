@@ -23,7 +23,7 @@ class Pp(commands.Cog):
 
     @commands.command()
     @commands.is_owner()
-    async def randompp(self, ctx, random: bool):
+    async def randompp(self, ctx, toggle: bool):
         """
         Sets whether or not to generate a new pp length ever time the command
         is ran.
