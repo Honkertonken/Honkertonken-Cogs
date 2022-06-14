@@ -1,3 +1,7 @@
+# most of the code for this cog was taken from the original pressf cog made by aikaterna.
+# this is just a fork of same and has been modified for my use
+# original source code for aikaterna's cog is available at https://github.com/aikaterna/aikaterna-cogs/tree/v3/pressf
+
 import asyncio
 
 import discord

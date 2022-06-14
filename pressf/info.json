@@ -1,9 +1,10 @@
 {
     "author": [
+        "Aikaterna",
         "Honkertonken"
     ],
     "description": "Pay respects to a user by pressing f.",
-    "install_msg": "Thanks for installing my cog.",
+    "install_msg": "Thanks for installing my cog. Note: This cog is a fork of Aikaterna's pressf cog.",
     "short": "Press f to pay respects.",
     "tags": [
         "pressf",
