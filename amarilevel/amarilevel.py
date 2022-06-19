@@ -12,7 +12,7 @@ class AmariLevel(commands.Cog):
         self.bot = bot
 
     @commands.command()
-    async def amari(self, ctx, *member: discord.Member):
+    async def amari(self, ctx, *, member: discord.Member):
         """
         View your amari rank.
         """
