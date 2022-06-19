@@ -11,9 +11,6 @@ class AmariLevel(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    def cog_unload(self):
-        self.bot.loop.create_task(self.amari.close())
-
     @commands.command()
     async def amari(self, ctx, *member: discord.Member):
         """
@@ -43,5 +40,6 @@ class AmariLevel(commands.Cog):
                     await ctx.send(
                         f"The Amari token is invalid, please report this to {bot_info.owner}."
                     )
+            await amari.close()
         else:
             await ctx.send(f"You dont have Amaribot in {ctx.guild.name}")
