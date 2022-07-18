@@ -103,7 +103,7 @@ class Jokes(commands.Cog):
         """
         if not number:
             await ctx.send("Please enter a number.")
-        elif number < 10:
+        if number < 10:
             j = await jokes()
             joke = await j.get_joke(
                 response_format="txt",
