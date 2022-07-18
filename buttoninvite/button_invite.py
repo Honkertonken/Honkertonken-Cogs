@@ -39,7 +39,7 @@ class ButtonInvite(commands.Cog):
             "thumbnail": f"{bot.user.avatar_url_as(static_format='png')}",
             "icon_url": f"{bot.user.avatar_url_as(static_format='png')}",
         }
-        self.config = Config.get_conf(self, 69, force_registration=True)
+        self.config = Config.get_conf(self, 694835810347909161, force_registration=True)
         self.config.register_global(**default)
 
     def cog_unload(self):

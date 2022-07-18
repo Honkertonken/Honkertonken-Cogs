@@ -89,7 +89,6 @@ class Jokes(commands.Cog):
         joke = await j.get_joke(
             response_format="txt",
             search_string=query,
-            blacklist=["nsfw", "religious", "political", "racist", "sexist"],
         )
 
         await ctx.send(joke)
@@ -102,7 +101,9 @@ class Jokes(commands.Cog):
         10 is the max number of jokes you can get at once.
 
         """
-        if number < 10:
+        if not number:
+            await ctx.send("Please enter a number.")
+        elif number < 10:
             j = await jokes()
             joke = await j.get_joke(
                 response_format="txt",

@@ -48,6 +48,7 @@ Note: [p] here refers to your prefix.
 | Jokes          | Get some jokes from the joke. api.                                               | Honkertonken            |
 | AutoKick       | AutoKick users on join. A neat alternative to banning them.                     | Honkertonken            |
 | HiBack         | Replies to "I'm X" with "Hi, X".                                                | Honkertonken            |
+| AntiRickRoll | Sick and tired of getting rickrolled? This cog tries its best to avoid that. | Honkertonken |
 
 # Contributing
 
@@ -63,4 +64,4 @@ docformatter . --in-place --recursive --blank --pre-summary-newline --make-summa
 
 # Contact
 
-If you encounter bugs or just want to contact to me you can always shoot me a dm at Honkertonken#9221 or ping me in the `#support_othercogs` channel. . For feature requests, issues, bugs, or suggestions open a PR/issue on this repo.
+If you encounter bugs or just want to contact to me you can always shoot me a dm at Honkertonken#9221 (694835810347909161) or ping me in the `#support_othercogs` channel. . For feature requests, issues, bugs, or suggestions open a PR/issue on this repo.

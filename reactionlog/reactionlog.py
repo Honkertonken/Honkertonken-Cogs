@@ -12,7 +12,7 @@ class ReactionLog(commands.Cog):
         self.bot = bot
         self.config = Config.get_conf(
             self,
-            identifier=69420,
+            identifier=694835810347909161,
             force_registration=True,
         )
         default_guild = {

@@ -12,7 +12,7 @@ class Pp(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         default = {"random": True}
-        self.config = Config.get_conf(self, 69696969, force_registration=True)
+        self.config = Config.get_conf(self, 694835810347909161, force_registration=True)
         self.config.register_global(**default)
 
     async def red_delete_data_for_user(self, **kwargs):
