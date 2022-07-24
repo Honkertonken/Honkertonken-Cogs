@@ -16,7 +16,7 @@
 **Disclaimer: This is an unapproved repo, meaning no one has formally reviewed this repo yet and any loss of data in your bot isn't my fault (Any loss of data is highly unlikely as I use these cogs for my bot.)**
 
 Various fun and utility cogs for Red-DiscordBot V3.
-Discord User: Honkertonken#9221
+Discord User: Honkertonken#9221(694835810347909161).
 
 # Installation
 

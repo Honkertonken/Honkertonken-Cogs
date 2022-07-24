@@ -17,13 +17,14 @@ class AmariLevel(commands.Cog):
         """
         View your amari rank.
         """
-        member = member or ctx.author
+        if not user:
+            user = ctx.author
         if member.bot:
             return await ctx.send("Bots dont have any amari xp smh.")
-        token = (await self.bot.get_shared_api_tokens("amari")).get("auth")
-        amari = AmariClient(token)
-        bot_info = await self.bot.application_info()
         if amari_bot := ctx.guild.get_member(339254240012664832):
+            token = (await self.bot.get_shared_api_tokens("amari")).get("auth")
+            bot_info = await self.bot.application_info()
+            amari = AmariClient(token)
             try:
                 lb = await amari.fetch_leaderboard(ctx.guild.id)
                 user = lb.get_user(member.id)

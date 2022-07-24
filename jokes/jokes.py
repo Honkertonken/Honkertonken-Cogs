@@ -23,7 +23,8 @@ class Jokes(commands.Cog):
         """
         j = await jokes()
         joke = await j.get_joke(
-            response_format="txt", blacklist=["nsfw", "religious", "political", "racist", "sexist"]
+            response_format="txt",
+            blacklist=["nsfw", "religious", "political", "racist", "sexist"],
         )
         await ctx.send(joke)
 
@@ -81,7 +82,7 @@ class Jokes(commands.Cog):
         await ctx.send(joke)
 
     @commands.command()
-    async def jokesearch(self, ctx, *, query: str):
+    async def jokesearch(self, ctx, query: str):
         """
         Search for a random joke with a specific query.
         """
@@ -89,20 +90,19 @@ class Jokes(commands.Cog):
         joke = await j.get_joke(
             response_format="txt",
             search_string=query,
+            blacklist=["nsfw", "religious", "political", "racist", "sexist"],
         )
 
         await ctx.send(joke)
 
     @commands.command()
-    async def mulitjoke(self, ctx, number: int):
+    async def multijoke(self, ctx, number: int):
         """
         Get multiple random joke(s).
 
         10 is the max number of jokes you can get at once.
 
         """
-        if not number:
-            await ctx.send("Please enter a number.")
         if number < 10:
             j = await jokes()
             joke = await j.get_joke(
