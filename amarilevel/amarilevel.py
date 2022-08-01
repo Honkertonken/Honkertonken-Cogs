@@ -17,8 +17,8 @@ class AmariLevel(commands.Cog):
         """
         View your amari rank.
         """
-        if not user:
-            user = ctx.author
+        if not member:
+            member = ctx.author
         if member.bot:
             return await ctx.send("Bots dont have any amari xp smh.")
         if amari_bot := ctx.guild.get_member(339254240012664832):
@@ -34,7 +34,9 @@ class AmariLevel(commands.Cog):
                     color=await ctx.embed_color(),
                     description=f"**Rank : {user.position+1}\nLevel : {user.level}\nXp : {user.exp}\n Weekly Xp : {user.weeklyexp}**",
                 )
-                e.set_author(name=f"{member.display_name}", icon_url=f"{member.avatar_url}")
+                e.set_author(
+                    name=f"{member.display_name}", icon_url=f"{member.avatar_url}"
+                )
                 e.set_footer(text=f"{ctx.guild.name}", icon_url=f"{ctx.guild.icon_url}")
                 await ctx.send(embed=e)
             except NotFound:
@@ -45,4 +47,4 @@ class AmariLevel(commands.Cog):
                 )
             await amari.close()
         else:
-            await ctx.send(f"You dont have Amaribot in {ctx.guild.name}")
+            await ctx.send(f"You dont have Amaribot in {ctx.guild.name}.")
