@@ -34,9 +34,7 @@ class AmariLevel(commands.Cog):
                     color=await ctx.embed_color(),
                     description=f"**Rank : {user.position+1}\nLevel : {user.level}\nXp : {user.exp}\n Weekly Xp : {user.weeklyexp}**",
                 )
-                e.set_author(
-                    name=f"{member.display_name}", icon_url=f"{member.avatar_url}"
-                )
+                e.set_author(name=f"{member.display_name}", icon_url=f"{member.avatar_url}")
                 e.set_footer(text=f"{ctx.guild.name}", icon_url=f"{ctx.guild.icon_url}")
                 await ctx.send(embed=e)
             except NotFound:
