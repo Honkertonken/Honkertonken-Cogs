@@ -23,11 +23,6 @@ class ButtonInvite(commands.Cog):
     @commands.Cog.listener()
     async def on_connect(self):
         await self.bot.wait_until_red_ready()
-        await self.config.thumbnail.set(f"{self.bot.user.avatar_url}")
-        await self.config.icon_url.set(f"{self.bot.user.avatar_url}")
-
-    def __init__(self, bot: Red):
-        self.bot = bot
         default = {
             "description": "Thanks for choosing to invite {bot} to your server.",
             "invite_description": "Invite me!",
@@ -39,6 +34,9 @@ class ButtonInvite(commands.Cog):
             "thumbnail": f"{bot.user.avatar_url_as(static_format='png')}",
             "icon_url": f"{bot.user.avatar_url_as(static_format='png')}",
         }
+
+    def __init__(self, bot: Red):
+        self.bot = bot
         self.config = Config.get_conf(self, 694835810347909161, force_registration=True)
         self.config.register_global(**default)
 
