@@ -19,6 +19,7 @@ class Backup(commands.Cog):
         return
 
     @commands.command()
+    @commands.is_owner()
     async def backup(self, ctx):
         """
         All in one command to list all repo names, links and cogs installed
@@ -35,6 +36,7 @@ class Backup(commands.Cog):
         await ctx.send(file=text_to_file(message, "backup.txt"))
 
     @commands.command()
+    @commands.is_owner()
     async def cogslist(self, ctx, repo_name: str):
         """
         List the cogs installed from a specific repo.
@@ -50,6 +52,7 @@ class Backup(commands.Cog):
         )
 
     @commands.command()
+    @commands.is_owner()
     async def listrepos(self, ctx):
         """
         List all repos and their respective links.
@@ -61,6 +64,7 @@ class Backup(commands.Cog):
         await ctx.send(file=text_to_file(repos_list, "repos.txt"))
 
     @commands.command()
+    @commands.is_owner()
     async def listcogs(self, ctx):
         """
         List all cogs.
