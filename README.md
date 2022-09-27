@@ -49,6 +49,7 @@ Note: [p] here refers to your prefix.
 | AutoKick       | AutoKick users on join. A neat alternative to banning them.                     | Honkertonken            |
 | HiBack         | Replies to "I'm X" with "Hi, X".                                                | Honkertonken            |
 | AntiRickRoll | Sick and tired of getting rickrolled? This cog tries its best to avoid that. | Honkertonken |
+| Backup | Quickly save information handy when you are backing up your bot.| Honkertonken
 
 # Contributing
 

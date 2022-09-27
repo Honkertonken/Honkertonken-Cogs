@@ -41,14 +41,8 @@ class AntiRickRoll(commands.Cog):
         match = any(word in content for word in rickrolls_links)
         if match:
             await message.reply("Warning : This is mostly a rickroll.")
-        else:
-            link = re.findall(r"(https?://[^\s]+)", content)
-            if link:
-                async with self.session.get(str(link[0])) as resp:
-                    match = any(word in str(resp) for word in rickrolls_links or rickrolls_list)
-                    if match:
-                        await message.reply("Warning : This is mostly a rickroll.")
-                    else:
-                        pass
-            else:
-                pass
+        elif link := re.findall(r"(https?://[^\s]+)", content):
+            async with self.session.get(str(link[0])) as resp:
+                match = any(word in str(resp) for word in rickrolls_links or rickrolls_list)
+                if match:
+                    await message.reply("Warning : This is mostly a rickroll.")
