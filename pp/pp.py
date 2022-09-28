@@ -29,7 +29,7 @@ class Pp(commands.Cog):
         is ran.
         """
         await self.config.random.set(random)
-        await ctx.send("Random pp length is now {}.".format("enabled" if random else "disabled"))
+        await ctx.send(f'Random pp length is now {"enabled" if random else "disabled"}.')
 
     @commands.command()
     async def pp(self, ctx, *users: discord.Member):
@@ -58,9 +58,7 @@ class Pp(commands.Cog):
 
         lengths = sorted(lengths.items(), key=lambda x: x[1])
 
-        msg = "".join(
-            "**{}'s size:**\n{}\n".format(user.display_name, length) for user, length in lengths
-        )
+        msg = "".join(f"**{user.display_name}'s size:**\n{length}\n" for user, length in lengths)
 
         for page in pagify(msg):
             await ctx.send(page)
