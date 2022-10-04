@@ -26,7 +26,7 @@ class AmariLevel(commands.Cog):
             bot_info = await self.bot.application_info()
             amari = AmariClient(token)
             try:
-                lb = await amari.fetch_leaderboard(ctx.guild.id)
+                lb = await amari.fetch_full_leaderboard(ctx.guild.id)
                 user = lb.get_user(member.id)
                 e = discord.Embed(
                     title=f"{member.name}'s Amari Rank",
