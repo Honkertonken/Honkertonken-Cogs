@@ -42,7 +42,6 @@ class Backup(commands.Cog):
         List the cogs installed from a specific repo.
         """
         downloader = ctx.bot.get_cog("Downloader")
-        [r.name for r in downloader._repo_manager.repos]
         cogs = await downloader.installed_cogs()
         cogs_list = [cog.name for cog in cogs if cog.repo_name == repo_name]
         await ctx.send(
