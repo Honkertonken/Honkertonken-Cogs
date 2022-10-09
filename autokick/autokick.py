@@ -3,6 +3,7 @@ import datetime
 
 import discord
 from redbot.core import commands
+from redbot.core.bot import Red
 from redbot.core.config import Config
 from redbot.core.utils.menus import start_adding_reactions
 from redbot.core.utils.predicates import ReactionPredicate
@@ -13,7 +14,7 @@ class AutoKick(commands.Cog):
     AutoKick users on join.
     """
 
-    def __init__(self, bot) -> None:
+    def __init__(self, bot: Red) -> None:
         self.bot = bot
         self.config = Config.get_conf(
             self,
@@ -27,7 +28,7 @@ class AutoKick(commands.Cog):
         }
         self.config.register_guild(**default_guild)
 
-    @commands.group(aliases=["aks"])
+    @commands.group(name="autokickset", aliases=["aks"])
     @commands.bot_has_permissions(kick_members=True)
     @commands.admin_or_permissions(kick_members=True)
     @commands.guild_only()
@@ -36,8 +37,8 @@ class AutoKick(commands.Cog):
         Auto Kick settings.
         """
 
-    @autokickset.command()
-    async def channel(self, ctx, channel: discord.TextChannel = None):
+    @autokickset.command(name="channel")
+    async def autokickset_channel(self, ctx, channel: discord.TextChannel = None):
         """
         Set the auto kick log channel.
 
@@ -56,8 +57,8 @@ class AutoKick(commands.Cog):
             await self.config.guild(ctx.guild).channel.clear(None)
             await ctx.send("Auto kick log channel has been cleared.")
 
-    @autokickset.command()
-    async def enable(self, ctx, enable_or_disable: bool):
+    @autokickset.command(name="enable")
+    async def autokickset_enable(self, ctx, enable_or_disable: bool):
         """
         Enable/disable the autokick feature.
         """
@@ -68,8 +69,8 @@ class AutoKick(commands.Cog):
         else:
             await ctx.send("Auto kicking blacklisted members has been disabled for this guild.")
 
-    @autokickset.command(aliases=["blacklist", "bl"])
-    async def add(self, ctx, user: discord.User):
+    @autokickset.command(name="add", aliases=["blacklist", "bl"])
+    async def autokickset_add(self, ctx, user: discord.User):
         """
         Add a certain user to get auto kicked.
         """
@@ -79,8 +80,8 @@ class AutoKick(commands.Cog):
             await self.config.guild(ctx.guild).blacklisted_ids.set(ids)
         await ctx.send(f"{user} will be auto kicked on join.")
 
-    @autokickset.command(aliases=["unblacklist", "unbl"])
-    async def remove(self, ctx, user: discord.User):
+    @autokickset.command(name="remove", aliases=["unblacklist", "unbl"])
+    async def autokickset_remove(self, ctx, user: discord.User):
         """
         Remove a certain user from getting auto kicked.
         """
@@ -90,8 +91,8 @@ class AutoKick(commands.Cog):
             await self.config.guild(ctx.guild).blacklisted_ids.set(ids)
         await ctx.send(f"{user} will not be auto kicked on join.")
 
-    @autokickset.command(aliases=["showsettings"])
-    async def settings(self, ctx):
+    @autokickset.command(name="settings", aliases=["showsettings"])
+    async def autokickset_settings(self, ctx):
         """
         Check your autokick settings.
         """
@@ -104,8 +105,8 @@ class AutoKick(commands.Cog):
         e.set_footer(text=ctx.guild.name, icon_url=ctx.guild.icon_url_as(format="png"))
         await ctx.send(embed=e)
 
-    @autokickset.command(aliases=["nuke"], hidden=True)
-    async def clear(self, ctx):
+    @autokickset.command(name="clear", aliases=["nuke"], hidden=True)
+    async def autokickset_clear(self, ctx):
         """
         Clear the autokick list.
         """

@@ -2,6 +2,7 @@ from typing import Optional
 
 import black
 from redbot.core import commands
+from redbot.core.bot import Red
 
 from .errors import NoData
 from .utils import get_data, send_output
@@ -12,7 +13,7 @@ class Black(commands.Cog):
     Run black on code.
     """
 
-    def __init__(self, bot):
+    def __init__(self, bot: Red):
         self.bot = bot
 
     async def red_delete_data_for_user(self, **kwargs):
@@ -21,7 +22,7 @@ class Black(commands.Cog):
         """
         return
 
-    @commands.command()
+    @commands.command(name="black")
     async def black(self, ctx, *, data: Optional[str]):
         """
         Format your python code with black.

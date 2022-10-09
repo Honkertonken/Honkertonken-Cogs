@@ -3,6 +3,7 @@ import re
 import aiohttp
 import discord
 from redbot.core import commands
+from redbot.core.bot import Red
 from redbot.core.utils.common_filters import URL_RE
 
 from .rickrolldb import rickrolls_links, rickrolls_list
@@ -19,7 +20,7 @@ class AntiRickRoll(commands.Cog):
         """
         return
 
-    def __init__(self, bot):
+    def __init__(self, bot: Red):
         self.bot = bot
         self.session = aiohttp.ClientSession()
 
