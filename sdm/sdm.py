@@ -1,6 +1,7 @@
 import discord
 from discord.utils import get
 from redbot.core import commands
+from redbot.core.bot import Red
 
 
 class Sdm(commands.Cog):
@@ -14,7 +15,7 @@ class Sdm(commands.Cog):
         """
         return
 
-    def __init__(self, bot):
+    def __init__(self, bot: Red):
         self.bot = bot
 
     @commands.command()
@@ -23,7 +24,7 @@ class Sdm(commands.Cog):
         """
         Directly dm raw text to someone.
         """
-        destination = get(ctx.bot.get_all_members(), id=user.id)
+        destination = get(self.bot.get_all_members(), id=user.id)
         if not destination:
             return await ctx.send(
                 "Invalid ID or user not found. You can only send messages to people I share a server with."

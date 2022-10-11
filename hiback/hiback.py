@@ -2,6 +2,7 @@ import re
 
 import discord
 from redbot.core import commands
+from redbot.core.bot import Red
 from redbot.core.config import Config
 
 search = re.compile(
@@ -15,7 +16,7 @@ class HiBack(commands.Cog):
     Replies to "I'm X" with "Hi, X".
     """
 
-    def __init__(self, bot):
+    def __init__(self, bot: Red):
         self.bot = bot
         self.config = Config.get_conf(
             self,
@@ -36,15 +37,15 @@ class HiBack(commands.Cog):
         return
 
     @commands.group()
-    @commands.admin_or_permissions()
     @commands.guild_only()
+    @commands.admin_or_permissions()
     async def hibackset(self, ctx):
         """
         HiBack settings.
         """
 
-    @hibackset.command()
-    async def enable(self, ctx, enable_or_disable: bool):
+    @hibackset.command(name="enable")
+    async def hibackset_enable(self, ctx, enable_or_disable: bool):
         """
         Enable/disable the hi back feature.
         """
@@ -55,8 +56,8 @@ class HiBack(commands.Cog):
         else:
             await ctx.send("Auto Hi back has been disabled for this guild.")
 
-    @hibackset.command()
-    async def dad(self, ctx, enable_or_disable: bool):
+    @hibackset.command(name="dad")
+    async def hibackset_dad(self, ctx, enable_or_disable: bool):
         """
         Add a "im dad" to the hi back message.
         """
@@ -67,8 +68,8 @@ class HiBack(commands.Cog):
         else:
             await ctx.send('"Im dad" shall not be added to auto hi back messages.')
 
-    @hibackset.command(aliases=["blacklist", "bl"])
-    async def add(self, ctx, user: discord.User):
+    @hibackset.command(name="add", aliases=["blacklist", "bl"])
+    async def hibackset_add(self, ctx, user: discord.Member):
         """
         Add a user to get exempted by auto hi back messages.
         """
@@ -78,8 +79,8 @@ class HiBack(commands.Cog):
             await self.config.guild(ctx.guild).blacklisted_ids.set(ids)
         await ctx.send(f"{user} will be exempted from auto hi back messages.")
 
-    @hibackset.command(aliases=["unblacklist", "unbl"])
-    async def remove(self, ctx, user: discord.User):
+    @hibackset.command(name="remove", aliases=["unblacklist", "unbl"])
+    async def hibackset_remove(self, ctx, user: discord.Member):
         """
         Remove a user from getting exempted by auto hi back messages.
         """
@@ -91,7 +92,7 @@ class HiBack(commands.Cog):
 
     @commands.Cog.listener()
     @commands.guild_only()
-    async def on_message_without_command(self, message):
+    async def on_message_without_command(self, message: discord.Message):
         """
         Handle on_message.
         """

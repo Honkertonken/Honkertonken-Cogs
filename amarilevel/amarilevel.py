@@ -1,6 +1,7 @@
 import discord
 from amari import AmariClient, InvalidToken, NotFound
 from redbot.core import commands
+from redbot.core.bot import Red
 
 
 class AmariLevel(commands.Cog):
@@ -8,11 +9,11 @@ class AmariLevel(commands.Cog):
     View your amari rank.
     """
 
-    def __init__(self, bot):
+    def __init__(self, bot: Red):
         self.bot = bot
 
     @commands.guild_only()
-    @commands.command()
+    @commands.command(name="amari")
     async def amari(self, ctx, *, member: discord.Member = None):
         """
         View your amari rank.

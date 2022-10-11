@@ -1,6 +1,7 @@
 import itertools
 
 from redbot.core import commands
+from redbot.core.bot import Red
 from redbot.core.utils.chat_formatting import humanize_list, text_to_file
 
 
@@ -9,7 +10,7 @@ class Backup(commands.Cog):
     Some useful commands when backing up your bot.
     """
 
-    def __init__(self, bot):
+    def __init__(self, bot: Red):
         self.bot = bot
 
     async def red_delete_data_for_user(self):
@@ -18,7 +19,7 @@ class Backup(commands.Cog):
         """
         return
 
-    @commands.command()
+    @commands.command(name="backup")
     @commands.is_owner()
     async def backup(self, ctx):
         """
@@ -35,7 +36,7 @@ class Backup(commands.Cog):
         message = "\n".join(map(humanize_list, repos_list))
         await ctx.send(file=text_to_file(message, "backup.txt"))
 
-    @commands.command()
+    @commands.command(name="coglist")
     @commands.is_owner()
     async def cogslist(self, ctx, repo_name: str):
         """
@@ -50,7 +51,7 @@ class Backup(commands.Cog):
             f"No cogs were installed from the repo named {repo_name}. Make sure to check the spelling and case."
         )
 
-    @commands.command()
+    @commands.command(name="listrepos")
     @commands.is_owner()
     async def listrepos(self, ctx):
         """
@@ -62,7 +63,7 @@ class Backup(commands.Cog):
         repos_list = "\n".join(repos)
         await ctx.send(file=text_to_file(repos_list, "repos.txt"))
 
-    @commands.command()
+    @commands.command(name="listcogs")
     @commands.is_owner()
     async def listcogs(self, ctx):
         """

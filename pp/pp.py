@@ -2,6 +2,7 @@ import random
 
 import discord
 from redbot.core import commands
+from redbot.core.bot import Red
 from redbot.core.config import Config
 from redbot.core.utils.chat_formatting import pagify
 
@@ -9,7 +10,7 @@ from redbot.core.utils.chat_formatting import pagify
 class Pp(commands.Cog):
     """Shows your or someone else's pp Note - 100% accurate"""
 
-    def __init__(self, bot):
+    def __init__(self, bot: Red):
         self.bot = bot
         default = {"random": True}
         self.config = Config.get_conf(self, 694835810347909161, force_registration=True)
@@ -21,7 +22,7 @@ class Pp(commands.Cog):
         """
         return
 
-    @commands.command()
+    @commands.command(name="randompp")
     @commands.is_owner()
     async def randompp(self, ctx, toggle: bool):
         """
@@ -31,7 +32,7 @@ class Pp(commands.Cog):
         await self.config.random.set(random)
         await ctx.send(f'Random pp length is now {"enabled" if random else "disabled"}.')
 
-    @commands.command()
+    @commands.command(name="pp")
     async def pp(self, ctx, *users: discord.Member):
         """
         Detects user's pp length.

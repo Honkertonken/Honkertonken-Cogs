@@ -1,5 +1,6 @@
 from jokeapi import Jokes as jokes
 from redbot.core import commands
+from redbot.core.bot import Red
 
 
 class Jokes(commands.Cog):
@@ -7,7 +8,7 @@ class Jokes(commands.Cog):
     Get some jokes from the Joke API.
     """
 
-    def __init__(self, bot):
+    def __init__(self, bot: Red):
         self.bot = bot
 
     async def red_delete_data_for_user(self):
@@ -16,7 +17,7 @@ class Jokes(commands.Cog):
         """
         return
 
-    @commands.command()
+    @commands.command(name="joke")
     async def joke(self, ctx):
         """
         Get a random joke.
@@ -28,7 +29,7 @@ class Jokes(commands.Cog):
         )
         await ctx.send(joke)
 
-    @commands.command()
+    @commands.command(name="darkjoke")
     async def darkjoke(self, ctx):
         """
         Get a random dark joke.
@@ -37,7 +38,7 @@ class Jokes(commands.Cog):
         joke = await j.get_joke(response_format="txt", category=["dark"])
         await ctx.send(joke)
 
-    @commands.command()
+    @commands.command(name="pun")
     async def pun(self, ctx):
         """
         Get a random pun.
@@ -46,7 +47,7 @@ class Jokes(commands.Cog):
         joke = await j.get_joke(response_format="txt", category=["pun"])
         await ctx.send(joke)
 
-    @commands.command()
+    @commands.command(name="devjoke")
     async def devjoke(self, ctx):
         """
         Get a random dev joke.
@@ -55,7 +56,7 @@ class Jokes(commands.Cog):
         joke = await j.get_joke(response_format="txt", category=["programming"])
         await ctx.send(joke)
 
-    @commands.command(aliases=["2part"])
+    @commands.command(name="twopart", aliases=["2part"])
     async def twopart(self, ctx):
         """
         Get a random 2 part joke.
@@ -68,7 +69,7 @@ class Jokes(commands.Cog):
         )
         await ctx.send(joke)
 
-    @commands.command(aliases=["1part"])
+    @commands.command(name="onepart", aliases=["1part"])
     async def onepart(self, ctx):
         """
         Get a random 1 part joke.
@@ -81,7 +82,7 @@ class Jokes(commands.Cog):
         )
         await ctx.send(joke)
 
-    @commands.command()
+    @commands.command(name="jokesearch")
     async def jokesearch(self, ctx, query: str):
         """
         Search for a random joke with a specific query.
@@ -95,7 +96,7 @@ class Jokes(commands.Cog):
 
         await ctx.send(joke)
 
-    @commands.command()
+    @commands.command(name="multijoke")
     async def multijoke(self, ctx, number: int):
         """
         Get multiple random joke(s).

@@ -22,7 +22,7 @@ class ReactionLog(commands.Cog):
         }
         self.config.register_guild(**default_guild)
 
-    @commands.group(aliases=["rlogset"])
+    @commands.group(name="reactionlogset", aliases=["rlogset"])
     @commands.admin()
     @commands.guild_only()
     async def reactionlogset(self, ctx):
@@ -30,8 +30,8 @@ class ReactionLog(commands.Cog):
         Reaction Log settings.
         """
 
-    @reactionlogset.command()
-    async def channel(self, ctx, channel: discord.TextChannel):
+    @reactionlogset.command(name="channel")
+    async def reactionlogset_channel(self, ctx, channel: discord.TextChannel):
         """
         Set the reaction log channel.
         """
@@ -43,8 +43,8 @@ class ReactionLog(commands.Cog):
                 "I can't send messages in that channel. Please give me the necessary permissions and try again."
             )
 
-    @reactionlogset.command(aliases=["ra"])
-    async def reactionadd(self, ctx, enable_or_disable: bool):
+    @reactionlogset.command(name="reactionadd", aliases=["ra"])
+    async def reactionlogset_reactionadd(self, ctx, enable_or_disable: bool):
         """
         Enable/disable logs for reactions added.
         """
@@ -55,8 +55,8 @@ class ReactionLog(commands.Cog):
         else:
             await ctx.send("Reactions logs for reactions added has been disabled.")
 
-    @reactionlogset.command(aliases=["rr"])
-    async def reactionremove(self, ctx, enable_or_disable: bool):
+    @reactionlogset.command(name="reactionremove", aliases=["rr"])
+    async def reactionlogset_reactionremove(self, ctx, enable_or_disable: bool):
         """
         Enable/disable logs for reactions removed.
         """
@@ -67,8 +67,8 @@ class ReactionLog(commands.Cog):
         else:
             await ctx.send("Reactions logs for reactions removed has been disabled.")
 
-    @reactionlogset.command(aliases=["showsettings"])
-    async def settings(self, ctx):
+    @reactionlogset.command(name="settings", aliases=["showsettings"])
+    async def reactionlogset_settings(self, ctx):
         """
         Check your reactionlog settings.
         """

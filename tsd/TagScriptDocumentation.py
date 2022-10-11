@@ -1,5 +1,6 @@
 import discord
 from redbot.core import commands
+from redbot.core.bot import Red
 
 
 async def embedify(self, ctx, url, img_link):
@@ -25,7 +26,7 @@ class TagScriptDocumentation(commands.Cog):
         """
         return
 
-    def __init__(self, bot):
+    def __init__(self, bot: Red):
         self.bot = bot
 
     @commands.group(
@@ -47,7 +48,7 @@ class TagScriptDocumentation(commands.Cog):
         )
 
     @tsd.command(name="args", aliases=["arg"])
-    async def args(self, ctx):
+    async def tsd_args(self, ctx):
         """
         Tag Script Args Block.
         """
@@ -59,7 +60,7 @@ class TagScriptDocumentation(commands.Cog):
         )
 
     @tsd.command(name="uses", aliases=["use"])
-    async def uses(self, ctx):
+    async def tsd_uses(self, ctx):
         """
         Tag Script Uses Block.
         """
@@ -71,7 +72,7 @@ class TagScriptDocumentation(commands.Cog):
         )
 
     @tsd.command(name="author")
-    async def author(self, ctx):
+    async def tsd_author(self, ctx):
         """
         Tag Script Author Block.
         """
@@ -83,7 +84,7 @@ class TagScriptDocumentation(commands.Cog):
         )
 
     @tsd.command(name="target")
-    async def target(self, ctx):
+    async def tsd_target(self, ctx):
         """
         Tag Script Target Block.
         """
@@ -95,7 +96,7 @@ class TagScriptDocumentation(commands.Cog):
         )
 
     @tsd.command(name="channel")
-    async def channel(self, ctx):
+    async def tsd_channel(self, ctx):
         """
         Tag Script Channel Block.
         """
@@ -107,7 +108,7 @@ class TagScriptDocumentation(commands.Cog):
         )
 
     @tsd.command(name="server")
-    async def server(self, ctx):
+    async def tsd_server(self, ctx):
         """
         Tag Script Server Block.
         """
@@ -119,7 +120,7 @@ class TagScriptDocumentation(commands.Cog):
         )
 
     @tsd.command(name="require")
-    async def require(self, ctx):
+    async def tsd_require(self, ctx):
         """
         Tag Script Require Block.
         """
@@ -131,7 +132,7 @@ class TagScriptDocumentation(commands.Cog):
         )
 
     @tsd.command(name="blacklist", aliases=["bl"])
-    async def blacklist(self, ctx):
+    async def tsd_blacklist(self, ctx):
         """
         Tag Script Blacklist Block.
         """
@@ -143,7 +144,7 @@ class TagScriptDocumentation(commands.Cog):
         )
 
     @tsd.command(name="cooldown", aliases=["cd"])
-    async def cooldown(self, ctx):
+    async def tsd_cooldown(self, ctx):
         """
         Tag Script Cooldown Block.
         """
@@ -155,7 +156,7 @@ class TagScriptDocumentation(commands.Cog):
         )
 
     @tsd.command(name="embed")
-    async def embed(self, ctx):
+    async def tsd_embed(self, ctx):
         """
         Tag Script Embed Block.
         """
@@ -167,7 +168,7 @@ class TagScriptDocumentation(commands.Cog):
         )
 
     @tsd.command(name="redirect")
-    async def redirect(self, ctx):
+    async def tsd_redirect(self, ctx):
         """
         Tag Script Redirect Block.
         """
@@ -179,7 +180,7 @@ class TagScriptDocumentation(commands.Cog):
         )
 
     @tsd.command(name="delete", aliases=["del"])
-    async def delete(self, ctx):
+    async def tsd_delete(self, ctx):
         """
         Tag Script Delete Block.
         """
@@ -191,7 +192,7 @@ class TagScriptDocumentation(commands.Cog):
         )
 
     @tsd.command(name="react", aliases=["reactu"])
-    async def react(self, ctx):
+    async def tsd_react(self, ctx):
         """
         Tag Script React(u) Block.
         """
@@ -203,7 +204,7 @@ class TagScriptDocumentation(commands.Cog):
         )
 
     @tsd.command(name="command", aliases=["cmd"])
-    async def command(self, ctx):
+    async def tsd_command(self, ctx):
         """
         Tag Script Command Block.
         """
@@ -215,7 +216,7 @@ class TagScriptDocumentation(commands.Cog):
         )
 
     @tsd.command(name="override")
-    async def override(self, ctx):
+    async def tsd_override(self, ctx):
         """
         Tag Script Override Block.
         """
@@ -227,7 +228,7 @@ class TagScriptDocumentation(commands.Cog):
         )
 
     @tsd.command(name="assignment", aliases=["var", "let"])
-    async def assignment(self, ctx):
+    async def tsd_assignment(self, ctx):
         """
         Tag Script Assignment Block.
         """
@@ -239,7 +240,7 @@ class TagScriptDocumentation(commands.Cog):
         )
 
     @tsd.command(name="random", aliases=["rand"])
-    async def random(self, ctx):
+    async def tsd_random(self, ctx):
         """
         Tag Script Random Block.
         """
@@ -251,7 +252,7 @@ class TagScriptDocumentation(commands.Cog):
         )
 
     @tsd.command(name="math")
-    async def math(self, ctx):
+    async def tsd_math(self, ctx):
         """
         Tag Script Math Block.
         """
@@ -263,7 +264,7 @@ class TagScriptDocumentation(commands.Cog):
         )
 
     @tsd.command(name="range")
-    async def range(self, ctx):
+    async def tsd_range(self, ctx):
         """
         Tag Script Range Block.
         """
@@ -275,7 +276,7 @@ class TagScriptDocumentation(commands.Cog):
         )
 
     @tsd.command(name="if")
-    async def _if(self, ctx):
+    async def tsd_if(self, ctx):
         """
         Tag Script If Block.
         """
@@ -287,7 +288,7 @@ class TagScriptDocumentation(commands.Cog):
         )
 
     @tsd.command(name="break")
-    async def _break(self, ctx):
+    async def tsd_break(self, ctx):
         """
         Tag Script Break Block.
         """
@@ -299,7 +300,7 @@ class TagScriptDocumentation(commands.Cog):
         )
 
     @tsd.command(name="all")
-    async def all(self, ctx):
+    async def tsd_all(self, ctx):
         """
         Tag Script All Block.
         """
@@ -311,7 +312,7 @@ class TagScriptDocumentation(commands.Cog):
         )
 
     @tsd.command(name="any")
-    async def any(self, ctx):
+    async def tsd_any(self, ctx):
         """
         Tag Script Any Block.
         """
@@ -323,7 +324,7 @@ class TagScriptDocumentation(commands.Cog):
         )
 
     @tsd.command(name="fiftyfifty", aliases=["5050"])
-    async def fiftyfifty(self, ctx):
+    async def tsd_fiftyfifty(self, ctx):
         """
         Tag Script Fiftyfifty Block.
         """
@@ -335,7 +336,7 @@ class TagScriptDocumentation(commands.Cog):
         )
 
     @tsd.command(name="stop")
-    async def stop(self, ctx):
+    async def tsd_stop(self, ctx):
         """
         Tag Script Stop Block.
         """
@@ -347,7 +348,7 @@ class TagScriptDocumentation(commands.Cog):
         )
 
     @tsd.command(name="replace")
-    async def replace(self, ctx):
+    async def tsd_replace(self, ctx):
         """
         Tag Script Replace Block.
         """
@@ -359,7 +360,7 @@ class TagScriptDocumentation(commands.Cog):
         )
 
     @tsd.command(name="urlencode")
-    async def urlencode(self, ctx):
+    async def tsd_urlencode(self, ctx):
         """
         Tag Script Urlencode Block.
         """
@@ -371,7 +372,7 @@ class TagScriptDocumentation(commands.Cog):
         )
 
     @tsd.command(name="strftime", aliases=["strf"])
-    async def strftime(self, ctx):
+    async def tsd_strftime(self, ctx):
         """
         Tag Script Strftime Block.
         """
@@ -383,7 +384,7 @@ class TagScriptDocumentation(commands.Cog):
         )
 
     @tsd.command(name="substring")
-    async def subtring(self, ctx):
+    async def tsd_subtring(self, ctx):
         """
         Tag Script Substring Block.
         """
@@ -395,7 +396,7 @@ class TagScriptDocumentation(commands.Cog):
         )
 
     @tsd.command(name="list", aliases=["view"])
-    async def list(self, ctx):
+    async def tsd_list(self, ctx):
         """
         All Tag Script Blocks.
         """

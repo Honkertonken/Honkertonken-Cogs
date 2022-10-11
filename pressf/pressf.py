@@ -36,7 +36,7 @@ class PressF(commands.Cog):
     async def get_guild_emoji(self, guild: discord.Guild):
         return await self.config.guild(guild).emoji()
 
-    @commands.command()
+    @commands.command(name="pressf")
     @commands.bot_has_permissions(add_reactions=True)
     async def pressf(self, ctx, *, user: discord.User = None):
         """
@@ -56,7 +56,7 @@ class PressF(commands.Cog):
                 return m.author == ctx.author and m.channel == ctx.channel
 
             try:
-                pressf = await ctx.bot.wait_for("message", timeout=120.0, check=check)
+                pressf = await self.bot.wait_for("message", timeout=120.0, check=check)
             except asyncio.TimeoutError:
                 return await ctx.send("You took too long to reply.")
 
@@ -105,7 +105,7 @@ class PressF(commands.Cog):
 
     @pressfset.command(name="emoji", usage="<emoji>")
     @commands.admin_or_permissions(administrator=True)
-    async def emoji(self, ctx, emoji: discord.Emoji):
+    async def pressfset_emoji(self, ctx, emoji: discord.Emoji):
         """
         Customize the pressf command.
 
