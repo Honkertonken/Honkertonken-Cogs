@@ -29,8 +29,8 @@ class Pp(commands.Cog):
         Sets whether or not to generate a new pp length ever time the command
         is ran.
         """
-        await self.config.random.set(random)
-        await ctx.send(f'Random pp length is now {"enabled" if random else "disabled"}.')
+        await self.config.random.set(toggle)
+        await ctx.send(f'Random pp length is now {"enabled" if toggle else "disabled"}.')
 
     @commands.command(name="pp")
     async def pp(self, ctx, *users: discord.Member):
