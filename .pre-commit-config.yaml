@@ -13,7 +13,7 @@ repos:
         args: [--profile black]
 
   - repo: https://github.com/PyCQA/autoflake
-    rev: v1.7.1
+    rev: v1.7.6
     hooks:
       - id: autoflake
         args:
