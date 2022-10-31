@@ -68,10 +68,10 @@ class HiBack(commands.Cog):
         else:
             await ctx.send('"Im dad" shall not be added to auto hi back messages.')
 
-    @hibackset.command(name="add", aliases=["blacklist", "bl"])
-    async def hibackset_add(self, ctx, user: discord.Member):
+    @hibackset.command(name="ignore", aliases=["blacklist", "bl"])
+    async def hibackset_ignore(self, ctx, user: discord.Member):
         """
-        Add a user to get exempted by auto hi back messages.
+        Ignore a user from the auto hi back messages.
         """
         async with ctx.typing():
             ids = await self.config.guild(ctx.guild).blacklisted_ids()
