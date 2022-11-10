@@ -28,7 +28,7 @@ class HiBack(commands.Cog):
             "enabled": True,
             "dad": False,
             "ping": True,
-            "blacklisted_ids": [],
+            "blacklisted_users": [],
             "restricted": None,
             "restricted_channels": [],
         }
@@ -87,24 +87,36 @@ class HiBack(commands.Cog):
             await ctx.send("Users will not be pinged on auto hi back messages.")
 
     @hibackset.command(name="ignore", aliases=["blacklist", "bl"])
-    async def hibackset_ignore(self, ctx, user: discord.Member):
+    async def hibackset_ignore(self, ctx, users: commands.Greedy[discord.User]):
         """
         Ignore a user from the auto hi back messages.
         """
-        ids = await self.config.guild(ctx.guild).blacklisted_ids()
-        ids.append(user.id)
-        await self.config.guild(ctx.guild).blacklisted_ids.set(ids)
-        await ctx.send(f"{user} will be exempted from auto hi back messages.")
+        async with self.config.guild(ctx.guild).blacklisted_users() as blacklisted_users:
+            for user in users:
+                if user.id not in blacklisted_users:
+                    blacklisted_users.append(user.id)
+        ids = len(list(users))
+        await ctx.send(
+            f"Successfully added {ids} "
+            f"{'user' if ids == 1 else 'users'} "
+            f"to the ignore list."
+        )
 
     @hibackset.command(name="unignore", aliases=["unblacklist", "unbl"])
-    async def hibackset_unignore(self, ctx, user: discord.Member):
+    async def hibackset_unignore(self, ctx, users: commands.Greedy[discord.User]):
         """
-        Remove a user from getting exempted by auto hi back messages.
+        Unignore a user from the auto hi back messages.
         """
-        ids = await self.config.guild(ctx.guild).blacklisted_ids()
-        ids.remove(user.id)
-        await self.config.guild(ctx.guild).blacklisted_ids.set(ids)
-        await ctx.send(f"{user} will not be exempted from auto hi back messages.")
+        async with self.config.guild(ctx.guild).blacklisted_users() as blacklisted_users:
+            for user in users:
+                if user.id in blacklisted_users:
+                    blacklisted_users.remove(user.id)
+        ids = len(list(users))
+        await ctx.send(
+            f"Successfully removed {ids} "
+            f"{'user' if ids == 1 else 'users'} "
+            f"from the ignore list."
+        )
 
     @hibackset.command(name="restrict")
     async def hibackset_restrict(self, ctx, restrict: str = None):
@@ -171,7 +183,6 @@ class HiBack(commands.Cog):
                 for channel in channels:
                     if channel.id in restricted_channels:
                         restricted_channels.remove(channel.id)
-
             ids = len(list(channels))
             return await ctx.send(
                 f"Successfully removed {ids} " f"{'channel.' if ids == 1 else 'channels.'} "
@@ -179,6 +190,37 @@ class HiBack(commands.Cog):
         else:
             await ctx.send("`Channels` is a required argument.")
             return
+
+    @hibackset.command(name="settings", aliases=["showsettings"])
+    async def hibackset_settings(self, ctx):
+        """
+        Check your hi back settings.
+        """
+        enabled = await self.config.guild(ctx.guild).enabled()
+        ping = await self.config.guild(ctx.guild).ping()
+        dad = await self.config.guild(ctx.guild).dad()
+        restricted = await self.config.guild(ctx.guild).restricted()
+        restricted_channels = await self.config.guild(ctx.guild).restricted_channels()
+        blacklisted_users = await self.config.guild(ctx.guild).blacklisted_users()
+        channels = ""
+        users = ""
+        for channel in restricted_channels:
+            channel_name = f"<#{channel}>"
+            channels += f"{channel_name} "
+
+        for user in blacklisted_users:
+            user_name = f"<@{user}>"
+            users += f"{user_name} "
+
+        e = discord.Embed(title="Hi Back Settings", color=await ctx.embed_color())
+        e.add_field(name="Enabled", value=enabled, inline=True)
+        e.add_field(name="Dad", value=dad, inline=True)
+        e.add_field(name="Ping", value=ping, inline=True)
+        e.add_field(name="Restriction Mode", value=restricted, inline=True)
+        e.add_field(name="Restricted Channels", value=channels or "None", inline=True)
+        e.add_field(name="Blacklisted Users", value=users or "None", inline=True)
+        e.set_footer(text=ctx.guild.name, icon_url=ctx.guild.icon_url_as(format="png"))
+        await ctx.send(embed=e)
 
     @commands.Cog.listener()
     @commands.guild_only()
@@ -192,7 +234,7 @@ class HiBack(commands.Cog):
             or message.author.id == self.bot.user.id
             or message.author.bot
             or message.clean_content is None
-            or message.author.id in await self.config.guild(message.guild).blacklisted_ids()
+            or message.author.id in await self.config.guild(message.guild).blacklisted_users()
             or not await self.config.guild(message.guild).enabled()
         ):
             return
