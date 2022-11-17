@@ -259,7 +259,7 @@ class HiBack(commands.Cog):
         ping = await self.config.guild(message.guild).ping()
         if search.search(content):
             try:
-                back = search.search(content).group(1)
+                back = search.search(content).group(1).rstrip()
                 await message.reply(
                     f"Hi {back}{dad}",
                     allowed_mentions=discord.AllowedMentions(
