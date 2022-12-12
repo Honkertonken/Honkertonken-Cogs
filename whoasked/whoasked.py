@@ -23,39 +23,42 @@ class WhoAsked(commands.Cog):
         return
 
     @commands.command()
-    async def whoasked(self, ctx, *, reply_or_message: str = None):
+    async def whoasked(self, ctx, *, reply_or_message_id: str = None):
         """
         Who Asked?
         """
-        if resp := reply(ctx):
-            message_id = await ctx.fetch_message(resp.id)
-            m = await message_id.reply(
-                "Now playing:\nWho Asked (Feat. Nobody Did)\n⚪──────────────\n◄◄⠀▐▐⠀►► 0:00 / 4:42⠀───○ 🔊"
-            )
-            await asyncio.sleep(1)
-            await m.edit(
-                content="Now playing:\nWho Asked (Feat. Nobody Did)\n───⚪───────────\n◄◄⠀▐▐⠀►► 1:34 / 4:42⠀───○ 🔊"
-            )
-            await asyncio.sleep(1)
-            await m.edit(
-                content="Now playing:\nWho Asked (Feat. Nobody Did)\n──────⚪────────\n◄◄⠀▐▐⠀►► 2:21 / 4:42⠀───○ 🔊"
-            )
-            await asyncio.sleep(1)
-            await m.edit(
-                content="Now playing:\nWho Asked (Feat. Nobody Did)\n─────────⚪─────\n◄◄⠀▐▐⠀►► 3:08 / 4:42⠀───○ 🔊"
-            )
-            await asyncio.sleep(1)
-            await m.edit(
-                content="Now playing:\nWho Asked (Feat. Nobody Did)\n────────────⚪──\n◄◄⠀▐▐⠀►► 3:55 / 4:42⠀───○ 🔊"
-            )
-            await asyncio.sleep(1)
-            await m.edit(
-                content="Now playing:\nWho Asked (Feat. Nobody Did)\n──────────────⚪\n◄◄⠀▐▐⠀►► 4:42 / 4:42⠀───○ 🔊"
-            )
+        if reply_or_message_id:
+            try:
+                message_id = ctx.channel.get_partial_message(reply_or_message_id)
+                m = await message_id.reply(
+                    "Now playing:\nWho Asked (Feat. Nobody Did)\n⚪──────────────\n◄◄⠀▐▐⠀►► 0:00 / 4:42⠀───○ 🔊"
+                )
+                await asyncio.sleep(1)
+                await m.edit(
+                    content="Now playing:\nWho Asked (Feat. Nobody Did)\n───⚪───────────\n◄◄⠀▐▐⠀►► 1:34 / 4:42⠀───○ 🔊"
+                )
+                await asyncio.sleep(1)
+                await m.edit(
+                    content="Now playing:\nWho Asked (Feat. Nobody Did)\n──────⚪────────\n◄◄⠀▐▐⠀►► 2:21 / 4:42⠀───○ 🔊"
+                )
+                await asyncio.sleep(1)
+                await m.edit(
+                    content="Now playing:\nWho Asked (Feat. Nobody Did)\n─────────⚪─────\n◄◄⠀▐▐⠀►► 3:08 / 4:42⠀───○ 🔊"
+                )
+                await asyncio.sleep(1)
+                await m.edit(
+                    content="Now playing:\nWho Asked (Feat. Nobody Did)\n────────────⚪──\n◄◄⠀▐▐⠀►► 3:55 / 4:42⠀───○ 🔊"
+                )
+                await asyncio.sleep(1)
+                await m.edit(
+                    content="Now playing:\nWho Asked (Feat. Nobody Did)\n──────────────⚪\n◄◄⠀▐▐⠀►► 4:42 / 4:42⠀───○ 🔊"
+                )
+            except discord.HTTPException:
+                await ctx.send("Invalid message id.")
 
         else:
             try:
-                message_id = await ctx.fetch_message(reply_or_message)
+                message_id = ctx.message.reference.resolved
                 m = await message_id.reply(
                     "Now playing:\nWho Asked (Feat. Nobody Did)\n⚪──────────────\n◄◄⠀▐▐⠀►► 0:00 / 4:42⠀───○ 🔊"
                 )
@@ -81,4 +84,4 @@ class WhoAsked(commands.Cog):
                 )
 
             except discord.HTTPException:
-                await ctx.send("No reply found/invalid message id.")
+                await ctx.send("Invalid Reply.")
