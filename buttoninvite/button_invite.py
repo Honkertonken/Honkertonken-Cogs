@@ -70,7 +70,7 @@ class ButtonInvite(commands.Cog):
         if not text:
             await self.config.description.clear()
             return await ctx.send("Embed description set to default.")
-        elif text == "None":
+        if text == "None":
             await self.config.description.set("")
             return await ctx.send("Embed description disabled.")
         await self.config.description.set(text)
@@ -103,7 +103,7 @@ class ButtonInvite(commands.Cog):
         if text == "":
             await self.config.setpermissions.clear()
             return await ctx.send("Permissions value reset")
-        elif text == "None":
+        if text == "None":
             await self.config.setpermission.set("")
             return await ctx.send("Permissions value disabled")
         await self.config.setpermissions.set(text)
@@ -145,7 +145,7 @@ class ButtonInvite(commands.Cog):
         if not text:
             await self.config.footer.clear()
             return await ctx.send("Embed footer set to default.")
-        elif text == "None":
+        if text == "None":
             await self.config.footer.set("")
             return await ctx.send("Embed footer disabled.")
         await self.config.footer.set(text)
@@ -164,7 +164,7 @@ class ButtonInvite(commands.Cog):
         if not text:
             await self.config.author.clear()
             return await ctx.send("Embed author set to default.")
-        elif text == "None":
+        if text == "None":
             await self.config.author.set("")
             return await ctx.send("Embed author disabled.")
         await self.config.author.set(text)
@@ -183,7 +183,7 @@ class ButtonInvite(commands.Cog):
         if not text:
             await self.config.link_text.clear()
             return await ctx.send("Embed link text set to default.")
-        elif text == "None":
+        if text == "None":
             await self.config.link_text.set("")
             return await ctx.send("Embed link text disabled.")
         await self.config.link_text.set(text)

@@ -160,9 +160,8 @@ class HiBack(commands.Cog):
             return await ctx.send(
                 f"Successfully added {ids} " f"{'channel.' if ids == 1 else 'channels.'} "
             )
-        else:
-            await ctx.send("`Channels` is a required argument.")
-            return
+        await ctx.send("`Channels` is a required argument.")
+        return
 
     @hibackset.command(name="remove")
     async def hibackset_remove(self, ctx, channels: commands.Greedy[discord.TextChannel] = None):
@@ -187,9 +186,8 @@ class HiBack(commands.Cog):
             return await ctx.send(
                 f"Successfully removed {ids} " f"{'channel.' if ids == 1 else 'channels.'} "
             )
-        else:
-            await ctx.send("`Channels` is a required argument.")
-            return
+        await ctx.send("`Channels` is a required argument.")
+        return
 
     @hibackset.command(name="settings", aliases=["showsettings"])
     async def hibackset_settings(self, ctx):

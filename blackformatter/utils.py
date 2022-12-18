@@ -17,7 +17,7 @@ def cleanup(py: str) -> str:
         py = py.strip("```py")
         return py.strip("```")
 
-    elif py.startswith("`") and py.endswith("`"):
+    if py.startswith("`") and py.endswith("`"):
 
         return py.strip("`")
 
