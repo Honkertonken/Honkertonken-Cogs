@@ -45,10 +45,9 @@ Note: [p] here refers to your prefix.
 | IsortFormatter | Format your code with isort. Supports attachments, replies & code blocks.       | Honkertonken            |
 | ReactionLog    | A simple reaction logger cog.                                                   | Honkertonken            |
 | AmariLevel     | View your amari rank. Note: Requires you have to have a api key.                 | Honkertonken            |
-| Jokes          | Get some jokes from the joke. api.                                               | Honkertonken            |
+| Jokes          | Get some jokes from the joke api.                                               | Honkertonken            |
 | AutoKick       | AutoKick users on join. A neat alternative to banning them.                     | Honkertonken            |
 | HiBack         | Replies to "I'm X" with "Hi, X".                                                | Honkertonken            |
-| AntiRickRoll | Sick and tired of getting rickrolled? This cog tries its best to avoid that. | Honkertonken |
 | Backup | Quickly save information handy when you are backing up your bot.| Honkertonken
 
 # Contributing
