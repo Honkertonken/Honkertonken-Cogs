@@ -5,7 +5,7 @@
 [![Code Style: Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 [![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/Honkertonken/Cogs-V3.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Honkertonken/Cogs-V3/context:python)
 [![CodeFactor](https://www.codefactor.io/repository/github/honkertonken/honkertonken-cogs/badge)](https://www.codefactor.io/repository/github/honkertonken/honkertonken-cogs)
-[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/Honkertonken/Cogs-V3/master.svg)](https://results.pre-commit.ci/latest/github/Honkertonken/Cogs-V3/master)
 [![Black](https://img.shields.io/badge/Black-Passing-blue)](https://github.com/psf/black)
 [![Imports: isort](https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336)](https://pycqa.github.io/isort/)
