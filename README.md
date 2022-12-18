@@ -2,12 +2,14 @@
 
 [![Red-DiscordBot](https://img.shields.io/badge/Red--DiscordBot-V3-red.svg)](https://github.com/Cog-Creators/Red-DiscordBot)
 [![Discord.py](https://img.shields.io/badge/Discord.py-rewrite-blue.svg)](https://github.com/Rapptz/discord.py/tree/rewrite)
-[![Code Style: Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
-[![CodeFactor](https://www.codefactor.io/repository/github/honkertonken/honkertonken-cogs/badge)](https://www.codefactor.io/repository/github/honkertonken/honkertonken-cogs)
+[![Code Style: Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Formatter : docformatter](https://img.shields.io/badge/%20formatter-docformatter-fedcba.svg)](https://github.com/PyCQA/docformatter)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/Honkertonken/Cogs-V3/master.svg)](https://results.pre-commit.ci/latest/github/Honkertonken/Cogs-V3/master)
+[![CodeFactor](https://www.codefactor.io/repository/github/honkertonken/honkertonken-cogs/badge)](https://www.codefactor.io/repository/github/honkertonken/honkertonken-cogs)
 [![DeepSource](https://static.deepsource.io/deepsource-badge-light-mini.svg)](https://deepsource.io/gh/Honkertonken/Honkertonken-Cogs/?ref=repository-badge)
 [![Maintainability](https://api.codeclimate.com/v1/badges/e3da6add933361e1f23b/maintainability)](https://codeclimate.com/github/Honkertonken/Honkertonken-Cogs/maintainability)
+
 
 **Disclaimer: This is an unapproved repo, meaning no one has formally reviewed this repo yet and any loss of data in your bot isn't my fault (Any loss of data is highly unlikely as I use these cogs for my bot.)**
 
