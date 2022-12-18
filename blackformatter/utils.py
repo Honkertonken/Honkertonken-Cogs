@@ -54,9 +54,9 @@ async def get_data(ctx: commands.Context, data: Optional[str]) -> str:
             await ctx.send("Something's wrong with that attachment.")
             raise AttachmentInvalid
         return att_bytes.decode()
-    except discord.HTTPException:
+    except discord.HTTPException as e:
         await ctx.send("I can't access that attachment.")
-        raise AttachmentPermsError
+        raise AttachmentPermsError from e
 
 
 async def send_output(ctx: commands.Context, text: str) -> None:

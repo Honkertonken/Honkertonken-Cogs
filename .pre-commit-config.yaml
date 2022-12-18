@@ -1,47 +1,49 @@
 default_language_version:
   python: python3.9
 repos:
-  - repo: https://github.com/psf/black
-    rev: 22.12.0
-    hooks:
-      - id: black
-        language_version: python3.9
+- repo: https://github.com/psf/black
+  rev: 22.12.0
+  hooks:
+  - id: black
+    language_version: python3.9
 
-  - repo: https://github.com/PyCQA/docformatter
-    rev: v1.5.1
-    hooks:
-      - id: docformatter
-        additional_dependencies: [tomli]
+- repo: https://github.com/PyCQA/docformatter
+  rev: v1.5.1
+  hooks:
+  - id: docformatter
+    additional_dependencies: [tomli]
 
+- repo: https://github.com/sourcery-ai/sourcery
+  rev: v1.0.1
+  hooks:
+  - id: sourcery
 
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
-    hooks:
-      - id : check-ast
-      - id : check-case-conflict
-      - id : check-merge-conflict
-        args : [--assume-in-merge]
-      - id : check-docstring-first
-      - id : check-json
-      - id : check-symlinks
-      - id : check-toml
-      - id : check-vcs-permalinks
-      - id : check-yaml
-      - id : detect-private-key
-      - id: end-of-file-fixer
-      - id: mixed-line-ending
-      - id: pretty-format-json
-        args: [--autofix, --indent=4, --no-sort-keys]
-      - id: trailing-whitespace
-
-
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v4.4.0
+  hooks:
+  - id: check-ast
+  - id: check-case-conflict
+  - id: check-merge-conflict
+    args: [--assume-in-merge]
+  - id: check-docstring-first
+  - id: check-json
+  - id: check-symlinks
+  - id: check-toml
+  - id: check-vcs-permalinks
+  - id: check-yaml
+  - id: detect-private-key
+  - id: end-of-file-fixer
+  - id: mixed-line-ending
+  - id: pretty-format-json
+    args: [--autofix, --indent=4, --no-sort-keys]
+  - id: trailing-whitespace
 
 ci:
   autofix_commit_msg: |
     [pre-commit.ci] auto fixes from pre-commit.com hooks.
   autofix_prs: true
-  autoupdate_branch: "master"
-  autoupdate_commit_msg: "[pre-commit.ci] pre-commit autoupdate"
+  autoupdate_branch: master
+  autoupdate_commit_msg: '[pre-commit.ci] pre-commit autoupdate'
   autoupdate_schedule: weekly
   skip: []
   submodules: false
