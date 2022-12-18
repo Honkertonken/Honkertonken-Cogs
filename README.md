@@ -48,17 +48,6 @@ Note: [p] here refers to your prefix.
 | HiBack         | Replies to "I'm X" with "Hi, X".                                                | Honkertonken            |
 | Backup | Quickly save information handy when you are backing up your bot.| Honkertonken
 
-# Contributing
-
-- This can be done by `pip install -U black ruff docformatter`
-- Then run the below commands to auto format your code
-
-```py
-black .
-docformatter . --in-place --recursive --blank --pre-summary-newline --make-summary-multi-line
-ruff
-```
-
 # Contact
 
 If you encounter bugs or just want to contact to me you can always shoot me a dm at Honkertonken#9221 (694835810347909161) or ping me in the `#support_othercogs` channel. . For feature requests, issues, bugs, or suggestions open a PR/issue on this repo.
