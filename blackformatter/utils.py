@@ -17,11 +17,7 @@ def cleanup(py: str) -> str:
         py = py.strip("```py")
         return py.strip("```")
 
-    elif py.startswith("`") and py.endswith("`"):
-
-        return py.strip("`")
-
-    return py
+    return py.strip("`") if py.startswith("`") and py.endswith("`") else py
 
 
 async def get_data(ctx: commands.Context, data: Optional[str]) -> str:
