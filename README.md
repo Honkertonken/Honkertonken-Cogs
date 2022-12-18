@@ -3,7 +3,6 @@
 [![Red-DiscordBot](https://img.shields.io/badge/Red--DiscordBot-V3-red.svg)](https://github.com/Cog-Creators/Red-DiscordBot)
 [![Discord.py](https://img.shields.io/badge/Discord.py-rewrite-blue.svg)](https://github.com/Rapptz/discord.py/tree/rewrite)
 [![Code Style: Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
-[![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/Honkertonken/Cogs-V3.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Honkertonken/Cogs-V3/context:python)
 [![CodeFactor](https://www.codefactor.io/repository/github/honkertonken/honkertonken-cogs/badge)](https://www.codefactor.io/repository/github/honkertonken/honkertonken-cogs)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/Honkertonken/Cogs-V3/master.svg)](https://results.pre-commit.ci/latest/github/Honkertonken/Cogs-V3/master)
