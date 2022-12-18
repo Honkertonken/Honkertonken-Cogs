@@ -48,14 +48,13 @@ Note: [p] here refers to your prefix.
 
 # Contributing
 
-- This can be done by `pip install -U black isort autoflake docformatter`
+- This can be done by `pip install -U black ruff docformatter`
 - Then run the below commands to auto format your code
 
 ```py
 black .
-isort . --profile black
-autoflake . --in-place --remove-unused-variables --remove-all-unused-imports --recursive --remove-init-module-imports
 docformatter . --in-place --recursive --blank --pre-summary-newline --make-summary-multi-line
+ruff
 ```
 
 # Contact
