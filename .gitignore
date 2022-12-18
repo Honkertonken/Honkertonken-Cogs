@@ -22,3 +22,4 @@ MANIFEST
 .cache
 __pypackages__/
 .vscode/*
+.ruff_cache
