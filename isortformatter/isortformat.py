@@ -4,8 +4,8 @@ import isort
 from redbot.core import commands
 from redbot.core.bot import Red
 
-from .errors import NoData
-from .utils import get_data, send_output
+from isortformatter.errors import NoData
+from isortformatter.utils import get_data, send_output
 
 
 class Isort(commands.Cog):

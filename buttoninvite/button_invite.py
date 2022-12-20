@@ -4,7 +4,7 @@ import discord
 from redbot.core import Config, commands
 from redbot.core.bot import Red
 
-from . import url_button
+from buttoninvite import url_button
 
 old_invite = None
 

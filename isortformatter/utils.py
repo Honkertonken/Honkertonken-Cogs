@@ -4,7 +4,7 @@ import discord
 from redbot.core import commands
 from redbot.core.utils.chat_formatting import box, text_to_file
 
-from .errors import AttachmentInvalid, AttachmentPermsError, NoData
+from isortformatter.errors import AttachmentInvalid, AttachmentPermsError, NoData
 
 
 # thanks vexed

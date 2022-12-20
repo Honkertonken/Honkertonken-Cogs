@@ -2,13 +2,20 @@
 line-length = 99
 target-version = ['py39']
 
+[tool.docformatter]
+in-place = true
+recursive = true
+blank = true
+pre-summary-newline = true
+make-summary-multi-line = true
+
 [tool.ruff]
 line-length = 99
 target-version = "py39"
 fix = true
 ignore = ["E501"]
 ignore-init-module-imports = true
-respect-gitignore =  true
+respect-gitignore = true
 dummy-variable-rgx = "^_$"
 show-source = true
 
@@ -17,10 +24,3 @@ combine-as-imports = true
 
 [tool.ruff.per-file-ignores]
 "__init__.py" = ["F401"]
-
-[tool.docformatter]
-in-place = true
-recursive = true
-blank = true
-pre-summary-newline = true
-make-summary-multi-line = true
