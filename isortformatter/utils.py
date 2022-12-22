@@ -73,7 +73,7 @@ async def send_output(ctx: commands.Context, text: str) -> None:
         if ctx.guild and not ctx.channel.permissions_for(ctx.me).attach_files:
             return await ctx.send(
                 "The output is big and I don't have permission to attach files. "
-                "You could try again in my DMs."
+                "You could try again in my DMs.",
             )
 
         file = text_to_file(text, "isort.py")

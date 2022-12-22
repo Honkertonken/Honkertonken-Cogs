@@ -43,7 +43,7 @@ class AmariLevel(commands.Cog):
                     await ctx.send(f"{member} has no amari data in {ctx.guild}.")
                 except InvalidToken:
                     await ctx.send(
-                        f"The Amari token is invalid, please report this to {bot_info.owner}."
+                        f"The Amari token is invalid, please report this to {bot_info.owner}.",
                     )
                 await amari.close()
             else:

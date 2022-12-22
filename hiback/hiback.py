@@ -99,7 +99,7 @@ class HiBack(commands.Cog):
         await ctx.send(
             f"Successfully added {ids} "
             f"{'user' if ids == 1 else 'users'} "
-            f"to the ignore list."
+            f"to the ignore list.",
         )
 
     @hibackset.command(name="unignore", aliases=["unblacklist", "unbl"])
@@ -115,7 +115,7 @@ class HiBack(commands.Cog):
         await ctx.send(
             f"Successfully removed {ids} "
             f"{'user' if ids == 1 else 'users'} "
-            f"from the ignore list."
+            f"from the ignore list.",
         )
 
     @hibackset.command(name="restrict")
@@ -127,7 +127,7 @@ class HiBack(commands.Cog):
             restrict = restrict.lower()
         if restrict not in ["allowlist", "blocklist", None]:
             await ctx.send(
-                "Invalid option. Pick one of `allowlist`, `blocklist` or pass no argument to disable the hi back restrict feature."
+                "Invalid option. Pick one of `allowlist`, `blocklist` or pass no argument to disable the hi back restrict feature.",
             )
             return
         await self.config.guild(ctx.guild).restricted.set(restrict)
@@ -147,7 +147,7 @@ class HiBack(commands.Cog):
         sorted_prefixes = sorted(prefixes, key=len)
         if not await self.config.guild(ctx.guild).restricted():
             await ctx.send(
-                f"Please choose a restriction mode using `{sorted_prefixes[0]}hibackset restrict`."
+                f"Please choose a restriction mode using `{sorted_prefixes[0]}hibackset restrict`.",
             )
             return
         if channels:
@@ -158,7 +158,7 @@ class HiBack(commands.Cog):
 
             ids = len(list(channels))
             return await ctx.send(
-                f"Successfully added {ids} " f"{'channel.' if ids == 1 else 'channels.'} "
+                f"Successfully added {ids} " f"{'channel.' if ids == 1 else 'channels.'} ",
             )
         await ctx.send("`Channels` is a required argument.")
         return
@@ -174,7 +174,7 @@ class HiBack(commands.Cog):
         sorted_prefixes = sorted(prefixes, key=len)
         if not await self.config.guild(ctx.guild).restricted():
             await ctx.send(
-                f"Please choose a restriction mode using `{sorted_prefixes[0]}hibackset restrict`."
+                f"Please choose a restriction mode using `{sorted_prefixes[0]}hibackset restrict`.",
             )
             return
         if channels:
@@ -184,7 +184,7 @@ class HiBack(commands.Cog):
                         restricted_channels.remove(channel.id)
             ids = len(list(channels))
             return await ctx.send(
-                f"Successfully removed {ids} " f"{'channel.' if ids == 1 else 'channels.'} "
+                f"Successfully removed {ids} " f"{'channel.' if ids == 1 else 'channels.'} ",
             )
         await ctx.send("`Channels` is a required argument.")
         return
@@ -261,7 +261,9 @@ class HiBack(commands.Cog):
                 await message.reply(
                     f"Hi {back}{dad}",
                     allowed_mentions=discord.AllowedMentions(
-                        everyone=False, roles=False, users=False
+                        everyone=False,
+                        roles=False,
+                        users=False,
                     ),
                     mention_author=ping,
                 )

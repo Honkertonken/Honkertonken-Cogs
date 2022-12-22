@@ -40,7 +40,7 @@ class ReactionLog(commands.Cog):
             await ctx.send(f"The reaction log channel has been set to {channel.mention}")
         else:
             await ctx.send(
-                "I can't send messages in that channel. Please give me the necessary permissions and try again."
+                "I can't send messages in that channel. Please give me the necessary permissions and try again.",
             )
 
     @reactionlogset.command(name="reactionadd", aliases=["ra"])

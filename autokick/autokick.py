@@ -51,7 +51,7 @@ class AutoKick(commands.Cog):
                 await ctx.send(f"The auto kick log channel has been set to {channel.mention}")
             else:
                 await ctx.send(
-                    "I can't send messages in that channel. Please give me the necessary permissions and try again."
+                    "I can't send messages in that channel. Please give me the necessary permissions and try again.",
                 )
         else:
             await self.config.guild(ctx.guild).channel.clear(None)
@@ -143,5 +143,5 @@ class AutoKick(commands.Cog):
                 except discord.Forbidden:
                     if logs:
                         await logs.send(
-                            f"{member} could not be auto kicked. Please make sure i have necessary permissions and try again."
+                            f"{member} could not be auto kicked. Please make sure i have necessary permissions and try again.",
                         )

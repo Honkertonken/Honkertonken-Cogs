@@ -27,7 +27,7 @@ class Sdm(commands.Cog):
         destination = get(self.bot.get_all_members(), id=user.id)
         if not destination:
             return await ctx.send(
-                "Invalid ID or user not found. You can only send messages to people I share a server with."
+                "Invalid ID or user not found. You can only send messages to people I share a server with.",
             )
         await destination.send(message)
         await ctx.send(f"Sent message to {destination}.")

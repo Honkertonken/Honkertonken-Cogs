@@ -45,7 +45,7 @@ class PressF(commands.Cog):
         emoji = await self.get_guild_emoji(ctx.guild)
         if str(ctx.channel.id) in self.channels:
             return await ctx.send(
-                "Oops! I'm still paying respects in this channel, you'll have to wait until I'm done."
+                "Oops! I'm still paying respects in this channel, you'll have to wait until I'm done.",
             )
         if user:
             answer = user.display_name
@@ -63,7 +63,7 @@ class PressF(commands.Cog):
             answer = pressf.content[:1900]
 
         message = await ctx.send(
-            f"Everyone, let's pay respects to **{filter_mass_mentions(answer)}**! Press {emoji} to pay respects."
+            f"Everyone, let's pay respects to **{filter_mass_mentions(answer)}**! Press {emoji} to pay respects.",
         )
         await message.add_reaction(emoji)
         self.channels[str(ctx.channel.id)] = {"msg_id": message.id, "reacted": []}
@@ -90,7 +90,7 @@ class PressF(commands.Cog):
         if user.id == self.bot.user.id:
             return
         if user.id not in self.channels[str(reaction.message.channel.id)]["reacted"] and str(
-            reaction.emoji
+            reaction.emoji,
         ) == await self.get_guild_emoji(reaction.message.guild):
             await reaction.message.channel.send(f"**{user.name}** has paid their respects.")
             self.channels[str(reaction.message.channel.id)]["reacted"].append(user.id)

@@ -44,7 +44,7 @@ class TagScriptDocumentation(commands.Cog):
             prefixes.remove(f"<@!{self.bot.user.id}> ")
         sorted_prefixes = sorted(prefixes, key=len)
         await ctx.send(
-            f"That doesn't look like a valid block use `{sorted_prefixes[0]}tsd list` to see a list of all tagscript blocks."
+            f"That doesn't look like a valid block use `{sorted_prefixes[0]}tsd list` to see a list of all tagscript blocks.",
         )
 
     @tsd.command(name="args", aliases=["arg"])
@@ -407,7 +407,7 @@ class TagScriptDocumentation(commands.Cog):
             inline=False,
         )
         e.set_footer(
-            text="Note: The subcommands and block names are case sensitive (all are in lower case)."
+            text="Note: The subcommands and block names are case sensitive (all are in lower case).",
         )
 
         await ctx.reply(embed=e, mention_author=False)
