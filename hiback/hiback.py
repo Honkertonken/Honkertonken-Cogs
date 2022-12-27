@@ -7,7 +7,7 @@ from redbot.core.bot import Red
 from redbot.core.config import Config
 
 search = re.compile(
-    r"i(,?.?),?.?a?m([^\\?\!\n\r]+)",
+    r"(?<![a-z])i(,?.?),?a?m([^\\?\!\n\r]+)",
     flags=re.I,
 )
 
