@@ -7,7 +7,7 @@ from redbot.core.bot import Red
 from redbot.core.config import Config
 
 search = re.compile(
-    (r"(?<![a-z])i'?m([^\.\?\!\n\r]+)"),
+    r"i(,?.?),?.?a?m([^\\?\!\n\r]+)",
     flags=re.I,
 )
 
@@ -27,6 +27,7 @@ class HiBack(commands.Cog):
         default_guild = {
             "enabled": True,
             "dad": False,
+            "bot": False,
             "ping": True,
             "blacklisted_users": [],
             "restricted": None,
@@ -67,13 +68,36 @@ class HiBack(commands.Cog):
     @hibackset.command(name="dad")
     async def hibackset_dad(self, ctx, true_or_false: bool):
         """
-        Add a "im dad" to the hi back messages.
+        Add a `im dad` to the hi back messages.
         """
-        await self.config.guild(ctx.guild).dad.set(true_or_false)
         if true_or_false:
-            await ctx.send('"Im dad" shall now be added to auto hi back messages.')
+            if not await self.config.guild(ctx.guild).bot():
+                await self.config.guild(ctx.guild).dad.set(true_or_false)
+                await ctx.send("`Im dad` shall now be added to auto hi back messages.")
+            else:
+                await ctx.send("Please disable the `hiback bot` option first.")
         else:
-            await ctx.send('"Im dad" shall not be added to auto hi back messages.')
+            await self.config.guild(ctx.guild).dad.set(true_or_false)
+            await ctx.send("`Im dad` shall not be added to auto hi back messages.")
+
+    @hibackset.command(name="bot")
+    async def hibackset_bot(self, ctx, true_or_false: bool):
+        """
+        Add a `im {bot_name}` to the hi back messages.
+        """
+        if true_or_false:
+            if not await self.config.guild(ctx.guild).dad():
+                await self.config.guild(ctx.guild).bot.set(true_or_false)
+                await ctx.send(
+                    f"`Im {ctx.bot.user.display_name}` shall now be added to auto hi back messages.",
+                )
+            else:
+                await ctx.send("Please disable the `hiback dad` option first.")
+        else:
+            await self.config.guild(ctx.guild).bot.set(true_or_false)
+            await ctx.send(
+                f"`Im {ctx.bot.user.display_name}` shall not be added to auto hi back messages.",
+            )
 
     @hibackset.command(name="ping")
     async def hibackset_ping(self, ctx, true_or_false: bool):
@@ -87,36 +111,44 @@ class HiBack(commands.Cog):
             await ctx.send("Users will not be pinged on auto hi back messages.")
 
     @hibackset.command(name="ignore", aliases=["blacklist", "bl"])
-    async def hibackset_ignore(self, ctx, users: commands.Greedy[discord.User]):
+    async def hibackset_ignore(self, ctx, users: commands.Greedy[discord.User] = None):
         """
         Ignore a user from the auto hi back messages.
         """
-        async with self.config.guild(ctx.guild).blacklisted_users() as blacklisted_users:
-            for user in users:
-                if user.id not in blacklisted_users:
-                    blacklisted_users.append(user.id)
-        ids = len(list(users))
-        await ctx.send(
-            f"Successfully added {ids} "
-            f"{'user' if ids == 1 else 'users'} "
-            f"to the ignore list.",
-        )
+        if users:
+            async with self.config.guild(ctx.guild).blacklisted_users() as blacklisted_users:
+                for user in users:
+                    if user.id not in blacklisted_users:
+                        blacklisted_users.append(user.id)
+            ids = len(list(users))
+            await ctx.send(
+                f"Successfully added {ids} "
+                f"{'user' if ids == 1 else 'users'} "
+                f"to the ignore list.",
+            )
+            return
+        await ctx.send("`Users` is a required argument.")
+        return
 
     @hibackset.command(name="unignore", aliases=["unblacklist", "unbl"])
-    async def hibackset_unignore(self, ctx, users: commands.Greedy[discord.User]):
+    async def hibackset_unignore(self, ctx, users: commands.Greedy[discord.User] = None):
         """
         Unignore a user from the auto hi back messages.
         """
-        async with self.config.guild(ctx.guild).blacklisted_users() as blacklisted_users:
-            for user in users:
-                if user.id in blacklisted_users:
-                    blacklisted_users.remove(user.id)
-        ids = len(list(users))
-        await ctx.send(
-            f"Successfully removed {ids} "
-            f"{'user' if ids == 1 else 'users'} "
-            f"from the ignore list.",
-        )
+        if users:
+            async with self.config.guild(ctx.guild).blacklisted_users() as blacklisted_users:
+                for user in users:
+                    if user.id in blacklisted_users:
+                        blacklisted_users.remove(user.id)
+            ids = len(list(users))
+            await ctx.send(
+                f"Successfully removed {ids} "
+                f"{'user' if ids == 1 else 'users'} "
+                f"from the ignore list.",
+            )
+            return
+        await ctx.send("`Users` is a required argument.")
+        return
 
     @hibackset.command(name="restrict")
     async def hibackset_restrict(self, ctx, restrict: str = None):
@@ -189,6 +221,26 @@ class HiBack(commands.Cog):
         await ctx.send("`Channels` is a required argument.")
         return
 
+    @hibackset.command(name="clean")
+    async def hibackset_clean(self, ctx):
+        """
+        Clean deleted channels from restricted channels list.
+        """
+        clean = []
+        restricted_channels = await self.config.guild(ctx.guild).restricted_channels()
+        for i, channel in enumerate(restricted_channels):
+            exists = ctx.guild.get_channel(channel)
+            if not exists:
+                clean.append(i)
+
+        for i in reversed(clean):
+            del restricted_channels[i]
+
+        await self.config.guild(ctx.guild).restricted_channels.set(restricted_channels)
+        return await ctx.send(
+            "Deleted channels have been removed from the restricted channels list.",
+        )
+
     @hibackset.command(name="settings", aliases=["showsettings"])
     async def hibackset_settings(self, ctx):
         """
@@ -197,6 +249,7 @@ class HiBack(commands.Cog):
         enabled = await self.config.guild(ctx.guild).enabled()
         ping = await self.config.guild(ctx.guild).ping()
         dad = await self.config.guild(ctx.guild).dad()
+        bot = await self.config.guild(ctx.guild).bot()
         restricted = await self.config.guild(ctx.guild).restricted()
         restricted_channels = await self.config.guild(ctx.guild).restricted_channels()
         blacklisted_users = await self.config.guild(ctx.guild).blacklisted_users()
@@ -211,12 +264,13 @@ class HiBack(commands.Cog):
             users += f"{user_name} "
 
         e = discord.Embed(title="Hi Back Settings", color=await ctx.embed_color())
-        e.add_field(name="Enabled", value=enabled, inline=True)
-        e.add_field(name="Dad", value=dad, inline=True)
-        e.add_field(name="Ping", value=ping, inline=True)
-        e.add_field(name="Restriction Mode", value=restricted, inline=True)
-        e.add_field(name="Restricted Channels", value=channels or "None", inline=True)
-        e.add_field(name="Blacklisted Users", value=users or "None", inline=True)
+        e.add_field(name="Enabled", value=enabled)
+        e.add_field(name="Dad", value=dad)
+        e.add_field(name="Bot", value=bot)
+        e.add_field(name="Ping", value=ping)
+        e.add_field(name="Restriction Mode", value=restricted)
+        e.add_field(name="Restricted Channels", value=channels or "None")
+        e.add_field(name="Blacklisted Users", value=users or "None")
         e.set_footer(text=ctx.guild.name, icon_url=ctx.guild.icon_url_as(format="png"))
         await ctx.send(embed=e)
 
@@ -253,13 +307,18 @@ class HiBack(commands.Cog):
             return
 
         content = message.clean_content
-        dad = ", im dad" if await self.config.guild(message.guild).dad() else " "
+        dad = ", im dad" if await self.config.guild(message.guild).dad() else ""
+        bot = (
+            f", im {self.bot.user.display_name}"
+            if await self.config.guild(message.guild).bot()
+            else ""
+        )
         ping = await self.config.guild(message.guild).ping()
         if search.search(content):
             try:
-                back = search.search(content).group(1).lstrip()
+                back = search.search(content).group(2).strip(" ,").strip(" .").lstrip()
                 await message.reply(
-                    f"Hi {back}{dad}",
+                    f"Hi {back}{dad}{bot}",
                     allowed_mentions=discord.AllowedMentions(
                         everyone=False,
                         roles=False,
