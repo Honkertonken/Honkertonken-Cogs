@@ -7,7 +7,7 @@ from redbot.core.bot import Red
 from redbot.core.config import Config
 
 search = re.compile(
-    r"(?<![a-z])i(,?.?),?a?m([^\\?\!\n\r]+)",
+    r"(?<![a-z])(?<![//-])i(,?.?),?a?m([^\\?\!\n\r]+)",
     flags=re.I,
 )
 
@@ -316,7 +316,7 @@ class HiBack(commands.Cog):
         ping = await self.config.guild(message.guild).ping()
         if search.search(content):
             try:
-                back = search.search(content).group(2).strip(" ,").strip(" .").lstrip()
+                back = search.search(content).group(2).strip(" ,").strip(" .").strip(" -").lstrip()
                 await message.reply(
                     f"Hi {back}{dad}{bot}",
                     allowed_mentions=discord.AllowedMentions(
