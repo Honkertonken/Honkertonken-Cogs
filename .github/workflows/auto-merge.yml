@@ -1,4 +1,4 @@
-name: Auto approve
+name: Auto Merge
 
 on:
     pull_request_target:
@@ -8,7 +8,7 @@ jobs:
     auto-approve:
         runs-on: ubuntu-latest
         steps:
-        -   uses: hmarr/auto-approve-action@v3
+        -   uses: pascalgn/automerge-action@v0.15.5
             if: ${{ github.actor == 'dependabot[bot]' || github.actor == 'pre-commit-ci[bot]' || github.actor == 'github-actions[bot]' }}
             with:
                 github-token: ${{secrets.GITHUB_TOKEN}}
