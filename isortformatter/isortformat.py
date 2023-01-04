@@ -6,9 +6,6 @@ from isortformatter.errors import NoData
 from isortformatter.utils import get_data, send_output
 
 
-
-
-
 class Isort(commands.Cog):
     """
     Run isort on code.
