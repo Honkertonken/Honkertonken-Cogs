@@ -1,12 +1,9 @@
 from typing import Optional
-
 import black
 from redbot.core import commands
 from redbot.core.bot import Red
-
 from blackformatter.errors import NoData
 from blackformatter.utils import get_data, send_output
-
 
 class Black(commands.Cog):
     """
