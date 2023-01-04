@@ -10,9 +10,6 @@
 [![DeepSource](https://static.deepsource.io/deepsource-badge-light-mini.svg)](https://deepsource.io/gh/Honkertonken/Honkertonken-Cogs/?ref=repository-badge)
 [![Maintainability](https://api.codeclimate.com/v1/badges/e3da6add933361e1f23b/maintainability)](https://codeclimate.com/github/Honkertonken/Honkertonken-Cogs/maintainability)
 
-
-**Disclaimer: This is an unapproved repo, meaning no one has formally reviewed this repo yet and any loss of data in your bot isn't my fault (Any loss of data is highly unlikely as I use these cogs for my bot.)**
-
 Various fun and utility cogs for Red-DiscordBot V3.
 Discord User: Honkertonken#9221(694835810347909161).
 
