@@ -11,4 +11,4 @@ jobs:
         -   uses: pascalgn/automerge-action@v0.15.5
             if: ${{ github.actor == 'dependabot[bot]' || github.actor == 'pre-commit-ci[bot]' || github.actor == 'github-actions[bot]' }}
             with:
-                github-token: ${{secrets.GITHUB_TOKEN}}
+                GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
