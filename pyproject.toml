@@ -3,21 +3,21 @@ line-length = 99
 target-version = ['py39']
 
 [tool.docformatter]
-in-place = true
-recursive = true
 blank = true
-pre-summary-newline = true
+in-place = true
 make-summary-multi-line = true
+pre-summary-newline = true
+recursive = true
 
 [tool.ruff]
-line-length = 99
-target-version = "py39"
-fix = true
-ignore = ["E501","E402","F405","F403"]
-ignore-init-module-imports = true
-respect-gitignore = true
 dummy-variable-rgx = "^_$"
+fix = true
+ignore = ["E501", "E402", "F405", "F403"]
+ignore-init-module-imports = true
+line-length = 99
+respect-gitignore = true
 show-source = true
+target-version = "py39"
 
 [tool.ruff.isort]
 combine-as-imports = true
