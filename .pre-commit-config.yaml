@@ -8,18 +8,18 @@ repos:
     -   id: black
 
 -   repo: https://github.com/PyCQA/docformatter
-    rev: v1.5.1
+    rev: v1.6.0.rc1
     hooks:
     -   id: docformatter
         additional_dependencies: [tomli]
 
 -   repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: v0.0.215
+    rev: v0.0.229
     hooks:
     -   id: ruff
 
 -   repo: https://github.com/sourcery-ai/sourcery
-    rev: v1.0.2
+    rev: v1.0.3
     hooks:
     -   id: sourcery
         args: [--diff=git diff HEAD, --in-place, --no-summary]
@@ -30,7 +30,7 @@ repos:
     -   id: absolufy-imports
 
 -   repo: https://github.com/dannysepler/rm_unneeded_f_str
-    rev: v0.1.0
+    rev: v0.2.0
     hooks:
     -   id: rm-unneeded-f-str
 
@@ -40,7 +40,7 @@ repos:
     -   id: add-trailing-comma
 
 -   repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
-    rev: v2.5.0
+    rev: v2.6.0
     hooks:
     -   id: pretty-format-toml
         args:
