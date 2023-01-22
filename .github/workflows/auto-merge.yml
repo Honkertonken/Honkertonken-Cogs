@@ -5,10 +5,12 @@ on:
         types: [opened, reopened]
 
 jobs:
-    auto-approve:
+    automerge:
         runs-on: ubuntu-latest
         steps:
-        -   uses: pascalgn/automerge-action@v0.15.5
-            if: ${{ github.actor == 'dependabot[bot]' || github.actor == 'pre-commit-ci[bot]' || github.actor == 'github-actions[bot]' }}
-            with:
-                GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+            -   id: automerge
+                name: automerge
+                if: ${{ github.actor == 'dependabot[bot]' || github.actor == 'pre-commit-ci[bot]' || github.actor == 'github-actions[bot]' }}
+                uses: "pascalgn/automerge-action@v0.15.5"
+                env:
+                    GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
