@@ -1,14 +1,13 @@
 name: Auto Merge
 
 on:
-  pull_request_target:
-    types: [opened, reopened]
-    
+    pull_request_target:
+        types: [opened, reopened]
 jobs:
-  automerge:
-    runs-on: ubuntu-latest
-    steps:
-      - id: automerge
-        name: automerge
-        if: ${{ github.actor == 'dependabot[bot]' || github.actor == 'pre-commit-ci[bot]' || github.actor == 'github-actions[bot]' }}
-        uses: "pascalgn/automerge-action@v0.15.5"
+    automerge:
+        runs-on: ubuntu-latest
+        steps:
+        -   id: automerge
+            name: automerge
+            if: ${{ github.actor == 'dependabot[bot]' || github.actor == 'pre-commit-ci[bot]' || github.actor == 'github-actions[bot]' }}
+            uses: pascalgn/automerge-action@v0.15.5
