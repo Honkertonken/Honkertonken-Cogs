@@ -296,14 +296,12 @@ class HiBack(commands.Cog):
             and message.channel.id
             not in await self.config.guild(message.guild).restricted_channels()
         ):
-
             return
 
         if (
             await self.config.guild(message.guild).restricted() == "blocklist"
             and message.channel.id in await self.config.guild(message.guild).restricted_channels()
         ):
-
             return
 
         content = message.clean_content
