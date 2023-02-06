@@ -13,7 +13,6 @@ def cleanup(py: str) -> str:
     Remove codeblocks, if present.
     """
     if py.startswith("```") and py.endswith("```"):
-
         py = py.strip("```py")
         return py.strip("```")
 
