@@ -8,13 +8,13 @@ repos:
     -   id: black
 
 -   repo: https://github.com/PyCQA/docformatter
-    rev: v1.6.0.rc1
+    rev: v1.5.1
     hooks:
     -   id: docformatter
         additional_dependencies: [tomli]
 
 -   repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: v0.0.246
+    rev: v0.0.248
     hooks:
     -   id: ruff
 
@@ -40,7 +40,7 @@ repos:
     -   id: add-trailing-comma
 
 -   repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
-    rev: v2.6.0
+    rev: v2.7.0
     hooks:
     -   id: pretty-format-toml
         args:
