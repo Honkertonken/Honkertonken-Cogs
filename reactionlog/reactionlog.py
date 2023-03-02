@@ -103,7 +103,8 @@ class ReactionLog(commands.Cog):
                 value=f"[Click here]({reaction.message.jump_url})",
                 inline=False,
             )
-            embed.set_thumbnail(url=reaction.emoji.url)
+            if isinstance(reaction.emoji, discord.Emoji) or isinstance(reaction.emoji, discord.PartialEmoji):
+                embed.set_thumbnail(url=reaction.emoji.url)
             await logs.send(embed=embed)
 
     @commands.Cog.listener()
@@ -126,7 +127,8 @@ class ReactionLog(commands.Cog):
                 value=f"[Click here]({reaction.message.jump_url})",
                 inline=False,
             )
-            embed.set_thumbnail(url=reaction.emoji.url)
+            if isinstance(reaction.emoji, discord.Emoji) or isinstance(reaction.emoji, discord.PartialEmoji):
+                embed.set_thumbnail(url=reaction.emoji.url)
             await logs.send(embed=embed)
 
     @commands.Cog.listener()
