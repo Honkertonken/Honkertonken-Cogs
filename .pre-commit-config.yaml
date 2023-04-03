@@ -3,7 +3,7 @@ default_language_version:
 
 repos:
 -   repo: https://github.com/psf/black
-    rev: 23.1.0
+    rev: 23.3.0
     hooks:
     -   id: black
 
@@ -14,12 +14,12 @@ repos:
         additional_dependencies: [tomli]
 
 -   repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: v0.0.253
+    rev: v0.0.260
     hooks:
     -   id: ruff
 
 -   repo: https://github.com/sourcery-ai/sourcery
-    rev: v1.0.5
+    rev: v1.0.10b15
     hooks:
     -   id: sourcery
         args: [--diff=git diff HEAD, --in-place, --no-summary]
@@ -40,7 +40,7 @@ repos:
     -   id: add-trailing-comma
 
 -   repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
-    rev: v2.7.0
+    rev: v2.8.0
     hooks:
     -   id: pretty-format-toml
         args:
