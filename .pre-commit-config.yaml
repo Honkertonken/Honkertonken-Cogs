@@ -19,7 +19,7 @@ repos:
     -   id: ruff
 
 -   repo: https://github.com/sourcery-ai/sourcery
-    rev: v1.0.10b15
+    rev: v1.2.0
     hooks:
     -   id: sourcery
         args: [--diff=git diff HEAD, --in-place, --no-summary]
