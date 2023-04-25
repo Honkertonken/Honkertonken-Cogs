@@ -8,13 +8,13 @@ repos:
     -   id: black
 
 -   repo: https://github.com/PyCQA/docformatter
-    rev: v1.6.0
+    rev: v1.6.3
     hooks:
     -   id: docformatter
         additional_dependencies: [tomli]
 
 -   repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: v0.0.261
+    rev: v0.0.262
     hooks:
     -   id: ruff
 
