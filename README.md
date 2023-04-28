@@ -12,7 +12,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/e3da6add933361e1f23b/maintainability)](https://codeclimate.com/github/Honkertonken/Honkertonken-Cogs/maintainability)
 
 
-**Disclaimer: This is an unapproved repo, meaning no one has formally reviewed this repo yet and any loss of data in your bot isn't my fault (Any loss of data is highly unlikely as I use these cogs for my bot.)**
+**Disclaimer: This is an unapproved repo, meaning no one has formally reviewed this repo yet.**
 
 Various fun and utility cogs for Red-DiscordBot V3.
 Discord User: Honkertonken#9221(694835810347909161).
@@ -51,4 +51,4 @@ Note: [p] here refers to your prefix.
 
 # Contact
 
-If you encounter bugs or just want to contact to me you can always shoot me a dm at Honkertonken#9221 (694835810347909161) or ping me in the `#support_othercogs` channel. . For feature requests, issues, bugs, or suggestions open a PR/issue on this repo.
+If you encounter bugs or just want to contact to me you can always shoot me a dm at Honkertonken#9221 (694835810347909161) or ping me in the `#support_othercogs` channel. For feature requests, issues, bugs, or suggestions open a PR/issue on this repo.

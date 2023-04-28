@@ -15,5 +15,8 @@
     "requirements": [
         "black"
     ],
+    "hidden": false,
+    "disabled": false,
+    "max_bot_version": "3.4.19",
     "end_user_data_statement": "This cog does not store any end user data."
 }
