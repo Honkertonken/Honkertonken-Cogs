@@ -23,8 +23,8 @@ class ButtonInvite(commands.Cog):
     @commands.Cog.listener()
     async def on_connect(self):
         await self.bot.wait_until_red_ready()
-        await self.config.thumbnail.set(f"{self.bot.user.avatar_url}")
-        await self.config.icon_url.set(f"{self.bot.user.avatar_url}")
+        await self.config.thumbnail.set(f"{self.bot.user.display_avatar.url}")
+        await self.config.icon_url.set(f"{self.bot.user.display_avatar.url}")
 
     def __init__(self, bot: Red):
         self.bot = bot
@@ -272,4 +272,4 @@ class ButtonInvite(commands.Cog):
 def setup(bot):
     if old_invite := bot.get_command("invite"):
         bot.remove_command(old_invite.name)
-    bot.add_cog(ButtonInvite(bot))
+    await bot.add_cog(ButtonInvite(bot))

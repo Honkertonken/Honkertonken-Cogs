@@ -29,28 +29,28 @@ class WhoAsked(commands.Cog):
         """
         if reply_or_message_id:
             try:
-                message_id = ctx.channel.get_partial_message(reply_or_message_id)
-                m = await message_id.reply(
+                message = ctx.channel.get_partial_message(reply_or_message_id)
+                message = await message.reply(
                     "Now playing:\nWho Asked (Feat. Nobody Did)\n⚪──────────────\n◄◄⠀▐▐⠀►► 0:00 / 4:42⠀───○ 🔊",
                 )
                 await asyncio.sleep(1)
-                await m.edit(
+                m = await message.edit(
                     content="Now playing:\nWho Asked (Feat. Nobody Did)\n───⚪───────────\n◄◄⠀▐▐⠀►► 1:34 / 4:42⠀───○ 🔊",
                 )
                 await asyncio.sleep(1)
-                await m.edit(
+                m = await m.edit(
                     content="Now playing:\nWho Asked (Feat. Nobody Did)\n──────⚪────────\n◄◄⠀▐▐⠀►► 2:21 / 4:42⠀───○ 🔊",
                 )
                 await asyncio.sleep(1)
-                await m.edit(
+                m = await m.edit(
                     content="Now playing:\nWho Asked (Feat. Nobody Did)\n─────────⚪─────\n◄◄⠀▐▐⠀►► 3:08 / 4:42⠀───○ 🔊",
                 )
                 await asyncio.sleep(1)
-                await m.edit(
+                m = await m.edit(
                     content="Now playing:\nWho Asked (Feat. Nobody Did)\n────────────⚪──\n◄◄⠀▐▐⠀►► 3:55 / 4:42⠀───○ 🔊",
                 )
                 await asyncio.sleep(1)
-                await m.edit(
+                m = await m.edit(
                     content="Now playing:\nWho Asked (Feat. Nobody Did)\n──────────────⚪\n◄◄⠀▐▐⠀►► 4:42 / 4:42⠀───○ 🔊",
                 )
             except discord.HTTPException:
@@ -58,30 +58,32 @@ class WhoAsked(commands.Cog):
 
         else:
             try:
-                message_id = ctx.message.reference.resolved
-                m = await message_id.reply(
+                message = ctx.message.reference.resolved
+                message = await message.reply(
                     "Now playing:\nWho Asked (Feat. Nobody Did)\n⚪──────────────\n◄◄⠀▐▐⠀►► 0:00 / 4:42⠀───○ 🔊",
                 )
                 await asyncio.sleep(1)
-                await m.edit(
+                m = await message.edit(
                     content="Now playing:\nWho Asked (Feat. Nobody Did)\n───⚪───────────\n◄◄⠀▐▐⠀►► 1:34 / 4:42⠀───○ 🔊",
                 )
                 await asyncio.sleep(1)
-                await m.edit(
+                m = await m.edit(
                     content="Now playing:\nWho Asked (Feat. Nobody Did)\n──────⚪────────\n◄◄⠀▐▐⠀►► 2:21 / 4:42⠀───○ 🔊",
                 )
                 await asyncio.sleep(1)
-                await m.edit(
+                m = await m.edit(
                     content="Now playing:\nWho Asked (Feat. Nobody Did)\n─────────⚪─────\n◄◄⠀▐▐⠀►► 3:08 / 4:42⠀───○ 🔊",
                 )
                 await asyncio.sleep(1)
-                await m.edit(
+                m = await m.edit(
                     content="Now playing:\nWho Asked (Feat. Nobody Did)\n────────────⚪──\n◄◄⠀▐▐⠀►► 3:55 / 4:42⠀───○ 🔊",
                 )
                 await asyncio.sleep(1)
-                await m.edit(
+                m = await m.edit(
                     content="Now playing:\nWho Asked (Feat. Nobody Did)\n──────────────⚪\n◄◄⠀▐▐⠀►► 4:42 / 4:42⠀───○ 🔊",
                 )
+            except discord.HTTPException:
+                await ctx.send("Invalid message id.")
 
             except discord.HTTPException:
                 await ctx.send("Invalid Reply.")

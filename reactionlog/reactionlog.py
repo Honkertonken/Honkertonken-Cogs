@@ -80,7 +80,7 @@ class ReactionLog(commands.Cog):
         e.add_field(name="Channel", value=channel_mention, inline=True)
         e.add_field(name="Log On Reaction Add", value=reaction_add, inline=True)
         e.add_field(name="Log On Reaction Remove", value=reaction_remove, inline=True)
-        e.set_footer(text=ctx.guild.name, icon_url=ctx.guild.icon_url_as(format="png"))
+        e.set_footer(text=ctx.guild.name, icon_url=ctx.guild.icon_as(format="png"))
         await ctx.send(embed=e)
 
     @commands.Cog.listener()
@@ -92,7 +92,7 @@ class ReactionLog(commands.Cog):
                 title=f"{member} added a reaction.",
                 color=0x03D692,
             )
-            embed.set_footer(text=f"{member} ({member.id})", icon_url=member.avatar_url)
+            embed.set_footer(text=f"{member} ({member.id})", icon_url=member.display_avatar.url)
             embed.add_field(
                 name="Reaction:",
                 value=f"{reaction}",
@@ -114,7 +114,7 @@ class ReactionLog(commands.Cog):
                 title=f"{member} removed a reaction.",
                 color=0xFF0000,
             )
-            embed.set_footer(text=f"{member} ({member.id})", icon_url=member.avatar_url)
+            embed.set_footer(text=f"{member} ({member.id})", icon_url=member.display_avatar.url)
             embed.add_field(
                 name="Reaction:",
                 value=f"{reaction}",

@@ -102,7 +102,7 @@ class AutoKick(commands.Cog):
         e = discord.Embed(title="Auto kick Settings", color=await ctx.embed_color())
         e.add_field(name="Channel", value=channel_mention, inline=True)
         e.add_field(name="Enabled", value=enabled, inline=True)
-        e.set_footer(text=ctx.guild.name, icon_url=ctx.guild.icon_url_as(format="png"))
+        e.set_footer(text=ctx.guild.name, icon_url=ctx.guild.icon_as(format="png"))
         await ctx.send(embed=e)
 
     @autokickset.command(name="clear", aliases=["nuke"], hidden=True)
@@ -133,8 +133,8 @@ class AutoKick(commands.Cog):
                 title=f"{member} just got auto kicked.",
                 color=0xFF0000,
             )
-            e.set_footer(text=f"{member.guild.name}", icon_url=f"{member.guild.icon_url}")
-            e.set_author(name=f"{member.display_name}", icon_url=f"{member.avatar_url}")
+            e.set_footer(text=f"{member.guild.name}", icon_url=f"{member.guild.icon}")
+            e.set_author(name=f"{member.display_name}", icon_url=f"{member.display_avatar.url}")
             e.timestamp = datetime.datetime.now(datetime.timezone.utc)
             if member.id in await self.config.guild(member.guild).blacklisted_ids():
                 try:

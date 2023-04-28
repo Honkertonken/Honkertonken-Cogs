@@ -271,7 +271,7 @@ class HiBack(commands.Cog):
         e.add_field(name="Restriction Mode", value=restricted)
         e.add_field(name="Restricted Channels", value=channels or "None")
         e.add_field(name="Blacklisted Users", value=users or "None")
-        e.set_footer(text=ctx.guild.name, icon_url=ctx.guild.icon_url_as(format="png"))
+        e.set_footer(text=ctx.guild.name, icon_url=ctx.guild.icon_as(format="png"))
         await ctx.send(embed=e)
 
     @commands.Cog.listener()
