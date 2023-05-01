@@ -269,7 +269,7 @@ class ButtonInvite(commands.Cog):
         await url_button.send_message(self.bot, ctx.channel.id, embed=embed, url_button=button)
 
 
-def setup(bot):
+async def setup(bot):
     if old_invite := bot.get_command("invite"):
         bot.remove_command(old_invite.name)
     await bot.add_cog(ButtonInvite(bot))
