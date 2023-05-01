@@ -90,9 +90,11 @@ class ReactionLog(commands.Cog):
         if await self.config.guild(member.guild).reaction_add_enable():
             embed = discord.Embed(
                 title=f"{member} added a reaction.",
-                color=0x03D692,
+                color=discord.Color.green(),
             )
             embed.set_footer(text=f"{member} ({member.id})", icon_url=member.display_avatar.url)
+            if isinstance(reaction.emoji, (discord.Emoji, discord.PartialEmoji)):
+                embed.set_thumbnail(url=reaction.emoji.url)
             embed.add_field(
                 name="Reaction:",
                 value=f"{reaction}",
@@ -112,9 +114,11 @@ class ReactionLog(commands.Cog):
         if await self.config.guild(member.guild).reaction_remove_enable():
             embed = discord.Embed(
                 title=f"{member} removed a reaction.",
-                color=0xFF0000,
+                color=discord.Color.red(),
             )
             embed.set_footer(text=f"{member} ({member.id})", icon_url=member.display_avatar.url)
+            if isinstance(reaction.emoji, (discord.Emoji, discord.PartialEmoji)):
+                embed.set_thumbnail(url=reaction.emoji.url)
             embed.add_field(
                 name="Reaction:",
                 value=f"{reaction}",
@@ -136,7 +140,9 @@ class ReactionLog(commands.Cog):
             for i in reaction:
                 emojis.append(i.emoji)
                 reactions = ", ".join(map(str, emojis))
-            embed = discord.Embed(title="Multiple reactions were removed.", color=0xFF0000)
+            embed = discord.Embed(title="Multiple reactions were removed.", color=discord.Color.red())
+            if isinstance(reaction.emoji, (discord.Emoji, discord.PartialEmoji)):
+                embed.set_thumbnail(url=reaction.emoji.url)
             embed.add_field(
                 name="Reactions:",
                 value=f"{str(reactions).strip('[]')}",
