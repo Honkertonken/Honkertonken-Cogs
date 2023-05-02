@@ -141,7 +141,8 @@ class ReactionLog(commands.Cog):
                 emojis.append(i.emoji)
                 reactions = ", ".join(map(str, emojis))
             embed = discord.Embed(
-                title="Multiple reactions were removed.", color=discord.Color.red()
+                title="Multiple reactions were removed.",
+                color=discord.Color.red(),
             )
             if isinstance(reaction.emoji, (discord.Emoji, discord.PartialEmoji)):
                 embed.set_thumbnail(url=reaction.emoji.url)

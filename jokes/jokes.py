@@ -22,8 +22,8 @@ class Jokes(commands.Cog):
         """
         Get a random joke.
         """
-        jokes = await jokes()
-        joke = await jokes.get_joke(
+        j = await jokes()
+        joke = await j.get_joke(
             response_format="txt",
             blacklist=["nsfw", "religious", "political", "racist", "sexist"],
         )
@@ -34,8 +34,8 @@ class Jokes(commands.Cog):
         """
         Get a random dark joke.
         """
-        jokes = await jokes()
-        joke = await jokes.get_joke(response_format="txt", category=["dark"])
+        j = await jokes()
+        joke = await j.get_joke(response_format="txt", category=["dark"])
         await ctx.send(joke)
 
     @commands.command(name="pun")
@@ -43,8 +43,8 @@ class Jokes(commands.Cog):
         """
         Get a random pun.
         """
-        jokes = await jokes()
-        joke = await jokes.get_joke(response_format="txt", category=["pun"])
+        j = await jokes()
+        joke = await j.get_joke(response_format="txt", category=["pun"])
         await ctx.send(joke)
 
     @commands.command(name="devjoke")
@@ -52,8 +52,8 @@ class Jokes(commands.Cog):
         """
         Get a random dev joke.
         """
-        jokes = await jokes()
-        joke = await jokes.get_joke(response_format="txt", category=["programming"])
+        j = await jokes()
+        joke = await j.get_joke(response_format="txt", category=["programming"])
         await ctx.send(joke)
 
     @commands.command(name="twopart", aliases=["2part"])
@@ -61,8 +61,8 @@ class Jokes(commands.Cog):
         """
         Get a random 2 part joke.
         """
-        jokes = await jokes()
-        joke = await jokes.get_joke(
+        j = await jokes()
+        joke = await j.get_joke(
             response_format="txt",
             joke_type="twopart",
             blacklist=["nsfw", "religious", "political", "racist", "sexist"],
@@ -74,8 +74,8 @@ class Jokes(commands.Cog):
         """
         Get a random 1 part joke.
         """
-        jokes = await jokes()
-        joke = await jokes.get_joke(
+        j = await jokes()
+        joke = await j.get_joke(
             response_format="txt",
             joke_type="single",
             blacklist=["nsfw", "religious", "political", "racist", "sexist"],
@@ -87,8 +87,8 @@ class Jokes(commands.Cog):
         """
         Search for a random joke with a specific query.
         """
-        jokes = await jokes()
-        joke = await jokes.get_joke(
+        j = await jokes()
+        joke = await j.get_joke(
             response_format="txt",
             search_string=query,
             blacklist=["nsfw", "religious", "political", "racist", "sexist"],
@@ -105,8 +105,8 @@ class Jokes(commands.Cog):
 
         """
         if number < 10:
-            jokes = await jokes()
-            joke = await jokes.get_joke(
+            j = await jokes()
+            joke = await j.get_joke(
                 response_format="txt",
                 amount=number,
                 blacklist=["nsfw", "religious", "political", "racist", "sexist"],
