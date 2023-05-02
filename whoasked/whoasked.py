@@ -28,6 +28,7 @@ class WhoAsked(commands.Cog):
         """
         Who Asked?
         """
+        message = ctx.message
         if reply_or_message_id:
             try:
                 message = ctx.channel.get_partial_message(reply_or_message_id)
@@ -60,7 +61,6 @@ class WhoAsked(commands.Cog):
         else:
             with contextlib.suppress(AttributeError):
                 message = ctx.message.reference.resolved
-            message = ctx.message
             message = await message.reply(
                     "Now playing:\nWho Asked (Feat. Nobody Did)\n⚪──────────────\n◄◄⠀▐▐⠀►► 0:00 / 4:42⠀───○ 🔊",
                 )
