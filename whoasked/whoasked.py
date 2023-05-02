@@ -83,5 +83,5 @@ class WhoAsked(commands.Cog):
                     content="Now playing:\nWho Asked (Feat. Nobody Did)\n──────────────⚪\n◄◄⠀▐▐⠀►► 4:42 / 4:42⠀───○ 🔊",
                 )
 
-            except discord.HTTPException:
+            except AttributeError:
                 await ctx.send("Invalid Reply.")
