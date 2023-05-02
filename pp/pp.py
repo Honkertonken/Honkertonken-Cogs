@@ -9,10 +9,10 @@ from redbot.core.utils.chat_formatting import pagify
 
 class Pp(commands.Cog):
     """
-    Shows your or someone else's pp length 
-    
+    Shows your or someone else's pp length.
+
     Note - 100% accurate
-    
+
     """
 
     def __init__(self, bot: Red):
@@ -31,8 +31,8 @@ class Pp(commands.Cog):
     @commands.is_owner()
     async def randompp(self, ctx, toggle: bool):
         """
-        Set whether or not to generate a new random pp length every time the command
-        is ran.
+        Set whether or not to generate a new random pp length every time the
+        command is ran.
         """
         await self.config.random.set(toggle)
         await ctx.send(f'Random pp length is now {"enabled" if toggle else "disabled"}.')

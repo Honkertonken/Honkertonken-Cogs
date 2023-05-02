@@ -95,8 +95,7 @@ class ButtonInvite(commands.Cog):
         Set the default permissions value for your bot.
 
         Get the permissions value from
-        https://discordapi.com/permissions.html.
-        If left blank, resets
+        https://discordapi.com/permissions.html. If left blank, resets
         permissions value to none. Enter `None` to disable the
         permissions value.
 

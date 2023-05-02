@@ -63,8 +63,8 @@ class AutoKick(commands.Cog):
         Enable the autokick feature.
         """
         await self.config.guild(ctx.guild).enabled.set(True)
-        await ctx.send("Auto kicking blacklisted members has been enabled for this guild.")           
-            
+        await ctx.send("Auto kicking blacklisted members has been enabled for this guild.")
+
     @autokickset.command(name="disable")
     async def autokickset_disable(self, ctx):
         """

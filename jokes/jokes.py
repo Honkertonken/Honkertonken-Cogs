@@ -1,4 +1,4 @@
-from jokeapi import Jokes 
+from jokeapi import Jokes
 from redbot.core import commands
 from redbot.core.bot import Red
 
