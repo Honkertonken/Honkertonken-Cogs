@@ -1,4 +1,4 @@
-from jokeapi import Jokes
+from jokeapi import Jokes as jokes
 from redbot.core import commands
 from redbot.core.bot import Red
 
@@ -22,7 +22,7 @@ class Jokes(commands.Cog):
         """
         Get a random joke.
         """
-        jokes = await Jokes()
+        jokes = await jokes()
         joke = await jokes.get_joke(
             response_format="txt",
             blacklist=["nsfw", "religious", "political", "racist", "sexist"],
@@ -34,7 +34,7 @@ class Jokes(commands.Cog):
         """
         Get a random dark joke.
         """
-        jokes = await Jokes()
+        jokes = await jokes()
         joke = await jokes.get_joke(response_format="txt", category=["dark"])
         await ctx.send(joke)
 
@@ -43,7 +43,7 @@ class Jokes(commands.Cog):
         """
         Get a random pun.
         """
-        jokes = await Jokes()
+        jokes = await jokes()
         joke = await jokes.get_joke(response_format="txt", category=["pun"])
         await ctx.send(joke)
 
@@ -52,7 +52,7 @@ class Jokes(commands.Cog):
         """
         Get a random dev joke.
         """
-        jokes = await Jokes()
+        jokes = await jokes()
         joke = await jokes.get_joke(response_format="txt", category=["programming"])
         await ctx.send(joke)
 
@@ -61,7 +61,7 @@ class Jokes(commands.Cog):
         """
         Get a random 2 part joke.
         """
-        jokes = await Jokes()
+        jokes = await jokes()
         joke = await jokes.get_joke(
             response_format="txt",
             joke_type="twopart",
@@ -74,7 +74,7 @@ class Jokes(commands.Cog):
         """
         Get a random 1 part joke.
         """
-        jokes = await Jokes()
+        jokes = await jokes()
         joke = await jokes.get_joke(
             response_format="txt",
             joke_type="single",
@@ -87,7 +87,7 @@ class Jokes(commands.Cog):
         """
         Search for a random joke with a specific query.
         """
-        jokes = await Jokes()
+        jokes = await jokes()
         joke = await jokes.get_joke(
             response_format="txt",
             search_string=query,
@@ -105,7 +105,7 @@ class Jokes(commands.Cog):
 
         """
         if number < 10:
-            jokes = await Jokes()
+            jokes = await jokes()
             joke = await jokes.get_joke(
                 response_format="txt",
                 amount=number,
