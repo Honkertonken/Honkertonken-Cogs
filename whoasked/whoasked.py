@@ -82,8 +82,6 @@ class WhoAsked(commands.Cog):
                 m = await m.edit(
                     content="Now playing:\nWho Asked (Feat. Nobody Did)\n──────────────⚪\n◄◄⠀▐▐⠀►► 4:42 / 4:42⠀───○ 🔊",
                 )
-            except discord.HTTPException:
-                await ctx.send("Invalid message id.")
 
             except discord.HTTPException:
                 await ctx.send("Invalid Reply.")

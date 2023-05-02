@@ -14,7 +14,7 @@ class AmariLevel(commands.Cog):
 
     @commands.guild_only()
     @commands.command(name="amari")
-    async def amari(self, ctx, *, member: discord.Member = None):
+    async def amari(self, ctx, *member: discord.Member):
         """
         View your amari rank.
         """
@@ -23,7 +23,7 @@ class AmariLevel(commands.Cog):
             if not member:
                 member = ctx.author
             if member.bot:
-                return await ctx.send("Bots dont have any amari xp smh.")
+                return await ctx.send("Bots dont have any amari xp.")
             if ctx.guild.get_member(339254240012664832):
                 bot_info = await self.bot.application_info()
                 amari = AmariClient(token)

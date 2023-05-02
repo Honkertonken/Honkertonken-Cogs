@@ -55,7 +55,7 @@ class HiBack(commands.Cog):
         Enable the hi back feature.
         """
         await self.config.guild(ctx.guild).enabled.set(True)
-        await ctx.send("Auto hi back has been enabled for this guild.")
+        await ctx.send("Hi back has been enabled for this guild.")
 
     @hibackset.command(name="disable")
     async def hibackset_disable(self, ctx):
@@ -63,7 +63,7 @@ class HiBack(commands.Cog):
         Disable the hi back feature.
         """
         await self.config.guild(ctx.guild).enabled.set(False)
-        await ctx.send("Auto hi back has been disabled for this guild.")
+        await ctx.send("Hi back has been disabled for this guild.")
 
     @hibackset.command(name="dad")
     async def hibackset_dad(self, ctx, true_or_false: bool):
@@ -73,12 +73,12 @@ class HiBack(commands.Cog):
         if true_or_false:
             if not await self.config.guild(ctx.guild).bot():
                 await self.config.guild(ctx.guild).dad.set(true_or_false)
-                await ctx.send("`Im dad` shall now be added to auto hi back messages.")
+                await ctx.send("`Im dad` shall now be added to hi back messages.")
             else:
                 await ctx.send("Please disable the `hiback bot` option first.")
         else:
             await self.config.guild(ctx.guild).dad.set(true_or_false)
-            await ctx.send("`Im dad` shall not be added to auto hi back messages.")
+            await ctx.send("`Im dad` shall not be added to hi back messages.")
 
     @hibackset.command(name="bot")
     async def hibackset_bot(self, ctx, true_or_false: bool):
@@ -89,14 +89,14 @@ class HiBack(commands.Cog):
             if not await self.config.guild(ctx.guild).dad():
                 await self.config.guild(ctx.guild).bot.set(true_or_false)
                 await ctx.send(
-                    f"`Im {ctx.bot.user.display_name}` shall now be added to auto hi back messages.",
+                    f"`Im {ctx.bot.user.display_name}` shall now be added to hi back messages.",
                 )
             else:
                 await ctx.send("Please disable the `hiback dad` option first.")
         else:
             await self.config.guild(ctx.guild).bot.set(true_or_false)
             await ctx.send(
-                f"`Im {ctx.bot.user.display_name}` shall not be added to auto hi back messages.",
+                f"`Im {ctx.bot.user.display_name}` shall not be added to hi back messages.",
             )
 
     @hibackset.command(name="ping")
@@ -106,14 +106,14 @@ class HiBack(commands.Cog):
         """
         await self.config.guild(ctx.guild).ping.set(true_or_false)
         if true_or_false:
-            await ctx.send("Users will now be pinged on auto hi back messages.")
+            await ctx.send("Users will be pinged on hi back messages.")
         else:
-            await ctx.send("Users will not be pinged on auto hi back messages.")
+            await ctx.send("Users will not be pinged on hi back messages.")
 
     @hibackset.command(name="ignore", aliases=["blacklist", "bl"])
     async def hibackset_ignore(self, ctx, users: commands.Greedy[discord.User] = None):
         """
-        Ignore a user from the auto hi back messages.
+        Ignore a user from the hi back messages.
         """
         if users:
             async with self.config.guild(ctx.guild).blacklisted_users() as blacklisted_users:
@@ -133,7 +133,7 @@ class HiBack(commands.Cog):
     @hibackset.command(name="unignore", aliases=["unblacklist", "unbl"])
     async def hibackset_unignore(self, ctx, users: commands.Greedy[discord.User] = None):
         """
-        Unignore a user from the auto hi back messages.
+        Unignore a user from the hi back messages.
         """
         if users:
             async with self.config.guild(ctx.guild).blacklisted_users() as blacklisted_users:

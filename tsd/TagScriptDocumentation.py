@@ -14,7 +14,7 @@ docs_link = "https://phen-cogs.readthedocs.io/en/latest/tags/"
 
 class TagScriptDocumentation(commands.Cog):
     """
-    A simple in discord documentation for Phenom4n4n's tags cog.
+    A simple in discord documentation for Phenom4n4n's tags/slash tags cog.
 
     https://github.com/phenom4n4n/phen-cogs
 
@@ -44,7 +44,7 @@ class TagScriptDocumentation(commands.Cog):
             prefixes.remove(f"<@!{self.bot.user.id}> ")
         sorted_prefixes = sorted(prefixes, key=len)
         await ctx.send(
-            f"That doesn't look like a valid block use `{sorted_prefixes[0]}tsd list` to see a list of all tagscript blocks.",
+            f"That doesn't look like a valid tag script block. Use `{sorted_prefixes[0]}tsd list` to see a list of all tagscript blocks.",
         )
 
     @tsd.command(name="args", aliases=["arg"])

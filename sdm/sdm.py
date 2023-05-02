@@ -6,7 +6,7 @@ from redbot.core.bot import Red
 
 class Sdm(commands.Cog):
     """
-    A simple dm cog, directly sends raw text to the specific user.
+    A simple dm cog, directly sends raw text to a specific user.
     """
 
     async def red_delete_data_for_user(self, **kwargs):
@@ -22,7 +22,7 @@ class Sdm(commands.Cog):
     @commands.is_owner()
     async def sdm(self, ctx, user: discord.User, *, message: str):
         """
-        Directly dm raw text to someone.
+        Dm raw text to a user.
         """
         destination = get(self.bot.get_all_members(), id=user.id)
         if not destination:

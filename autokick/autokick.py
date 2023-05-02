@@ -58,16 +58,20 @@ class AutoKick(commands.Cog):
             await ctx.send("Auto kick log channel has been cleared.")
 
     @autokickset.command(name="enable")
-    async def autokickset_enable(self, ctx, enable_or_disable: bool):
+    async def autokickset_enable(self, ctx):
         """
-        Enable/disable the autokick feature.
+        Enable the autokick feature.
         """
-        async with ctx.typing():
-            await self.config.guild(ctx.guild).enabled.set(enable_or_disable)
-        if enable_or_disable:
-            await ctx.send("Auto kicking blacklisted members has been enabled for this guild.")
-        else:
-            await ctx.send("Auto kicking blacklisted members has been disabled for this guild.")
+        await self.config.guild(ctx.guild).enabled.set(True)
+        await ctx.send("Auto kicking blacklisted members has been enabled for this guild.")           
+            
+    @autokickset.command(name="disable")
+    async def autokickset_disable(self, ctx):
+        """
+        Disable the autokick feature.
+        """
+        await self.config.guild(ctx.guild).enabled.set(False)
+        await ctx.send("Auto kicking blacklisted members has been disabled for this guild.")
 
     @autokickset.command(name="add", aliases=["blacklist", "bl"])
     async def autokickset_add(self, ctx, user: discord.User):
@@ -131,7 +135,7 @@ class AutoKick(commands.Cog):
             logs = self.bot.get_channel(logs_channel)
             e = discord.Embed(
                 title=f"{member} just got auto kicked.",
-                color=0xFF0000,
+                color=discord.Color.red(),
             )
             e.set_footer(text=f"{member.guild.name}", icon_url=f"{member.guild.icon}")
             e.set_author(name=f"{member.display_name}", icon_url=f"{member.display_avatar.url}")

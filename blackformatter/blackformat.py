@@ -8,9 +8,9 @@ from blackformatter.errors import NoData
 from blackformatter.utils import get_data, send_output
 
 
-class Black(commands.Cog):
+class BlackFormat(commands.Cog):
     """
-    Run black on code.
+    Black-ify your python code.
     """
 
     def __init__(self, bot: Red):

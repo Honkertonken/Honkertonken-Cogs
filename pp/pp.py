@@ -8,7 +8,12 @@ from redbot.core.utils.chat_formatting import pagify
 
 
 class Pp(commands.Cog):
-    """Shows your or someone else's pp Note - 100% accurate"""
+    """
+    Shows your or someone else's pp length 
+    
+    Note - 100% accurate
+    
+    """
 
     def __init__(self, bot: Red):
         self.bot = bot
@@ -26,7 +31,7 @@ class Pp(commands.Cog):
     @commands.is_owner()
     async def randompp(self, ctx, toggle: bool):
         """
-        Sets whether or not to generate a new pp length ever time the command
+        Set whether or not to generate a new random pp length every time the command
         is ran.
         """
         await self.config.random.set(toggle)
@@ -35,7 +40,7 @@ class Pp(commands.Cog):
     @commands.command(name="pp")
     async def pp(self, ctx, *users: discord.Member):
         """
-        Detects user's pp length.
+        Detects a user's pp length.
 
         Note : This is 100% accurate.
 

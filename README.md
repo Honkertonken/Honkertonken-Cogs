@@ -41,7 +41,6 @@ Note: [p] here refers to your prefix.
 | Tsd            | In discord docs for Phenom4n4n's Tags/Slashtags cog.                            | Honkertonken            |
 | ButtonInvite   | A highly customizable invite cog with buttons! Does not use any extra lib.      | Honkertonken            |
 | BlackFormatter | Format your code with black. Supports attachments, replies & code blocks.       | Honkertonken            |
-| IsortFormatter | Format your code with isort. Supports attachments, replies & code blocks.       | Honkertonken            |
 | ReactionLog    | A simple reaction logger cog.                                                   | Honkertonken            |
 | AmariLevel     | View your amari rank. Note: Requires you have to have a api key.                 | Honkertonken            |
 | Jokes          | Get some jokes from the joke api.                                               | Honkertonken            |

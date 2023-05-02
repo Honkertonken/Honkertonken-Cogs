@@ -40,7 +40,7 @@ class Backup(commands.Cog):
     @commands.is_owner()
     async def cogslist(self, ctx, repo_name: str):
         """
-        List the cogs installed from a specific repo.
+        List all installed cogs from a specific repo.
         """
         downloader = ctx.bot.get_cog("Downloader")
         cogs = await downloader.installed_cogs()
@@ -55,7 +55,7 @@ class Backup(commands.Cog):
     @commands.is_owner()
     async def listrepos(self, ctx):
         """
-        List all repos and their respective links.
+        List all repos and their respective repo links.
         """
         downloader = ctx.bot.get_cog("Downloader")
         all_repos = list(downloader._repo_manager.repos)
@@ -67,7 +67,7 @@ class Backup(commands.Cog):
     @commands.is_owner()
     async def listcogs(self, ctx):
         """
-        List all cogs.
+        List all cogs installed on the bot.
         """
         cogs_list = await ctx.bot._cog_mgr.available_modules()
         await ctx.send(file=text_to_file(", ".join(cogs_list), "cogs.txt"))
