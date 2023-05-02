@@ -1,5 +1,6 @@
 import asyncio
 
+import contextlib
 import discord
 from redbot.core import commands
 
@@ -57,31 +58,29 @@ class WhoAsked(commands.Cog):
                 await ctx.send("Invalid message id.")
 
         else:
-            try:
+            with contextlib.suppress(AttributeError):
                 message = ctx.message.reference.resolved
-                message = await message.reply(
+            message = ctx.message
+            message = await message.reply(
                     "Now playing:\nWho Asked (Feat. Nobody Did)\n⚪──────────────\n◄◄⠀▐▐⠀►► 0:00 / 4:42⠀───○ 🔊",
                 )
-                await asyncio.sleep(1)
-                m = await message.edit(
-                    content="Now playing:\nWho Asked (Feat. Nobody Did)\n───⚪───────────\n◄◄⠀▐▐⠀►► 1:34 / 4:42⠀───○ 🔊",
+            await asyncio.sleep(1)
+            m = await message.edit(
+                content="Now playing:\nWho Asked (Feat. Nobody Did)\n───⚪───────────\n◄◄⠀▐▐⠀►► 1:34 / 4:42⠀───○ 🔊",
                 )
-                await asyncio.sleep(1)
-                m = await m.edit(
-                    content="Now playing:\nWho Asked (Feat. Nobody Did)\n──────⚪────────\n◄◄⠀▐▐⠀►► 2:21 / 4:42⠀───○ 🔊",
+            await asyncio.sleep(1)
+            m = await m.edit(
+                content="Now playing:\nWho Asked (Feat. Nobody Did)\n──────⚪────────\n◄◄⠀▐▐⠀►► 2:21 / 4:42⠀───○ 🔊",
                 )
-                await asyncio.sleep(1)
-                m = await m.edit(
-                    content="Now playing:\nWho Asked (Feat. Nobody Did)\n─────────⚪─────\n◄◄⠀▐▐⠀►► 3:08 / 4:42⠀───○ 🔊",
+            await asyncio.sleep(1)
+            m = await m.edit(
+                content="Now playing:\nWho Asked (Feat. Nobody Did)\n─────────⚪─────\n◄◄⠀▐▐⠀►► 3:08 / 4:42⠀───○ 🔊",
                 )
-                await asyncio.sleep(1)
-                m = await m.edit(
-                    content="Now playing:\nWho Asked (Feat. Nobody Did)\n────────────⚪──\n◄◄⠀▐▐⠀►► 3:55 / 4:42⠀───○ 🔊",
+            await asyncio.sleep(1)
+            m = await m.edit(
+                content="Now playing:\nWho Asked (Feat. Nobody Did)\n────────────⚪──\n◄◄⠀▐▐⠀►► 3:55 / 4:42⠀───○ 🔊",
                 )
-                await asyncio.sleep(1)
-                m = await m.edit(
-                    content="Now playing:\nWho Asked (Feat. Nobody Did)\n──────────────⚪\n◄◄⠀▐▐⠀►► 4:42 / 4:42⠀───○ 🔊",
+            await asyncio.sleep(1)
+            m = await m.edit(
+                content="Now playing:\nWho Asked (Feat. Nobody Did)\n──────────────⚪\n◄◄⠀▐▐⠀►► 4:42 / 4:42⠀───○ 🔊",
                 )
-
-            except AttributeError:
-                await ctx.send("Invalid Reply.")
