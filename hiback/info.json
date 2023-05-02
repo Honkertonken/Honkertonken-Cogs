@@ -16,6 +16,6 @@
     "type": "COG",
     "hidden": false,
     "disabled": false,
-    "min_bot_version": "3.5.0",
+    "min_bot_version": "3.5.0.dev",
     "end_user_data_statement": "This cog does not store any end user data."
 }
