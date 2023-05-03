@@ -4,6 +4,7 @@
 
 import asyncio
 
+import contextlib
 import discord
 from redbot.core import Config, commands
 from redbot.core.bot import Red
@@ -68,10 +69,8 @@ class PressF(commands.Cog):
         await message.add_reaction(emoji)
         self.channels[str(ctx.channel.id)] = {"msg_id": message.id, "reacted": []}
         await asyncio.sleep(60)
-        try:
+        with contextlib.suppress(discord.errors.NotFound, discord.errors.Forbidden):
             await message.delete()
-        except (discord.errors.NotFound, discord.errors.Forbidden):
-            pass
         amount = len(self.channels[str(ctx.channel.id)]["reacted"])
         word = "person has" if amount == 1 else "people have"
         await ctx.send(f"**{amount}** {word} paid respects to **{filter_mass_mentions(answer)}**.")
