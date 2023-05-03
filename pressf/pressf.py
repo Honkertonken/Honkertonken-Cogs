@@ -24,7 +24,6 @@ class PressF(commands.Cog):
 
     def __init__(self, bot: Red):
         self.bot = bot
-        self.channels = {}
         self.config = Config.get_conf(self, identifier=694835810347909161, force_registration=True)
         default_guild = {
             "emoji": "🇫",
@@ -38,61 +37,22 @@ class PressF(commands.Cog):
         return await self.config.guild(guild).emoji()
 
     @commands.command(name="pressf")
-    @commands.bot_has_permissions(add_reactions=True)
-    async def pressf(self, ctx, *, user: discord.User = None):
+    @commands.bot_has_permissions()
+    async def pressf(self, ctx, user: discord.Member):
         """
         Pay respects by pressing F.
         """
         emoji = await self.get_guild_emoji(ctx.guild)
-        if str(ctx.channel.id) in self.channels:
-            return await ctx.send(
-                "Oops! I'm still paying respects in this channel, you'll have to wait until I'm done.",
-            )
-        if user:
-            answer = user.display_name
-        else:
-            await ctx.send("What do you want to pay respects to?")
-
-            def check(m):
-                return m.author == ctx.author and m.channel == ctx.channel
-
-            try:
-                pressf = await self.bot.wait_for("message", timeout=120.0, check=check)
-            except asyncio.TimeoutError:
-                return await ctx.send("You took too long to reply.")
-
-            answer = pressf.content[:1900]
-
-        message = await ctx.send(
-            f"Everyone, let's pay respects to **{filter_mass_mentions(answer)}**! Press {emoji} to pay respects.",
-        )
-        await message.add_reaction(emoji)
-        self.channels[str(ctx.channel.id)] = {"msg_id": message.id, "reacted": []}
-        await asyncio.sleep(60)
-        with contextlib.suppress(discord.errors.NotFound, discord.errors.Forbidden):
-            await message.delete()
-        amount = len(self.channels[str(ctx.channel.id)]["reacted"])
-        word = "person has" if amount == 1 else "people have"
-        await ctx.send(f"**{amount}** {word} paid respects to **{filter_mass_mentions(answer)}**.")
-        del self.channels[str(ctx.channel.id)]
-
-    @commands.Cog.listener()
-    async def on_reaction_add(
-        self,
-        reaction,
-        user,
-    ):
-        if str(reaction.message.channel.id) not in self.channels:
-            return
-        if self.channels[str(reaction.message.channel.id)]["msg_id"] != reaction.message.id:
-            return
-        if user.id == self.bot.user.id:
-            return
-        if user.id not in self.channels[str(reaction.message.channel.id)]["reacted"] and str(
-            reaction.emoji,
-        ) == await self.get_guild_emoji(reaction.message.guild):
-            await reaction.message.channel.send(f"**{user.name}** has paid their respects.")
-            self.channels[str(reaction.message.channel.id)]["reacted"].append(user.id)
+        name = user.display_name
+        class Pressf(discord.ui.View):
+            @discord.ui.button(emoji="👍")
+            async def Pressf(self, interaction: discord.Interaction, button: discord.ui.Button):
+                await interaction.channel.send(f"**{interaction.user.display_name}** has paid their respects.")
+                
+        await ctx.send(f"Everyone, let's pay respects to **{filter_mass_mentions(name)}**! Press {emoji} to pay respects.", view=Pressf(timeout=60))
+        
+        #word = "person has" if amount == 1 else "people have"
+        #await ctx.send(f"**{amount}** {word} paid respects to **{filter_mass_mentions(answer)}**.")
 
     @commands.group(name="pressfset", aliases=["pfset"], invoke_without_command=True)
     @commands.admin_or_permissions(administrator=True)
