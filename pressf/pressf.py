@@ -4,11 +4,10 @@
 
 import asyncio
 
-import contextlib
 import discord
 from redbot.core import Config, commands
 from redbot.core.bot import Red
-from redbot.core.utils.common_filters import filter_mass_mentions
+from .view import PressFView, PressFButton
 
 
 class PressF(commands.Cog):
@@ -37,22 +36,17 @@ class PressF(commands.Cog):
         return await self.config.guild(guild).emoji()
 
     @commands.command(name="pressf")
-    @commands.bot_has_permissions()
-    async def pressf(self, ctx, user: discord.Member):
+    @commands.guild_only()
+    async def pressf(self, ctx, member: discord.Member):
         """
         Pay respects by pressing F.
         """
+        name = member.display_name
         emoji = await self.get_guild_emoji(ctx.guild)
-        name = user.display_name
-        class Pressf(discord.ui.View):
-            @discord.ui.button(emoji="👍")
-            async def Pressf(self, interaction: discord.Interaction, button: discord.ui.Button):
-                await interaction.channel.send(f"**{interaction.user.display_name}** has paid their respects.")
-                
-        await ctx.send(f"Everyone, let's pay respects to **{filter_mass_mentions(name)}**! Press {emoji} to pay respects.", view=Pressf(timeout=60))
-        
-        #word = "person has" if amount == 1 else "people have"
-        #await ctx.send(f"**{amount}** {word} paid respects to **{filter_mass_mentions(answer)}**.")
+        button = PressFButton(emoji=emoji)
+        view = PressFView()
+        view.add_item(button)
+        await view.start(context=ctx, member=name)
 
     @commands.group(name="pressfset", aliases=["pfset"], invoke_without_command=True)
     @commands.admin_or_permissions(administrator=True)
