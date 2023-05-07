@@ -44,7 +44,7 @@ class PressF(commands.Cog):
         name = member.display_name
         emoji = await self.get_guild_emoji(ctx.guild)
         button = PressFButton(emoji=emoji)
-        view = PressFView()
+        view = PressFView(timeout=60)
         view.add_item(button)
         await view.start(context=ctx, member=name)
 
