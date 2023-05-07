@@ -9,7 +9,7 @@ class PressFButton(discord.ui.Button):
         self.view.paid_users.append(interaction.user.id)
         self.label = len(self.view.paid_users)
         await self.view.message.edit(view=self.view)
-        await interaction.response.send_message(f"**{interaction.user.name}** has already paid their respects.")
+        await interaction.response.send_message(f"**{interaction.user.name}** has paid their respects..")
 
 class PressFView(discord.ui.View):
     def __init__(
@@ -30,7 +30,7 @@ class PressFView(discord.ui.View):
     
     async def interaction_check(self, interaction: discord.Interaction):
         if interaction.user.id in self.paid_users:
-            await interaction.response.send_message(content="You already paid your respects!", ephemeral=True)
+            await interaction.response.send_message(content="You have already paid your respects!", ephemeral=True)
             return False
         return True
     
