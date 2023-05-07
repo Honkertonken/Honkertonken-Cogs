@@ -46,7 +46,7 @@ class PressF(commands.Cog):
         button = PressFButton(emoji=emoji)
         view = PressFView(timeout=60)
         view.add_item(button)
-        await view.start(member=name)
+        await view.start(ctx=ctx, member=name)
 
     @commands.group(name="pressfset", aliases=["pfset"], invoke_without_command=True)
     @commands.admin_or_permissions(administrator=True)
