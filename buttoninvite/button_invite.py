@@ -1,17 +1,17 @@
+import contextlib
 import re
 
 import discord
 from redbot.core import Config, commands
 from redbot.core.bot import Red
 
-from buttoninvite import url_button
 
 old_invite = None
 
 
 class ButtonInvite(commands.Cog):
     """
-    A highly customizable invite cog with buttons without using any extra lib.
+    A highly customizable invite cog with buttons.
     """
 
     async def red_delete_data_for_user(self, **kwargs):
@@ -44,10 +44,8 @@ class ButtonInvite(commands.Cog):
 
     def cog_unload(self):
         if old_invite:
-            try:
+            with contextlib.suppress(Exception):
                 self.bot.remove_command("invite")
-            except Exception:
-                pass
             self.bot.add_command(old_invite)
 
     @commands.is_owner()
@@ -235,6 +233,7 @@ class ButtonInvite(commands.Cog):
         """
         Send personalized invite for the bot with a button!
         """
+        view = discord.ui.View()
         bot_info = await self.bot.application_info()
         params = {"owner": f"{bot_info.owner}", "bot": f"{self.bot.user.name}"}
         embed = discord.Embed(
@@ -251,22 +250,15 @@ class ButtonInvite(commands.Cog):
                 name="\N{Zero Width Space}",
                 value=f"[{(await self.config.link_text()).format(**params)}](https://discord.com/oauth2/authorize?client_id={self.bot.user.id}&scope=bot+applications.commands&permissions={await self.config.setpermissions()})",
             )
-            button = url_button.URLButton(
-                f"{await self.config.invite_description()}",
-                f"https://discord.com/oauth2/authorize?client_id={self.bot.user.id}&scope=bot+applications.commands&permissions={await self.config.setpermissions()}",
-            )
-
+            view.add_item(discord.ui.Button(label=f"{await self.config.invite_description()}", url=f"https://discord.com/oauth2/authorize?client_id={self.bot.user.id}&scope=bot+applications.commands&permissions={await self.config.setpermissions()}"))
         else:
             embed.add_field(
                 name="\N{Zero Width Space}",
                 value=f"[{(await self.config.link_text()).format(**params)}](https://discord.com/oauth2/authorize?client_id={self.bot.user.id}&scope=bot&permissions={await self.config.setpermissions()})",
             )
-            button = url_button.URLButton(
-                f"{await self.config.invite_description()}",
-                f"https://discord.com/oauth2/authorize?client_id={self.bot.user.id}&scope=bot&permissions={await self.config.setpermissions()}",
-            )
+        view.add_item(discord.ui.Button(label=f"{await self.config.invite_description()}", url=f"https://discord.com/oauth2/authorize?client_id={self.bot.user.id}&scope=bot&permissions={await self.config.setpermissions()}",))
         embed.set_footer(text=(await self.config.footer()).format(**params))
-        await url_button.send_message(self.bot, ctx.channel.id, embed=embed, url_button=button)
+        await ctx.send_message(embed=embed,view=view)
 
 
 async def setup(bot):
