@@ -108,6 +108,7 @@ class ReactionLog(commands.Cog):
         channel = True if logs_channel else False
         logs = self.bot.get_channel(logs_channel)
         if await self.config.guild(member.guild).reaction_add_enabled() & await self.config.guild(member.guild).enabled() & channel:
+            view = discord.ui.View()
             description = (
                 f"**Channel:** {reaction.message.channel.mention}\n"
                 f"**Emoji:** {reaction.emoji}"
@@ -117,9 +118,8 @@ class ReactionLog(commands.Cog):
             embed.set_author(name=f"{member} added a reaction.", icon_url=member.display_avatar.url)
             if isinstance(reaction.emoji, (discord.Emoji, discord.PartialEmoji)):
                 embed.set_thumbnail(url=reaction.emoji.url)
-            view = discord.ui.View()
+                view.add_item(discord.ui.Button(label='Emoji', url=reaction.emoji.url))
             view.add_item(discord.ui.Button(label='Message', url=reaction.message.jump_url))
-            view.add_item(discord.ui.Button(label='Emoji', url=reaction.emoji.url))
             await logs.send(embed=embed, view=view)
 
     @commands.Cog.listener()
