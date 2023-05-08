@@ -7,6 +7,7 @@ from redbot.core.bot import Red
 
 
 old_invite = None
+old_inviteset = None
 
 
 class ButtonInvite(commands.Cog):
@@ -46,8 +47,10 @@ class ButtonInvite(commands.Cog):
         if old_invite:
             with contextlib.suppress(Exception):
                 self.bot.remove_command("invite")
+                self.bot.remove_command("inviteset")
             self.bot.add_command(old_invite)
-
+            self.bot.add_command(old_inviteset)
+            
     @commands.is_owner()
     @commands.group(name="inviteset")
     async def inviteset(self, ctx):
@@ -264,4 +267,8 @@ class ButtonInvite(commands.Cog):
 async def setup(bot):
     if old_invite := bot.get_command("invite"):
         bot.remove_command(old_invite.name)
+    if old_inviteset := bot.get_command("inviteset"):
+        bot.remove_command(old_inviteset.name)
     await bot.add_cog(ButtonInvite(bot))
+    
+    
