@@ -93,10 +93,10 @@ class ReactionLog(commands.Cog):
         reaction_add = "Enabled" if await self.config.guild(ctx.guild).reaction_add_enabled() else "Disabled"
         reaction_remove = "Enabled" if await self.config.guild(ctx.guild).reaction_remove_enabled() else "Disabled"
         e = discord.Embed(title="Reaction Log Settings", color=await ctx.embed_color())
-        e.add_field(name="Enabled", value=enabled, inline=True)
-        e.add_field(name="Channel", value=channel_mention, inline=True)
-        e.add_field(name="Log On Reaction Add", value=reaction_add, inline=True)
-        e.add_field(name="Log On Reaction Remove", value=reaction_remove, inline=True)
+        e.add_field(name="Enabled", value=enabled, inline=False)
+        e.add_field(name="Channel", value=channel_mention, inline=False)
+        e.add_field(name="Log On Reaction Add", value=reaction_add, inline=False)
+        e.add_field(name="Log On Reaction Remove", value=reaction_remove, inline=False)
         e.set_footer(text=ctx.guild.name, icon_url=ctx.guild.icon)
         await ctx.send(embed=e)
 
