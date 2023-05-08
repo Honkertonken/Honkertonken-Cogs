@@ -99,7 +99,7 @@ class ReactionLog(commands.Cog):
         e.add_field(name="Channel", value=channel_mention, inline=True)
         e.add_field(name="Log On Reaction Add", value=reaction_add, inline=True)
         e.add_field(name="Log On Reaction Remove", value=reaction_remove, inline=True)
-        e.set_footer(text=ctx.guild.name, icon_url=ctx.guild.icon.static_replace(format="png")) 
+        e.set_footer(text=ctx.guild.name, icon_url=ctx.guild.icon)
         await ctx.send(embed=e)
 
     @commands.Cog.listener()
