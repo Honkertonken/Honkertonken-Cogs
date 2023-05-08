@@ -109,9 +109,9 @@ class ReactionLog(commands.Cog):
         logs = self.bot.get_channel(logs_channel)
         if await self.config.guild(member.guild).reaction_add_enabled() & await self.config.guild(member.guild).enabled() & channel:
             description = (
-                f"**Channel:** {reaction.channel.mention}\n"
+                f"**Channel:** {reaction.message.channel.mention}\n"
                 f"**Emoji:** {reaction.emoji}"
-                f"**Message:** [Jump to Message]({reaction.jump_url})"
+                f"**Message:** [Jump to Message]({reaction.message.jump_url})"
             )
             embed = discord.Embed(color=discord.Color.green(),description= description,timestamp=datetime.utcnow())
             embed.set_author(name=f"{member} added a reaction.", icon_url=member.display_avatar.url)
