@@ -25,15 +25,14 @@ class WhoAsked(commands.Cog):
         return
 
     @commands.command()
-    async def whoasked(self, ctx: commands.Context, *, message_id: str = None):
+    async def whoasked(self, ctx: commands.Context, *, message_id: int = None):
         """
         Who asked?
         """
         message = get_replied_message(ctx) or ctx.message
-
         if message_id:
             try:
-                message = await ctx.channel.fetch_message(int(message_id))
+                message = await ctx.channel.fetch_message(message_id)
             except (discord.NotFound, ValueError):
                 await ctx.send("Invalid message ID.")
                 return
