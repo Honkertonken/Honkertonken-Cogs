@@ -42,4 +42,4 @@ class WhoAsked(commands.Cog):
             content = f"{text}{'─'*i}⚪{'─'*(5-i)}\n◄◄⠀▐▐⠀►► {i*53//10:02d}:{i*53%10:02d} / 4:42⠀───○ 🔊"
             message = await message.reply(content)
             await asyncio.sleep(1)
-            await message.edit(content)
+            await message.edit(content=content)
