@@ -18,8 +18,8 @@ class ReactionLog(commands.Cog):
         default_guild = {
             "enabled": False,
             "channel": None,
-            "reaction_add_enabled": "",
-            "reaction_remove_enabled": "",
+            "reaction_add_enabled": False,
+            "reaction_remove_enabled": False,
         }
         self.config.register_guild(**default_guild)
 
@@ -65,8 +65,7 @@ class ReactionLog(commands.Cog):
         """
         Enable/disable logs for reactions added.
         """
-        async with ctx.typing():
-            await self.config.guild(ctx.guild).reaction_add_enabled.set(enable_or_disable)
+        await self.config.guild(ctx.guild).reaction_add_enabled.set(enable_or_disable)
         if enable_or_disable:
             await ctx.send("Reactions logs for reactions added has been enabled.")
         else:
@@ -77,8 +76,7 @@ class ReactionLog(commands.Cog):
         """
         Enable/disable logs for reactions removed.
         """
-        async with ctx.typing():
-            await self.config.guild(ctx.guild).reaction_remove_enabled.set(enable_or_disable)
+        await self.config.guild(ctx.guild).reaction_remove_enabled.set(enable_or_disable)
         if enable_or_disable:
             await ctx.send("Reactions logs for reactions removed has been enabled.")
         else:
@@ -92,8 +90,8 @@ class ReactionLog(commands.Cog):
         enabled = await self.config.guild(ctx.guild).enabled()
         channel = await self.config.guild(ctx.guild).channel()
         channel_mention = f"<#{channel}>" if channel else "Not Set"
-        reaction_add = await self.config.guild(ctx.guild).reaction_add_enabled()
-        reaction_remove = await self.config.guild(ctx.guild).reaction_remove_enabled()
+        reaction_add = "Enabled" if await self.config.guild(ctx.guild).reaction_add_enabled() else "Disabled"
+        reaction_remove = "Enabled" if await self.config.guild(ctx.guild).reaction_remove_enabled() else "Disabled"
         e = discord.Embed(title="Reaction Log Settings", color=await ctx.embed_color())
         e.add_field(name="Enabled", value=enabled, inline=True)
         e.add_field(name="Channel", value=channel_mention, inline=True)
