@@ -1,6 +1,6 @@
 [tool.black]
 line-length = 99
-target-version = ['py39']
+target-version = ['py311']
 
 [tool.docformatter]
 blank = true
@@ -17,7 +17,7 @@ ignore-init-module-imports = true
 line-length = 99
 respect-gitignore = true
 show-source = true
-target-version = "py39"
+target-version = "py311"
 
 [tool.ruff.isort]
 combine-as-imports = true
