@@ -50,7 +50,7 @@ class ButtonInvite(commands.Cog):
                 self.bot.remove_command("inviteset")
             self.bot.add_command(old_invite)
             self.bot.add_command(old_inviteset)
-            
+
     @commands.is_owner()
     @commands.group(name="inviteset")
     async def inviteset(self, ctx):
@@ -253,15 +253,25 @@ class ButtonInvite(commands.Cog):
                 name="\N{Zero Width Space}",
                 value=f"[{(await self.config.link_text()).format(**params)}](https://discord.com/oauth2/authorize?client_id={self.bot.user.id}&scope=bot+applications.commands&permissions={await self.config.setpermissions()})",
             )
-            view.add_item(discord.ui.Button(label=f"{await self.config.invite_description()}", url=f"https://discord.com/oauth2/authorize?client_id={self.bot.user.id}&scope=bot+applications.commands&permissions={await self.config.setpermissions()}"))
+            view.add_item(
+                discord.ui.Button(
+                    label=f"{await self.config.invite_description()}",
+                    url=f"https://discord.com/oauth2/authorize?client_id={self.bot.user.id}&scope=bot+applications.commands&permissions={await self.config.setpermissions()}",
+                )
+            )
         else:
             embed.add_field(
                 name="\N{Zero Width Space}",
                 value=f"[{(await self.config.link_text()).format(**params)}](https://discord.com/oauth2/authorize?client_id={self.bot.user.id}&scope=bot&permissions={await self.config.setpermissions()})",
             )
-        view.add_item(discord.ui.Button(label=f"{await self.config.invite_description()}", url=f"https://discord.com/oauth2/authorize?client_id={self.bot.user.id}&scope=bot&permissions={await self.config.setpermissions()}",))
+        view.add_item(
+            discord.ui.Button(
+                label=f"{await self.config.invite_description()}",
+                url=f"https://discord.com/oauth2/authorize?client_id={self.bot.user.id}&scope=bot&permissions={await self.config.setpermissions()}",
+            )
+        )
         embed.set_footer(text=(await self.config.footer()).format(**params))
-        await ctx.send(embed=embed,view=view)
+        await ctx.send(embed=embed, view=view)
 
 
 async def setup(bot):
@@ -270,5 +280,3 @@ async def setup(bot):
     if old_inviteset := bot.get_command("inviteset"):
         bot.remove_command(old_inviteset.name)
     await bot.add_cog(ButtonInvite(bot))
-    
-    

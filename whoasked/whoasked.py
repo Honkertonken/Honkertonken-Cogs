@@ -9,6 +9,7 @@ def get_replied_message(ctx: commands.Context) -> discord.Message:
     if hasattr(ctx.message, "reference") and ctx.message.reference is not None:
         return ctx.message.reference.resolved
 
+
 class WhoAsked(commands.Cog):
     """
     When you just have to ask who the hell asked?
@@ -36,10 +37,26 @@ class WhoAsked(commands.Cog):
             except (discord.NotFound, ValueError):
                 await ctx.send("Invalid message ID.")
                 return
-
-        text = "Now playing:\nWho Asked (Feat. Nobody Did)\n"
-        for i in range(6):
-            content = f"{text}{'─'*i}⚪{'─'*(5-i)}\n◄◄⠀▐▐⠀►► {i*53//10:02d}:{i*53%10:02d} / 4:42⠀───○ 🔊"
-            message = await message.reply(content)
-            await asyncio.sleep(1)
-            await message.edit(content=content)
+        m = await message.reply(
+            "Now playing:\nWho Asked (Feat. Nobody Did)\n⚪──────────────\n◄◄⠀▐▐⠀►► 0:00 / 4:42⠀───○ 🔊",
+        )
+        await asyncio.sleep(1)
+        await m.edit(
+            content="Now playing:\nWho Asked (Feat. Nobody Did)\n───⚪───────────\n◄◄⠀▐▐⠀►► 1:34 / 4:42⠀───○ 🔊",
+        )
+        await asyncio.sleep(1)
+        await m.edit(
+            content="Now playing:\nWho Asked (Feat. Nobody Did)\n──────⚪────────\n◄◄⠀▐▐⠀►► 2:21 / 4:42⠀───○ 🔊",
+        )
+        await asyncio.sleep(1)
+        await m.edit(
+            content="Now playing:\nWho Asked (Feat. Nobody Did)\n─────────⚪─────\n◄◄⠀▐▐⠀►► 3:08 / 4:42⠀───○ 🔊",
+        )
+        await asyncio.sleep(1)
+        await m.edit(
+            content="Now playing:\nWho Asked (Feat. Nobody Did)\n────────────⚪──\n◄◄⠀▐▐⠀►► 3:55 / 4:42⠀───○ 🔊",
+        )
+        await asyncio.sleep(1)
+        await m.edit(
+            content="Now playing:\nWho Asked (Feat. Nobody Did)\n──────────────⚪\n◄◄⠀▐▐⠀►► 4:42 / 4:42⠀───○ 🔊",
+        )

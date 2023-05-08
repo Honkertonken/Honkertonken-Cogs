@@ -32,7 +32,7 @@ class ReactionLog(commands.Cog):
         """
         Reaction Log settings.
         """
-        
+
     @reactionlogset.command(name="enable")
     async def reactionlogset_enable(self, ctx):
         """
@@ -92,8 +92,14 @@ class ReactionLog(commands.Cog):
         enabled = await self.config.guild(ctx.guild).enabled()
         channel = await self.config.guild(ctx.guild).channel()
         channel_mention = f"<#{channel}>" if channel else "Not Set"
-        reaction_add = "Enabled" if await self.config.guild(ctx.guild).reaction_add_enabled() else "Disabled"
-        reaction_remove = "Enabled" if await self.config.guild(ctx.guild).reaction_remove_enabled() else "Disabled"
+        reaction_add = (
+            "Enabled" if await self.config.guild(ctx.guild).reaction_add_enabled() else "Disabled"
+        )
+        reaction_remove = (
+            "Enabled"
+            if await self.config.guild(ctx.guild).reaction_remove_enabled()
+            else "Disabled"
+        )
         e = discord.Embed(title="Reaction Log Settings", color=await ctx.embed_color())
         e.add_field(name="Enabled", value=enabled, inline=False)
         e.add_field(name="Channel", value=channel_mention, inline=False)
@@ -107,19 +113,27 @@ class ReactionLog(commands.Cog):
         logs_channel = await self.config.guild(member.guild).channel()
         channel = True if logs_channel else False
         logs = self.bot.get_channel(logs_channel)
-        if await self.config.guild(member.guild).reaction_add_enabled() & await self.config.guild(member.guild).enabled() & channel:
+        if (
+            await self.config.guild(member.guild).reaction_add_enabled()
+            & await self.config.guild(member.guild).enabled()
+            & channel
+        ):
             view = discord.ui.View()
-            view.add_item(discord.ui.Button(label='Message', url=reaction.message.jump_url))
+            view.add_item(discord.ui.Button(label="Message", url=reaction.message.jump_url))
             description = (
                 f"**Channel : ** {reaction.message.channel.mention}\n"
                 f"**Emoji : ** {reaction.emoji}\n"
                 f"**Message : ** [Jump to Message]({reaction.message.jump_url})"
             )
-            embed = discord.Embed(color=discord.Color.green(),description= description,timestamp=datetime.utcnow())
-            embed.set_author(name=f"{member} added a reaction.", icon_url=member.display_avatar.url)
+            embed = discord.Embed(
+                color=discord.Color.green(), description=description, timestamp=datetime.utcnow()
+            )
+            embed.set_author(
+                name=f"{member} added a reaction.", icon_url=member.display_avatar.url
+            )
             if isinstance(reaction.emoji, (discord.Emoji, discord.PartialEmoji)):
                 embed.set_thumbnail(url=reaction.emoji.url)
-                view.add_item(discord.ui.Button(label='Emoji', url=reaction.emoji.url))
+                view.add_item(discord.ui.Button(label="Emoji", url=reaction.emoji.url))
             await logs.send(embed=embed, view=view)
 
     @commands.Cog.listener()
@@ -127,19 +141,27 @@ class ReactionLog(commands.Cog):
         logs_channel = await self.config.guild(member.guild).channel()
         channel = True if logs_channel else False
         logs = self.bot.get_channel(logs_channel)
-        if await self.config.guild(member.guild).reaction_remove_enabled() & await self.config.guild(member.guild).enabled() & channel:
+        if (
+            await self.config.guild(member.guild).reaction_remove_enabled()
+            & await self.config.guild(member.guild).enabled()
+            & channel
+        ):
             view = discord.ui.View()
-            view.add_item(discord.ui.Button(label='Message', url=reaction.message.jump_url))
+            view.add_item(discord.ui.Button(label="Message", url=reaction.message.jump_url))
             description = (
                 f"**Channel : ** {reaction.message.channel.mention}\n"
                 f"**Emoji : ** {reaction.emoji}\n"
                 f"**Message : ** [Jump to Message]({reaction.message.jump_url})"
             )
-            embed = discord.Embed(color=discord.Color.red(), description= description, timestamp=datetime.utcnow())
-            embed.set_author(name=f"{member} removed a reaction.", icon_url=member.display_avatar.url)
+            embed = discord.Embed(
+                color=discord.Color.red(), description=description, timestamp=datetime.utcnow()
+            )
+            embed.set_author(
+                name=f"{member} removed a reaction.", icon_url=member.display_avatar.url
+            )
             if isinstance(reaction.emoji, (discord.Emoji, discord.PartialEmoji)):
                 embed.set_thumbnail(url=reaction.emoji.url)
-            view.add_item(discord.ui.Button(label='Emoji', url=reaction.emoji.url))
+            view.add_item(discord.ui.Button(label="Emoji", url=reaction.emoji.url))
             await logs.send(embed=embed, view=view)
 
     @commands.Cog.listener()
@@ -147,9 +169,13 @@ class ReactionLog(commands.Cog):
         logs_channel = await self.config.guild(message.guild).channel()
         channel = True if logs_channel else False
         logs = self.bot.get_channel(logs_channel)
-        if await self.config.guild(message.guild).reaction_remove_enabled() & await self.config.guild(message.guild).enabled() & channel:
+        if (
+            await self.config.guild(message.guild).reaction_remove_enabled()
+            & await self.config.guild(message.guild).enabled()
+            & channel
+        ):
             view = discord.ui.View()
-            view.add_item(discord.ui.Button(label='Message', url=message.jump_url))
+            view.add_item(discord.ui.Button(label="Message", url=message.jump_url))
             emojis = []
             for i in reaction:
                 emojis.append(i.emoji)
@@ -159,6 +185,8 @@ class ReactionLog(commands.Cog):
                 f"**Emoji : ** {reactions}\n"
                 f"**Message : ** [Jump to Message]({message.jump_url})"
             )
-            embed = discord.Embed(color= discord.Color.red(), description=description, timestamp=datetime.utcnow())
+            embed = discord.Embed(
+                color=discord.Color.red(), description=description, timestamp=datetime.utcnow()
+            )
             embed.set_author(name="Multiple reactions were removed.")
             await logs.send(embed=embed, view=view)

@@ -5,8 +5,8 @@ from redbot.core.bot import Red
 
 async def embedify(self, ctx, url, img_link):
     view = discord.ui.View()
-    view.add_item(discord.ui.Button(label='Documentation Link', url=url))
-    view.add_item(discord.ui.Button(label='Image Link', url=img_link))
+    view.add_item(discord.ui.Button(label="Documentation Link", url=url))
+    view.add_item(discord.ui.Button(label="Image Link", url=img_link))
     e = discord.Embed(title="Tags Documentation", type="image", url=url)
     e.set_image(url=img_link)
     await ctx.reply(embed=e, view=view, mention_author=False)
