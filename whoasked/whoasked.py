@@ -1,21 +1,21 @@
 import asyncio
-import contextlib
 
 import discord
 from redbot.core import commands
 
 
-def reply(ctx):
+def get_replied_message(ctx: commands.Context) -> discord.Message:
+    """Returns the message that the user is replying to, or None."""
     if hasattr(ctx.message, "reference") and ctx.message.reference is not None:
-        msg = ctx.message.reference.resolved
-        if isinstance(msg, discord.Message):
-            return msg
-
+        return ctx.message.reference.resolved
 
 class WhoAsked(commands.Cog):
     """
     When you just have to ask who the hell asked?
     """
+
+    def __init__(self, bot: commands.Bot):
+        self.bot = bot
 
     async def red_delete_data_for_user(self, **kwargs):
         """
@@ -24,63 +24,22 @@ class WhoAsked(commands.Cog):
         return
 
     @commands.command()
-    async def whoasked(self, ctx, *, reply_or_message_id: str = None):
+    async def whoasked(self, ctx: commands.Context, *, message_id: str = None):
         """
-        Who Asked?
+        Who asked?
         """
-        message = ctx.message
-        if reply_or_message_id:
-            try:
-                message = ctx.channel.get_partial_message(reply_or_message_id)
-                message = await message.reply(
-                    "Now playing:\nWho Asked (Feat. Nobody Did)\n⚪──────────────\n◄◄⠀▐▐⠀►► 0:00 / 4:42⠀───○ 🔊",
-                )
-                await asyncio.sleep(1)
-                m = await message.edit(
-                    content="Now playing:\nWho Asked (Feat. Nobody Did)\n───⚪───────────\n◄◄⠀▐▐⠀►► 1:34 / 4:42⠀───○ 🔊",
-                )
-                await asyncio.sleep(1)
-                m = await m.edit(
-                    content="Now playing:\nWho Asked (Feat. Nobody Did)\n──────⚪────────\n◄◄⠀▐▐⠀►► 2:21 / 4:42⠀───○ 🔊",
-                )
-                await asyncio.sleep(1)
-                m = await m.edit(
-                    content="Now playing:\nWho Asked (Feat. Nobody Did)\n─────────⚪─────\n◄◄⠀▐▐⠀►► 3:08 / 4:42⠀───○ 🔊",
-                )
-                await asyncio.sleep(1)
-                m = await m.edit(
-                    content="Now playing:\nWho Asked (Feat. Nobody Did)\n────────────⚪──\n◄◄⠀▐▐⠀►► 3:55 / 4:42⠀───○ 🔊",
-                )
-                await asyncio.sleep(1)
-                m = await m.edit(
-                    content="Now playing:\nWho Asked (Feat. Nobody Did)\n──────────────⚪\n◄◄⠀▐▐⠀►► 4:42 / 4:42⠀───○ 🔊",
-                )
-            except discord.HTTPException:
-                await ctx.send("Invalid message id.")
+        message = get_replied_message(ctx) or ctx.message
 
-        else:
-            with contextlib.suppress(AttributeError):
-                message = ctx.message.reference.resolved
-            message = await message.reply(
-                "Now playing:\nWho Asked (Feat. Nobody Did)\n⚪──────────────\n◄◄⠀▐▐⠀►► 0:00 / 4:42⠀───○ 🔊",
-            )
+        if message_id:
+            try:
+                message = await ctx.channel.fetch_message(int(message_id))
+            except (discord.NotFound, ValueError):
+                await ctx.send("Invalid message ID.")
+                return
+
+        text = "Now playing:\nWho Asked (Feat. Nobody Did)\n"
+        for i in range(6):
+            content = f"{text}{'─'*i}⚪{'─'*(5-i)}\n◄◄⠀▐▐⠀►► {i*53//10:02d}:{i*53%10:02d} / 4:42⠀───○ 🔊"
+            message = await message.reply(content)
             await asyncio.sleep(1)
-            m = await message.edit(
-                content="Now playing:\nWho Asked (Feat. Nobody Did)\n───⚪───────────\n◄◄⠀▐▐⠀►► 1:34 / 4:42⠀───○ 🔊",
-            )
-            await asyncio.sleep(1)
-            m = await m.edit(
-                content="Now playing:\nWho Asked (Feat. Nobody Did)\n──────⚪────────\n◄◄⠀▐▐⠀►► 2:21 / 4:42⠀───○ 🔊",
-            )
-            await asyncio.sleep(1)
-            m = await m.edit(
-                content="Now playing:\nWho Asked (Feat. Nobody Did)\n─────────⚪─────\n◄◄⠀▐▐⠀►► 3:08 / 4:42⠀───○ 🔊",
-            )
-            await asyncio.sleep(1)
-            m = await m.edit(
-                content="Now playing:\nWho Asked (Feat. Nobody Did)\n────────────⚪──\n◄◄⠀▐▐⠀►► 3:55 / 4:42⠀───○ 🔊",
-            )
-            await asyncio.sleep(1)
-            m = await m.edit(
-                content="Now playing:\nWho Asked (Feat. Nobody Did)\n──────────────⚪\n◄◄⠀▐▐⠀►► 4:42 / 4:42⠀───○ 🔊",
-            )
+            await message.edit(content)
