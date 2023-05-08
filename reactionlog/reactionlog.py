@@ -109,6 +109,7 @@ class ReactionLog(commands.Cog):
         logs = self.bot.get_channel(logs_channel)
         if await self.config.guild(member.guild).reaction_add_enabled() & await self.config.guild(member.guild).enabled() & channel:
             view = discord.ui.View()
+            view.add_item(discord.ui.Button(label='Message', url=reaction.message.jump_url))
             description = (
                 f"**Channel : ** {reaction.message.channel.mention}\n"
                 f"**Emoji : ** {reaction.emoji}\n"
@@ -119,7 +120,6 @@ class ReactionLog(commands.Cog):
             if isinstance(reaction.emoji, (discord.Emoji, discord.PartialEmoji)):
                 embed.set_thumbnail(url=reaction.emoji.url)
                 view.add_item(discord.ui.Button(label='Emoji', url=reaction.emoji.url))
-            view.add_item(discord.ui.Button(label='Message', url=reaction.message.jump_url))
             await logs.send(embed=embed, view=view)
 
     @commands.Cog.listener()
@@ -128,24 +128,19 @@ class ReactionLog(commands.Cog):
         channel = True if logs_channel else False
         logs = self.bot.get_channel(logs_channel)
         if await self.config.guild(member.guild).reaction_remove_enabled() & await self.config.guild(member.guild).enabled() & channel:
-            embed = discord.Embed(
-                title=f"{member} removed a reaction.",
-                color=discord.Color.red(),
+            view = discord.ui.View()
+            view.add_item(discord.ui.Button(label='Message', url=reaction.message.jump_url))
+            description = (
+                f"**Channel : ** {reaction.message.channel.mention}\n"
+                f"**Emoji : ** {reaction.emoji}\n"
+                f"**Message : ** [Jump to Message]({reaction.message.jump_url})"
             )
-            embed.set_footer(text=f"{member} ({member.id})", icon_url=member.display_avatar.url)
+            embed = discord.Embed(color=discord.Color.red(), description= description, timestamp=datetime.utcnow())
+            embed.set_author(name=f"{member} removed a reaction.", icon_url=member.display_avatar.url)
             if isinstance(reaction.emoji, (discord.Emoji, discord.PartialEmoji)):
                 embed.set_thumbnail(url=reaction.emoji.url)
-            embed.add_field(
-                name="Reaction:",
-                value=f"{reaction}",
-                inline=False,
-            )
-            embed.add_field(
-                name="Message Link:",
-                value=f"[Click here]({reaction.message.jump_url})",
-                inline=False,
-            )
-            await logs.send(embed=embed)
+            view.add_item(discord.ui.Button(label='Emoji', url=reaction.emoji.url))
+            await logs.send(embed=embed, view=view)
 
     @commands.Cog.listener()
     async def on_reaction_clear(self, message: discord.Message, reaction: discord.Reaction):
@@ -153,24 +148,17 @@ class ReactionLog(commands.Cog):
         channel = True if logs_channel else False
         logs = self.bot.get_channel(logs_channel)
         if await self.config.guild(message.guild).reaction_remove_enabled() & await self.config.guild(message.guild).enabled() & channel:
+            view = discord.ui.View()
+            view.add_item(discord.ui.Button(label='Message', url=reaction.message.jump_url))
             emojis = []
             for i in reaction:
                 emojis.append(i.emoji)
                 reactions = ", ".join(map(str, emojis))
-            embed = discord.Embed(
-                title="Multiple reactions were removed.",
-                color=discord.Color.red(),
+            description = (
+                f"**Channel : ** {reaction.message.channel.mention}\n"
+                f"**Emoji : ** {reactions}\n"
+                f"**Message : ** [Jump to Message]({reaction.message.jump_url})"
             )
-            if isinstance(reaction.emoji, (discord.Emoji, discord.PartialEmoji)):
-                embed.set_thumbnail(url=reaction.emoji.url)
-            embed.add_field(
-                name="Reactions:",
-                value=f"{str(reactions).strip('[]')}",
-                inline=False,
-            )
-            embed.add_field(
-                name="Message Link:",
-                value=f"[Click here]({message.jump_url})",
-                inline=False,
-            )
-            await logs.send(embed=embed)
+            embed = discord.Embed(color=discord.Color.red(), description= description, timestamp=datetime.utcnow())
+            embed.set_author(name="Multiple reactions were removed.")
+            await logs.send(embed=embed, view=view)
