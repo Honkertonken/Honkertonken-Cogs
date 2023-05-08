@@ -103,8 +103,9 @@ class ReactionLog(commands.Cog):
     @commands.Cog.listener()
     async def on_reaction_add(self, reaction: discord.Reaction, member: discord.Member):
         logs_channel = await self.config.guild(member.guild).channel()
+        channel = True if logs_channel else False
         logs = self.bot.get_channel(logs_channel)
-        if await self.config.guild(member.guild).reaction_add_enabled() & await self.config.guild(member.guild).enabled() & logs:
+        if await self.config.guild(member.guild).reaction_add_enabled() & await self.config.guild(member.guild).enabled() & channel:
             embed = discord.Embed(
                 title=f"{member} added a reaction.",
                 color=discord.Color.green(),
@@ -127,8 +128,9 @@ class ReactionLog(commands.Cog):
     @commands.Cog.listener()
     async def on_reaction_remove(self, reaction: discord.Reaction, member: discord.Member):
         logs_channel = await self.config.guild(member.guild).channel()
+        channel = True if logs_channel else False
         logs = self.bot.get_channel(logs_channel)
-        if await self.config.guild(member.guild).reaction_remove_enabled() & await self.config.guild(member.guild).enabled() & logs:
+        if await self.config.guild(member.guild).reaction_remove_enabled() & await self.config.guild(member.guild).enabled() & channel:
             embed = discord.Embed(
                 title=f"{member} removed a reaction.",
                 color=discord.Color.red(),
@@ -151,8 +153,9 @@ class ReactionLog(commands.Cog):
     @commands.Cog.listener()
     async def on_reaction_clear(self, message: discord.Message, reaction: discord.Reaction):
         logs_channel = await self.config.guild(message.guild).channel()
+        channel = True if logs_channel else False
         logs = self.bot.get_channel(logs_channel)
-        if await self.config.guild(message.guild).reaction_remove_enabled() & await self.config.guild(message.guild).enabled() & logs:
+        if await self.config.guild(message.guild).reaction_remove_enabled() & await self.config.guild(message.guild).enabled() & channel:
             emojis = []
             for i in reaction:
                 emojis.append(i.emoji)
