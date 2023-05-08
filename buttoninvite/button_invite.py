@@ -258,7 +258,7 @@ class ButtonInvite(commands.Cog):
             )
         view.add_item(discord.ui.Button(label=f"{await self.config.invite_description()}", url=f"https://discord.com/oauth2/authorize?client_id={self.bot.user.id}&scope=bot&permissions={await self.config.setpermissions()}",))
         embed.set_footer(text=(await self.config.footer()).format(**params))
-        await ctx.send_message(embed=embed,view=view)
+        await ctx.send(embed=embed,view=view)
 
 
 async def setup(bot):
