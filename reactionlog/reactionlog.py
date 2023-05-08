@@ -149,7 +149,7 @@ class ReactionLog(commands.Cog):
         logs = self.bot.get_channel(logs_channel)
         if await self.config.guild(message.guild).reaction_remove_enabled() & await self.config.guild(message.guild).enabled() & channel:
             view = discord.ui.View()
-            view.add_item(discord.ui.Button(label='Message', url=reaction.message.jump_url))
+            view.add_item(discord.ui.Button(label='Message', url=message.jump_url))
             emojis = []
             for i in reaction:
                 emojis.append(i.emoji)
