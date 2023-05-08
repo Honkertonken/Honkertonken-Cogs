@@ -155,10 +155,10 @@ class ReactionLog(commands.Cog):
                 emojis.append(i.emoji)
                 reactions = ", ".join(map(str, emojis))
             description = (
-                f"**Channel : ** {reaction.message.channel.mention}\n"
+                f"**Channel : ** {message.channel.mention}\n"
                 f"**Emoji : ** {reactions}\n"
-                f"**Message : ** [Jump to Message]({reaction.message.jump_url})"
+                f"**Message : ** [Jump to Message]({message.jump_url})"
             )
-            embed = discord.Embed(color=discord.Color.red(), description= description, timestamp=datetime.utcnow())
+            embed = discord.Embed(color= discord.Color.red(), description=description, timestamp=datetime.utcnow())
             embed.set_author(name="Multiple reactions were removed.")
             await logs.send(embed=embed, view=view)
