@@ -48,13 +48,12 @@ class PressF(commands.Cog):
         view.add_item(button)
         await view.start(ctx=ctx, member=name)
 
-    @commands.group(name="pressfset", aliases=["pfset"], invoke_without_command=True)
+    @commands.group(name="pressfset", aliases=["pfset"])
     @commands.admin_or_permissions(administrator=True)
     async def pressfset(self, ctx):
         """
         Customize the pressf command.
         """
-        await ctx.send_help("pressfset")
 
     @pressfset.command(name="emoji", usage="<emoji>")
     @commands.admin_or_permissions(administrator=True)
