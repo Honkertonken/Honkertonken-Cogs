@@ -126,10 +126,10 @@ class ReactionLog(commands.Cog):
                 f"**Message : ** [Jump to Message]({reaction.message.jump_url})"
             )
             embed = discord.Embed(
-                color=discord.Color.green(), description=description, timestamp=datetime.utcnow()
+                color=discord.Color.green(), description=description, timestamp=datetime.utcnow(),
             )
             embed.set_author(
-                name=f"{member} added a reaction.", icon_url=member.display_avatar.url
+                name=f"{member} added a reaction.", icon_url=member.display_avatar.url,
             )
             if isinstance(reaction.emoji, (discord.Emoji, discord.PartialEmoji)):
                 embed.set_thumbnail(url=reaction.emoji.url)
@@ -154,10 +154,10 @@ class ReactionLog(commands.Cog):
                 f"**Message : ** [Jump to Message]({reaction.message.jump_url})"
             )
             embed = discord.Embed(
-                color=discord.Color.red(), description=description, timestamp=datetime.utcnow()
+                color=discord.Color.red(), description=description, timestamp=datetime.utcnow(),
             )
             embed.set_author(
-                name=f"{member} removed a reaction.", icon_url=member.display_avatar.url
+                name=f"{member} removed a reaction.", icon_url=member.display_avatar.url,
             )
             if isinstance(reaction.emoji, (discord.Emoji, discord.PartialEmoji)):
                 embed.set_thumbnail(url=reaction.emoji.url)
@@ -186,7 +186,7 @@ class ReactionLog(commands.Cog):
                 f"**Message : ** [Jump to Message]({message.jump_url})"
             )
             embed = discord.Embed(
-                color=discord.Color.red(), description=description, timestamp=datetime.utcnow()
+                color=discord.Color.red(), description=description, timestamp=datetime.utcnow(),
             )
             embed.set_author(name="Multiple reactions were removed.")
             await logs.send(embed=embed, view=view)

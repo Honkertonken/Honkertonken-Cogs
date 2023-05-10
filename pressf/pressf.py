@@ -2,12 +2,11 @@
 # this is just a fork of same and has been modified for my use
 # original source code for aikaterna's cog is available at https://github.com/aikaterna/aikaterna-cogs/tree/v3/pressf
 
-import asyncio
 
 import discord
 from redbot.core import Config, commands
 from redbot.core.bot import Red
-from .view import PressFView, PressFButton
+from pressf.view import PressFView, PressFButton
 
 
 class PressF(commands.Cog):

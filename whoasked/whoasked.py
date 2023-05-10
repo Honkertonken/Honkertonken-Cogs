@@ -5,7 +5,9 @@ from redbot.core import commands
 
 
 def get_replied_message(ctx: commands.Context) -> discord.Message:
-    """Returns the message that the user is replying to, or None."""
+    """
+    Returns the message that the user is replying to, or None.
+    """
     if hasattr(ctx.message, "reference") and ctx.message.reference is not None:
         return ctx.message.reference.resolved
 

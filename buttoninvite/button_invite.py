@@ -257,7 +257,7 @@ class ButtonInvite(commands.Cog):
                 discord.ui.Button(
                     label=f"{await self.config.invite_description()}",
                     url=f"https://discord.com/oauth2/authorize?client_id={self.bot.user.id}&scope=bot+applications.commands&permissions={await self.config.setpermissions()}",
-                )
+                ),
             )
         else:
             embed.add_field(
@@ -268,7 +268,7 @@ class ButtonInvite(commands.Cog):
             discord.ui.Button(
                 label=f"{await self.config.invite_description()}",
                 url=f"https://discord.com/oauth2/authorize?client_id={self.bot.user.id}&scope=bot&permissions={await self.config.setpermissions()}",
-            )
+            ),
         )
         embed.set_footer(text=(await self.config.footer()).format(**params))
         await ctx.send(embed=embed, view=view)
