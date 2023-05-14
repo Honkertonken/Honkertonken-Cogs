@@ -106,7 +106,7 @@ class AutoKick(commands.Cog):
         e = discord.Embed(title="Auto kick Settings", color=await ctx.embed_color())
         e.add_field(name="Channel", value=channel_mention, inline=True)
         e.add_field(name="Enabled", value=enabled, inline=True)
-        e.set_footer(text=ctx.guild.name, icon_url=ctx.guild.icon_as(format="png"))
+        e.set_footer(text=ctx.guild.name, icon_url=ctx.guild.icon)
         await ctx.send(embed=e)
 
     @autokickset.command(name="clear", aliases=["nuke"], hidden=True)
