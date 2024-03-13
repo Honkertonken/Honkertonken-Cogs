@@ -6,9 +6,6 @@
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/charliermarsh/ruff/main/assets/badge/v1.json)](https://github.com/charliermarsh/ruff)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/Honkertonken/Cogs-V3/master.svg)](https://results.pre-commit.ci/latest/github/Honkertonken/Cogs-V3/master)
-[![CodeFactor](https://www.codefactor.io/repository/github/honkertonken/honkertonken-cogs/badge)](https://www.codefactor.io/repository/github/honkertonken/honkertonken-cogs)
-[![DeepSource](https://static.deepsource.io/deepsource-badge-light-mini.svg)](https://deepsource.io/gh/Honkertonken/Honkertonken-Cogs/?ref=repository-badge)
-[![Maintainability](https://api.codeclimate.com/v1/badges/e3da6add933361e1f23b/maintainability)](https://codeclimate.com/github/Honkertonken/Honkertonken-Cogs/maintainability)
 
 
 **Disclaimer: This is an unapproved repo, meaning no one has formally reviewed this repo yet.**
