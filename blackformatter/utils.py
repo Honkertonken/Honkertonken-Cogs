@@ -1,5 +1,3 @@
-from typing import Optional
-
 import discord
 from redbot.core import commands
 from redbot.core.utils.chat_formatting import box, text_to_file
@@ -9,9 +7,7 @@ from blackformatter.errors import AttachmentInvalid, AttachmentPermsError, NoDat
 
 # thanks vexed
 def cleanup(py: str) -> str:
-    """
-    Remove codeblocks, if present.
-    """
+    """Remove codeblocks, if present."""
     if py.startswith("```") and py.endswith("```"):
         py = py.strip("```py")
         return py.strip("```")
@@ -19,7 +15,7 @@ def cleanup(py: str) -> str:
     return py.strip("`") if py.startswith("`") and py.endswith("`") else py
 
 
-async def get_data(ctx: commands.Context, data: Optional[str]) -> str:
+async def get_data(ctx: commands.Context, data: str | None) -> str:
     if data is not None:
         return cleanup(data)
 
@@ -43,7 +39,7 @@ async def get_data(ctx: commands.Context, data: Optional[str]) -> str:
         raise NoData
 
     filename = attachment.filename
-    if not (filename.endswith(".py") or filename.endswith(".txt")):
+    if not (filename.endswith((".py", ".txt"))):
         await ctx.send("The file attached must be `.txt` or `.py`,")
         raise AttachmentInvalid
 
@@ -59,13 +55,11 @@ async def get_data(ctx: commands.Context, data: Optional[str]) -> str:
 
 
 async def send_output(ctx: commands.Context, text: str) -> None:
-    """
-    Send output as a codeblock or file, depending on file limits.
+    """Send output as a codeblock or file, depending on file limits.
 
     Handles no attachment perm.
 
     """
-
     if (len(text)) < 1980 and text.count("\n") < 20:
         await ctx.send(box(text, lang="py"))
     else:

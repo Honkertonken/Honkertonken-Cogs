@@ -1,4 +1,3 @@
-import asyncio
 import datetime
 
 import discord
@@ -10,9 +9,7 @@ from redbot.core.utils.predicates import ReactionPredicate
 
 
 class AutoKick(commands.Cog):
-    """
-    AutoKick users on join.
-    """
+    """AutoKick users on join."""
 
     def __init__(self, bot: Red) -> None:
         self.bot = bot
@@ -33,14 +30,11 @@ class AutoKick(commands.Cog):
     @commands.admin_or_permissions(kick_members=True)
     @commands.guild_only()
     async def autokickset(self, ctx):
-        """
-        Auto Kick settings.
-        """
+        """Auto Kick settings."""
 
     @autokickset.command(name="channel")
     async def autokickset_channel(self, ctx, channel: discord.TextChannel = None):
-        """
-        Set the auto kick log channel.
+        """Set the auto kick log channel.
 
         Leave blank to disable.
 
@@ -48,7 +42,9 @@ class AutoKick(commands.Cog):
         if channel:
             if ctx.channel.permissions_for(channel.guild.me).send_messages is True:
                 await self.config.guild(ctx.guild).channel.set(channel.id)
-                await ctx.send(f"The auto kick log channel has been set to {channel.mention}")
+                await ctx.send(
+                    f"The auto kick log channel has been set to {channel.mention}"
+                )
             else:
                 await ctx.send(
                     "I can't send messages in that channel. Please give me the necessary permissions and try again.",
@@ -58,22 +54,24 @@ class AutoKick(commands.Cog):
             await ctx.send("Auto kick log channel has been cleared.")
 
     @autokickset.command(name="enable")
-    async def autokickset_enable(self, ctx, enable_or_disable: bool):
-        """
-        Enable/disable the autokick feature.
-        """
-        async with ctx.typing():
-            await self.config.guild(ctx.guild).enabled.set(enable_or_disable)
-        if enable_or_disable:
-            await ctx.send("Auto kicking blacklisted members has been enabled for this guild.")
-        else:
-            await ctx.send("Auto kicking blacklisted members has been disabled for this guild.")
+    async def autokickset_enable(self, ctx):
+        """Enable the autokick feature."""
+        await self.config.guild(ctx.guild).enabled.set(True)
+        await ctx.send(
+            "Auto kicking blacklisted members has been enabled for this guild."
+        )
+
+    @autokickset.command(name="disable")
+    async def autokickset_disable(self, ctx):
+        """Disable the autokick feature."""
+        await self.config.guild(ctx.guild).enabled.set(False)
+        await ctx.send(
+            "Auto kicking blacklisted members has been disabled for this guild."
+        )
 
     @autokickset.command(name="add", aliases=["blacklist", "bl"])
     async def autokickset_add(self, ctx, user: discord.User):
-        """
-        Add a certain user to get auto kicked.
-        """
+        """Add a certain user to get auto kicked."""
         async with ctx.typing():
             ids = await self.config.guild(ctx.guild).blacklisted_ids()
             ids.append(user.id)
@@ -82,9 +80,7 @@ class AutoKick(commands.Cog):
 
     @autokickset.command(name="remove", aliases=["unblacklist", "unbl"])
     async def autokickset_remove(self, ctx, user: discord.User):
-        """
-        Remove a certain user from getting auto kicked.
-        """
+        """Remove a certain user from getting auto kicked."""
         async with ctx.typing():
             ids = await self.config.guild(ctx.guild).blacklisted_ids()
             ids.remove(user.id)
@@ -93,29 +89,27 @@ class AutoKick(commands.Cog):
 
     @autokickset.command(name="settings", aliases=["showsettings"])
     async def autokickset_settings(self, ctx):
-        """
-        Check your autokick settings.
-        """
+        """Check your autokick settings."""
         channel = await self.config.guild(ctx.guild).channel()
         channel_mention = f"<#{channel}>" if channel else "Not Set"
         enabled = await self.config.guild(ctx.guild).enabled()
         e = discord.Embed(title="Auto kick Settings", color=await ctx.embed_color())
         e.add_field(name="Channel", value=channel_mention, inline=True)
         e.add_field(name="Enabled", value=enabled, inline=True)
-        e.set_footer(text=ctx.guild.name, icon_url=ctx.guild.icon_url_as(format="png"))
+        e.set_footer(text=ctx.guild.name, icon_url=ctx.guild.icon)
         await ctx.send(embed=e)
 
     @autokickset.command(name="clear", aliases=["nuke"], hidden=True)
     async def autokickset_clear(self, ctx):
-        """
-        Clear the autokick list.
-        """
-        confirmation_msg = await ctx.send("Are you sure you want to clear the auto kick list. ?")
+        """Clear the autokick list."""
+        confirmation_msg = await ctx.send(
+            "Are you sure you want to clear the auto kick list. ?"
+        )
         pred = ReactionPredicate.yes_or_no(confirmation_msg, ctx.author)
         start_adding_reactions(confirmation_msg, ReactionPredicate.YES_OR_NO_EMOJIS)
         try:
             await self.bot.wait_for("reaction_add", check=pred, timeout=60)
-        except asyncio.TimeoutError:
+        except TimeoutError:
             return await ctx.send("You took too long to respond. Cancelling.")
         if not pred.result:
             return await ctx.send("Alright I will not clear the auto kick list.")
@@ -131,11 +125,13 @@ class AutoKick(commands.Cog):
             logs = self.bot.get_channel(logs_channel)
             e = discord.Embed(
                 title=f"{member} just got auto kicked.",
-                color=0xFF0000,
+                color=discord.Color.red(),
             )
-            e.set_footer(text=f"{member.guild.name}", icon_url=f"{member.guild.icon_url}")
-            e.set_author(name=f"{member.display_name}", icon_url=f"{member.avatar_url}")
-            e.timestamp = datetime.datetime.now(datetime.timezone.utc)
+            e.set_footer(text=f"{member.guild.name}", icon_url=f"{member.guild.icon}")
+            e.set_author(
+                name=f"{member.display_name}", icon_url=f"{member.display_avatar.url}"
+            )
+            e.timestamp = datetime.datetime.now(datetime.UTC)
             if member.id in await self.config.guild(member.guild).blacklisted_ids():
                 try:
                     await member.guild.kick(member, reason="AutoKicked.")

@@ -4,26 +4,26 @@ from redbot.core.bot import Red
 
 
 async def embedify(self, ctx, url, img_link):
+    view = discord.ui.View()
+    view.add_item(discord.ui.Button(label="Documentation Link", url=url))
+    view.add_item(discord.ui.Button(label="Image Link", url=img_link))
     e = discord.Embed(title="Tags Documentation", type="image", url=url)
     e.set_image(url=img_link)
-    await ctx.reply(embed=e, mention_author=False)
+    await ctx.reply(embed=e, view=view, mention_author=False)
 
 
 docs_link = "https://phen-cogs.readthedocs.io/en/latest/tags/"
 
 
 class TagScriptDocumentation(commands.Cog):
-    """
-    A simple in discord documentation for Phenom4n4n's tags cog.
+    """A simple in discord documentation for Phenom4n4n's tags/slash tags cog.
 
     https://github.com/phenom4n4n/phen-cogs
 
     """
 
     async def red_delete_data_for_user(self, **kwargs):
-        """
-        Nothing to delete.
-        """
+        """Nothing to delete."""
         return
 
     def __init__(self, bot: Red):
@@ -36,22 +36,18 @@ class TagScriptDocumentation(commands.Cog):
         autohelp=False,
     )
     async def tsd(self, ctx):
-        """
-        Tag Script Documentation.
-        """
+        """Tag Script Documentation."""
         prefixes = await self.bot.get_prefix(ctx.message.channel)
         if f"<@!{self.bot.user.id}> " in prefixes:
             prefixes.remove(f"<@!{self.bot.user.id}> ")
         sorted_prefixes = sorted(prefixes, key=len)
         await ctx.send(
-            f"That doesn't look like a valid block use `{sorted_prefixes[0]}tsd list` to see a list of all tagscript blocks.",
+            f"That doesn't look like a valid tag script block. Use `{sorted_prefixes[0]}tsd list` to see a list of all tagscript blocks.",
         )
 
     @tsd.command(name="args", aliases=["arg"])
     async def tsd_args(self, ctx):
-        """
-        Tag Script Args Block.
-        """
+        """Tag Script Args Block."""
         await embedify(
             self,
             ctx,
@@ -61,9 +57,7 @@ class TagScriptDocumentation(commands.Cog):
 
     @tsd.command(name="uses", aliases=["use"])
     async def tsd_uses(self, ctx):
-        """
-        Tag Script Uses Block.
-        """
+        """Tag Script Uses Block."""
         await embedify(
             self,
             ctx,
@@ -73,9 +67,7 @@ class TagScriptDocumentation(commands.Cog):
 
     @tsd.command(name="author")
     async def tsd_author(self, ctx):
-        """
-        Tag Script Author Block.
-        """
+        """Tag Script Author Block."""
         await embedify(
             self,
             ctx,
@@ -85,9 +77,7 @@ class TagScriptDocumentation(commands.Cog):
 
     @tsd.command(name="target")
     async def tsd_target(self, ctx):
-        """
-        Tag Script Target Block.
-        """
+        """Tag Script Target Block."""
         await embedify(
             self,
             ctx,
@@ -97,9 +87,7 @@ class TagScriptDocumentation(commands.Cog):
 
     @tsd.command(name="channel")
     async def tsd_channel(self, ctx):
-        """
-        Tag Script Channel Block.
-        """
+        """Tag Script Channel Block."""
         await embedify(
             self,
             ctx,
@@ -109,9 +97,7 @@ class TagScriptDocumentation(commands.Cog):
 
     @tsd.command(name="server")
     async def tsd_server(self, ctx):
-        """
-        Tag Script Server Block.
-        """
+        """Tag Script Server Block."""
         await embedify(
             self,
             ctx,
@@ -121,9 +107,7 @@ class TagScriptDocumentation(commands.Cog):
 
     @tsd.command(name="require")
     async def tsd_require(self, ctx):
-        """
-        Tag Script Require Block.
-        """
+        """Tag Script Require Block."""
         await embedify(
             self,
             ctx,
@@ -133,9 +117,7 @@ class TagScriptDocumentation(commands.Cog):
 
     @tsd.command(name="blacklist", aliases=["bl"])
     async def tsd_blacklist(self, ctx):
-        """
-        Tag Script Blacklist Block.
-        """
+        """Tag Script Blacklist Block."""
         await embedify(
             self,
             ctx,
@@ -145,9 +127,7 @@ class TagScriptDocumentation(commands.Cog):
 
     @tsd.command(name="cooldown", aliases=["cd"])
     async def tsd_cooldown(self, ctx):
-        """
-        Tag Script Cooldown Block.
-        """
+        """Tag Script Cooldown Block."""
         await embedify(
             self,
             ctx,
@@ -157,9 +137,7 @@ class TagScriptDocumentation(commands.Cog):
 
     @tsd.command(name="embed")
     async def tsd_embed(self, ctx):
-        """
-        Tag Script Embed Block.
-        """
+        """Tag Script Embed Block."""
         await embedify(
             self,
             ctx,
@@ -169,9 +147,7 @@ class TagScriptDocumentation(commands.Cog):
 
     @tsd.command(name="redirect")
     async def tsd_redirect(self, ctx):
-        """
-        Tag Script Redirect Block.
-        """
+        """Tag Script Redirect Block."""
         await embedify(
             self,
             ctx,
@@ -181,9 +157,7 @@ class TagScriptDocumentation(commands.Cog):
 
     @tsd.command(name="delete", aliases=["del"])
     async def tsd_delete(self, ctx):
-        """
-        Tag Script Delete Block.
-        """
+        """Tag Script Delete Block."""
         await embedify(
             self,
             ctx,
@@ -193,9 +167,7 @@ class TagScriptDocumentation(commands.Cog):
 
     @tsd.command(name="react", aliases=["reactu"])
     async def tsd_react(self, ctx):
-        """
-        Tag Script React(u) Block.
-        """
+        """Tag Script React(u) Block."""
         await embedify(
             self,
             ctx,
@@ -205,9 +177,7 @@ class TagScriptDocumentation(commands.Cog):
 
     @tsd.command(name="command", aliases=["cmd"])
     async def tsd_command(self, ctx):
-        """
-        Tag Script Command Block.
-        """
+        """Tag Script Command Block."""
         await embedify(
             self,
             ctx,
@@ -217,9 +187,7 @@ class TagScriptDocumentation(commands.Cog):
 
     @tsd.command(name="override")
     async def tsd_override(self, ctx):
-        """
-        Tag Script Override Block.
-        """
+        """Tag Script Override Block."""
         await embedify(
             self,
             ctx,
@@ -229,9 +197,7 @@ class TagScriptDocumentation(commands.Cog):
 
     @tsd.command(name="assignment", aliases=["var", "let"])
     async def tsd_assignment(self, ctx):
-        """
-        Tag Script Assignment Block.
-        """
+        """Tag Script Assignment Block."""
         await embedify(
             self,
             ctx,
@@ -241,9 +207,7 @@ class TagScriptDocumentation(commands.Cog):
 
     @tsd.command(name="random", aliases=["rand"])
     async def tsd_random(self, ctx):
-        """
-        Tag Script Random Block.
-        """
+        """Tag Script Random Block."""
         await embedify(
             self,
             ctx,
@@ -253,9 +217,7 @@ class TagScriptDocumentation(commands.Cog):
 
     @tsd.command(name="math")
     async def tsd_math(self, ctx):
-        """
-        Tag Script Math Block.
-        """
+        """Tag Script Math Block."""
         await embedify(
             self,
             ctx,
@@ -265,9 +227,7 @@ class TagScriptDocumentation(commands.Cog):
 
     @tsd.command(name="range")
     async def tsd_range(self, ctx):
-        """
-        Tag Script Range Block.
-        """
+        """Tag Script Range Block."""
         await embedify(
             self,
             ctx,
@@ -277,9 +237,7 @@ class TagScriptDocumentation(commands.Cog):
 
     @tsd.command(name="if")
     async def tsd_if(self, ctx):
-        """
-        Tag Script If Block.
-        """
+        """Tag Script If Block."""
         await embedify(
             self,
             ctx,
@@ -289,9 +247,7 @@ class TagScriptDocumentation(commands.Cog):
 
     @tsd.command(name="break")
     async def tsd_break(self, ctx):
-        """
-        Tag Script Break Block.
-        """
+        """Tag Script Break Block."""
         await embedify(
             self,
             ctx,
@@ -301,9 +257,7 @@ class TagScriptDocumentation(commands.Cog):
 
     @tsd.command(name="all")
     async def tsd_all(self, ctx):
-        """
-        Tag Script All Block.
-        """
+        """Tag Script All Block."""
         await embedify(
             self,
             ctx,
@@ -313,9 +267,7 @@ class TagScriptDocumentation(commands.Cog):
 
     @tsd.command(name="any")
     async def tsd_any(self, ctx):
-        """
-        Tag Script Any Block.
-        """
+        """Tag Script Any Block."""
         await embedify(
             self,
             ctx,
@@ -325,9 +277,7 @@ class TagScriptDocumentation(commands.Cog):
 
     @tsd.command(name="fiftyfifty", aliases=["5050"])
     async def tsd_fiftyfifty(self, ctx):
-        """
-        Tag Script Fiftyfifty Block.
-        """
+        """Tag Script Fiftyfifty Block."""
         await embedify(
             self,
             ctx,
@@ -337,9 +287,7 @@ class TagScriptDocumentation(commands.Cog):
 
     @tsd.command(name="stop")
     async def tsd_stop(self, ctx):
-        """
-        Tag Script Stop Block.
-        """
+        """Tag Script Stop Block."""
         await embedify(
             self,
             ctx,
@@ -349,9 +297,7 @@ class TagScriptDocumentation(commands.Cog):
 
     @tsd.command(name="replace")
     async def tsd_replace(self, ctx):
-        """
-        Tag Script Replace Block.
-        """
+        """Tag Script Replace Block."""
         await embedify(
             self,
             ctx,
@@ -361,9 +307,7 @@ class TagScriptDocumentation(commands.Cog):
 
     @tsd.command(name="urlencode")
     async def tsd_urlencode(self, ctx):
-        """
-        Tag Script Urlencode Block.
-        """
+        """Tag Script Urlencode Block."""
         await embedify(
             self,
             ctx,
@@ -373,9 +317,7 @@ class TagScriptDocumentation(commands.Cog):
 
     @tsd.command(name="strftime", aliases=["strf"])
     async def tsd_strftime(self, ctx):
-        """
-        Tag Script Strftime Block.
-        """
+        """Tag Script Strftime Block."""
         await embedify(
             self,
             ctx,
@@ -385,9 +327,7 @@ class TagScriptDocumentation(commands.Cog):
 
     @tsd.command(name="substring")
     async def tsd_subtring(self, ctx):
-        """
-        Tag Script Substring Block.
-        """
+        """Tag Script Substring Block."""
         await embedify(
             self,
             ctx,
@@ -397,9 +337,7 @@ class TagScriptDocumentation(commands.Cog):
 
     @tsd.command(name="list", aliases=["view"])
     async def tsd_list(self, ctx):
-        """
-        All Tag Script Blocks.
-        """
+        """All Tag Script Blocks."""
         e = discord.Embed(title="List of all Tagscript blocks.")
         e.add_field(
             name="⠀",
