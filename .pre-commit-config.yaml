@@ -2,12 +2,6 @@ default_language_version:
     python: python3.12
 
 repos:
--   repo: https://github.com/PyCQA/docformatter
-    rev: v1.7.5
-    hooks:
-    -   id: docformatter
-        additional_dependencies: [tomli]
-
 -   repo: https://github.com/charliermarsh/ruff-pre-commit
     rev: v0.3.2
     hooks:
