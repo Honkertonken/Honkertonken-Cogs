@@ -45,10 +45,14 @@ class Backup(commands.Cog):
         downloader = ctx.bot.get_cog("Downloader")
         cogs = await downloader.installed_cogs()
         cogs_list = [cog.name for cog in cogs if cog.repo_name == repo_name]
-        await ctx.send(
-            f"Cogs installed from the repo named {repo_name} are : \n{', '.join(cogs_list)} ",
-        ) if cogs_list else await ctx.send(
-            f"No cogs were installed from the repo named {repo_name}. Make sure to check the spelling and case.",
+        (
+            await ctx.send(
+                f"Cogs installed from the repo named {repo_name} are : \n{', '.join(cogs_list)} ",
+            )
+            if cogs_list
+            else await ctx.send(
+                f"No cogs were installed from the repo named {repo_name}. Make sure to check the spelling and case.",
+            )
         )
 
     @commands.command(name="listrepos")
