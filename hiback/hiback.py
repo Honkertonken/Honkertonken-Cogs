@@ -98,7 +98,9 @@ class HiBack(commands.Cog):
     async def hibackset_ignore(self, ctx, users: commands.Greedy[discord.User] = None):
         """Ignore a user from the hi back messages."""
         if users:
-            async with self.config.guild(ctx.guild).blacklisted_users() as blacklisted_users:
+            async with self.config.guild(
+                ctx.guild
+            ).blacklisted_users() as blacklisted_users:
                 for user in users:
                     if user.id not in blacklisted_users:
                         blacklisted_users.append(user.id)
@@ -113,10 +115,14 @@ class HiBack(commands.Cog):
         return
 
     @hibackset.command(name="unignore", aliases=["unblacklist", "unbl"])
-    async def hibackset_unignore(self, ctx, users: commands.Greedy[discord.User] = None):
+    async def hibackset_unignore(
+        self, ctx, users: commands.Greedy[discord.User] = None
+    ):
         """Unignore a user from the hi back messages."""
         if users:
-            async with self.config.guild(ctx.guild).blacklisted_users() as blacklisted_users:
+            async with self.config.guild(
+                ctx.guild
+            ).blacklisted_users() as blacklisted_users:
                 for user in users:
                     if user.id in blacklisted_users:
                         blacklisted_users.remove(user.id)
@@ -147,7 +153,9 @@ class HiBack(commands.Cog):
             await ctx.send("Hiback restrict mode has been disabled.")
 
     @hibackset.command(name="add")
-    async def hibackset_add(self, ctx, channels: commands.Greedy[discord.TextChannel] = None):
+    async def hibackset_add(
+        self, ctx, channels: commands.Greedy[discord.TextChannel] = None
+    ):
         """Add channels to the hiback blocklist/allowlist."""
         prefixes = await self.bot.get_prefix(ctx.message.channel)
         if f"<@!{self.bot.user.id}> " in prefixes:
@@ -159,7 +167,9 @@ class HiBack(commands.Cog):
             )
             return None
         if channels:
-            async with self.config.guild(ctx.guild).restricted_channels() as restricted_channels:
+            async with self.config.guild(
+                ctx.guild
+            ).restricted_channels() as restricted_channels:
                 for channel in channels:
                     if channel.id not in restricted_channels:
                         restricted_channels.append(channel.id)
@@ -172,7 +182,9 @@ class HiBack(commands.Cog):
         return None
 
     @hibackset.command(name="remove")
-    async def hibackset_remove(self, ctx, channels: commands.Greedy[discord.TextChannel] = None):
+    async def hibackset_remove(
+        self, ctx, channels: commands.Greedy[discord.TextChannel] = None
+    ):
         """Remove channels from the hiback blocklist/allowlist."""
         prefixes = await self.bot.get_prefix(ctx.message.channel)
         if f"<@!{self.bot.user.id}> " in prefixes:
@@ -184,7 +196,9 @@ class HiBack(commands.Cog):
             )
             return None
         if channels:
-            async with self.config.guild(ctx.guild).restricted_channels() as restricted_channels:
+            async with self.config.guild(
+                ctx.guild
+            ).restricted_channels() as restricted_channels:
                 for channel in channels:
                     if channel.id in restricted_channels:
                         restricted_channels.remove(channel.id)
@@ -254,7 +268,8 @@ class HiBack(commands.Cog):
             or message.author.id == self.bot.user.id
             or message.author.bot
             or message.clean_content is None
-            or message.author.id in await self.config.guild(message.guild).blacklisted_users()
+            or message.author.id
+            in await self.config.guild(message.guild).blacklisted_users()
             or not await self.config.guild(message.guild).enabled()
         ):
             return
@@ -268,7 +283,8 @@ class HiBack(commands.Cog):
 
         if (
             await self.config.guild(message.guild).restricted() == "blocklist"
-            and message.channel.id in await self.config.guild(message.guild).restricted_channels()
+            and message.channel.id
+            in await self.config.guild(message.guild).restricted_channels()
         ):
             return
 

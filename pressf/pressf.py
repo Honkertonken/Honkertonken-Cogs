@@ -19,7 +19,9 @@ class PressF(commands.Cog):
 
     def __init__(self, bot: Red):
         self.bot = bot
-        self.config = Config.get_conf(self, identifier=694835810347909161, force_registration=True)
+        self.config = Config.get_conf(
+            self, identifier=694835810347909161, force_registration=True
+        )
         default_guild = {
             "emoji": "🇫",
         }

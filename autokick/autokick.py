@@ -42,7 +42,9 @@ class AutoKick(commands.Cog):
         if channel:
             if ctx.channel.permissions_for(channel.guild.me).send_messages is True:
                 await self.config.guild(ctx.guild).channel.set(channel.id)
-                await ctx.send(f"The auto kick log channel has been set to {channel.mention}")
+                await ctx.send(
+                    f"The auto kick log channel has been set to {channel.mention}"
+                )
             else:
                 await ctx.send(
                     "I can't send messages in that channel. Please give me the necessary permissions and try again.",
@@ -55,13 +57,17 @@ class AutoKick(commands.Cog):
     async def autokickset_enable(self, ctx):
         """Enable the autokick feature."""
         await self.config.guild(ctx.guild).enabled.set(True)
-        await ctx.send("Auto kicking blacklisted members has been enabled for this guild.")
+        await ctx.send(
+            "Auto kicking blacklisted members has been enabled for this guild."
+        )
 
     @autokickset.command(name="disable")
     async def autokickset_disable(self, ctx):
         """Disable the autokick feature."""
         await self.config.guild(ctx.guild).enabled.set(False)
-        await ctx.send("Auto kicking blacklisted members has been disabled for this guild.")
+        await ctx.send(
+            "Auto kicking blacklisted members has been disabled for this guild."
+        )
 
     @autokickset.command(name="add", aliases=["blacklist", "bl"])
     async def autokickset_add(self, ctx, user: discord.User):
@@ -96,7 +102,9 @@ class AutoKick(commands.Cog):
     @autokickset.command(name="clear", aliases=["nuke"], hidden=True)
     async def autokickset_clear(self, ctx):
         """Clear the autokick list."""
-        confirmation_msg = await ctx.send("Are you sure you want to clear the auto kick list. ?")
+        confirmation_msg = await ctx.send(
+            "Are you sure you want to clear the auto kick list. ?"
+        )
         pred = ReactionPredicate.yes_or_no(confirmation_msg, ctx.author)
         start_adding_reactions(confirmation_msg, ReactionPredicate.YES_OR_NO_EMOJIS)
         try:
@@ -120,7 +128,9 @@ class AutoKick(commands.Cog):
                 color=discord.Color.red(),
             )
             e.set_footer(text=f"{member.guild.name}", icon_url=f"{member.guild.icon}")
-            e.set_author(name=f"{member.display_name}", icon_url=f"{member.display_avatar.url}")
+            e.set_author(
+                name=f"{member.display_name}", icon_url=f"{member.display_avatar.url}"
+            )
             e.timestamp = datetime.datetime.now(datetime.UTC)
             if member.id in await self.config.guild(member.guild).blacklisted_ids():
                 try:

@@ -46,7 +46,9 @@ class ReactionLog(commands.Cog):
         """Set the reaction log channel."""
         if ctx.channel.permissions_for(channel.guild.me).send_messages is True:
             await self.config.guild(ctx.guild).channel.set(channel.id)
-            await ctx.send(f"The reaction log channel has been set to {channel.mention}")
+            await ctx.send(
+                f"The reaction log channel has been set to {channel.mention}"
+            )
         else:
             await ctx.send(
                 "I can't send messages in that channel. Please give me the necessary permissions and try again.",
@@ -64,7 +66,9 @@ class ReactionLog(commands.Cog):
     @reactionlogset.command(name="reactionremove", aliases=["rr"])
     async def reactionlogset_reactionremove(self, ctx, enable_or_disable: bool):
         """Enable/disable logs for reactions removed."""
-        await self.config.guild(ctx.guild).reaction_remove_enabled.set(enable_or_disable)
+        await self.config.guild(ctx.guild).reaction_remove_enabled.set(
+            enable_or_disable
+        )
         if enable_or_disable:
             await ctx.send("Reactions logs for reactions removed has been enabled.")
         else:
@@ -77,7 +81,9 @@ class ReactionLog(commands.Cog):
         channel = await self.config.guild(ctx.guild).channel()
         channel_mention = f"<#{channel}>" if channel else "Not Set"
         reaction_add = (
-            "Enabled" if await self.config.guild(ctx.guild).reaction_add_enabled() else "Disabled"
+            "Enabled"
+            if await self.config.guild(ctx.guild).reaction_add_enabled()
+            else "Disabled"
         )
         reaction_remove = (
             "Enabled"
@@ -103,7 +109,9 @@ class ReactionLog(commands.Cog):
             & channel
         ):
             view = discord.ui.View()
-            view.add_item(discord.ui.Button(label="Message", url=reaction.message.jump_url))
+            view.add_item(
+                discord.ui.Button(label="Message", url=reaction.message.jump_url)
+            )
             description = (
                 f"**Channel : ** {reaction.message.channel.mention}\n"
                 f"**Emoji : ** {reaction.emoji}\n"
@@ -124,7 +132,9 @@ class ReactionLog(commands.Cog):
             await logs.send(embed=embed, view=view)
 
     @commands.Cog.listener()
-    async def on_reaction_remove(self, reaction: discord.Reaction, member: discord.Member):
+    async def on_reaction_remove(
+        self, reaction: discord.Reaction, member: discord.Member
+    ):
         logs_channel = await self.config.guild(member.guild).channel()
         channel = bool(logs_channel)
         logs = self.bot.get_channel(logs_channel)
@@ -134,7 +144,9 @@ class ReactionLog(commands.Cog):
             & channel
         ):
             view = discord.ui.View()
-            view.add_item(discord.ui.Button(label="Message", url=reaction.message.jump_url))
+            view.add_item(
+                discord.ui.Button(label="Message", url=reaction.message.jump_url)
+            )
             description = (
                 f"**Channel : ** {reaction.message.channel.mention}\n"
                 f"**Emoji : ** {reaction.emoji}\n"
@@ -155,7 +167,9 @@ class ReactionLog(commands.Cog):
             await logs.send(embed=embed, view=view)
 
     @commands.Cog.listener()
-    async def on_reaction_clear(self, message: discord.Message, reaction: discord.Reaction):
+    async def on_reaction_clear(
+        self, message: discord.Message, reaction: discord.Reaction
+    ):
         logs_channel = await self.config.guild(message.guild).channel()
         channel = bool(logs_channel)
         logs = self.bot.get_channel(logs_channel)

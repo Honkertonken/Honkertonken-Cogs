@@ -31,7 +31,9 @@ class Pp(commands.Cog):
         command is ran.
         """
         await self.config.random.set(toggle)
-        await ctx.send(f'Random pp length is now {"enabled" if toggle else "disabled"}.')
+        await ctx.send(
+            f'Random pp length is now {"enabled" if toggle else "disabled"}.'
+        )
 
     @commands.command(name="pp")
     async def pp(self, ctx, *users: discord.Member):
@@ -48,7 +50,11 @@ class Pp(commands.Cog):
         lengths = {}
 
         for user in users:
-            random.seed(None) if await self.config.random() else random.seed(str(user.id))
+            (
+                random.seed(None)
+                if await self.config.random()
+                else random.seed(str(user.id))
+            )
 
             if user.id == ctx.bot.user.id or user.id in list(ctx.bot.owner_ids):
                 length = random.randint(30, 35)
@@ -59,7 +65,9 @@ class Pp(commands.Cog):
 
         lengths = sorted(lengths.items(), key=lambda x: x[1])
 
-        msg = "".join(f"**{user.display_name}'s size:**\n{length}\n" for user, length in lengths)
+        msg = "".join(
+            f"**{user.display_name}'s size:**\n{length}\n" for user, length in lengths
+        )
 
         for page in pagify(msg):
             await ctx.send(page)
