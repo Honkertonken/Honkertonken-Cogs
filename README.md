@@ -1,10 +1,9 @@
 # Honkertonken-Cogs V3
 
 [![Red-DiscordBot](https://img.shields.io/badge/Red--DiscordBot-V3-red.svg)](https://github.com/Cog-Creators/Red-DiscordBot)
-[![Discord.py](https://img.shields.io/badge/Discord.py-rewrite-blue.svg)](https://github.com/Rapptz/discord.py)
+[![Discord.py](https://img.shields.io/badge/discord-py-blue.svg)](https://github.com/Rapptz/discord.py
 [![Code Style: Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/charliermarsh/ruff/main/assets/badge/v1.json)](https://github.com/charliermarsh/ruff)
-[![Formatter : docformatter](https://img.shields.io/badge/%20formatter-docformatter-fedcba.svg)](https://github.com/PyCQA/docformatter)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/Honkertonken/Cogs-V3/master.svg)](https://results.pre-commit.ci/latest/github/Honkertonken/Cogs-V3/master)
 [![CodeFactor](https://www.codefactor.io/repository/github/honkertonken/honkertonken-cogs/badge)](https://www.codefactor.io/repository/github/honkertonken/honkertonken-cogs)
@@ -15,7 +14,7 @@
 **Disclaimer: This is an unapproved repo, meaning no one has formally reviewed this repo yet.**
 
 Various fun and utility cogs for Red-DiscordBot V3.
-Discord User: Honkertonken#9221(694835810347909161).
+Discord User: honkertonken.(694835810347909161).
 
 # Installation
 
@@ -50,4 +49,4 @@ Note: [p] here refers to your prefix.
 
 # Contact
 
-If you encounter bugs or just want to contact to me you can always shoot me a dm at Honkertonken#9221 (694835810347909161) or ping me in the `#support_othercogs` channel. For feature requests, issues, bugs, or suggestions open a PR/issue on this repo.
+If you encounter bugs or just want to contact to me you can always shoot me a dm at honkertonken. (694835810347909161) or ping me in the `#support_othercogs` channel. For feature requests, issues, bugs, or suggestions open a PR/issue on this repo.
