@@ -8,8 +8,7 @@ from redbot.core.utils.chat_formatting import pagify
 
 
 class Pp(commands.Cog):
-    """
-    Shows your or someone else's pp length.
+    """Shows your or someone else's pp length.
 
     Note - 100% accurate
 
@@ -22,16 +21,13 @@ class Pp(commands.Cog):
         self.config.register_global(**default)
 
     async def red_delete_data_for_user(self, **kwargs):
-        """
-        Nothing to delete.
-        """
+        """Nothing to delete."""
         return
 
     @commands.command(name="randompp")
     @commands.is_owner()
     async def randompp(self, ctx, toggle: bool):
-        """
-        Set whether or not to generate a new random pp length every time the
+        """Set whether or not to generate a new random pp length every time the
         command is ran.
         """
         await self.config.random.set(toggle)
@@ -39,8 +35,7 @@ class Pp(commands.Cog):
 
     @commands.command(name="pp")
     async def pp(self, ctx, *users: discord.Member):
-        """
-        Detects a user's pp length.
+        """Detects a user's pp length.
 
         Note : This is 100% accurate.
 

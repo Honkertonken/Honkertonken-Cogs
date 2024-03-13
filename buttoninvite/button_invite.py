@@ -5,20 +5,15 @@ import discord
 from redbot.core import Config, commands
 from redbot.core.bot import Red
 
-
 old_invite = None
 old_inviteset = None
 
 
 class ButtonInvite(commands.Cog):
-    """
-    A highly customizable invite cog with buttons.
-    """
+    """A highly customizable invite cog with buttons."""
 
     async def red_delete_data_for_user(self, **kwargs):
-        """
-        Nothing to delete.
-        """
+        """Nothing to delete."""
         return
 
     @commands.Cog.listener()
@@ -54,15 +49,12 @@ class ButtonInvite(commands.Cog):
     @commands.is_owner()
     @commands.group(name="inviteset")
     async def inviteset(self, ctx):
-        """
-        Settings for buttoninvite cog.
-        """
+        """Settings for buttoninvite cog."""
 
     @commands.is_owner()
     @inviteset.command(name="description")
     async def invitesettings_description(self, ctx, *, text: str = ""):
-        """
-        Set the embed description.Leave blank for default description.
+        """Set the embed description.Leave blank for default description.
 
         Use `{bot}` in your message to display bot name. Enter `None` to
         disable the description.
@@ -80,9 +72,7 @@ class ButtonInvite(commands.Cog):
     @commands.is_owner()
     @inviteset.command(name="button")
     async def invitesettings_button(self, ctx, *, text: str = ""):
-        """
-        Set the button description.
-        """
+        """Set the button description."""
         if not text:
             await self.config.invite_description.clear()
             return await ctx.send("Button description set to default.")
@@ -92,8 +82,7 @@ class ButtonInvite(commands.Cog):
     @commands.is_owner()
     @inviteset.command(name="permissions")
     async def invitesettings_permissions(self, ctx, *, text: int = ""):
-        """
-        Set the default permissions value for your bot.
+        """Set the default permissions value for your bot.
 
         Get the permissions value from
         https://discordapi.com/permissions.html.
@@ -114,8 +103,7 @@ class ButtonInvite(commands.Cog):
     @commands.is_owner()
     @inviteset.command(name="scope")
     async def invitesettings_scope(self, ctx, value: bool = None):
-        """
-        Add the `applications.commands` scope to your invite URL.
+        """Add the `applications.commands` scope to your invite URL.
 
         This allows the usage of slash commands on the servers that
         invited your bot with that scope. Note that previous servers
@@ -137,8 +125,7 @@ class ButtonInvite(commands.Cog):
     @commands.is_owner()
     @inviteset.command(name="footer")
     async def invitesettings_footer(self, ctx, *, text: str = ""):
-        """
-        Set the embed footer.
+        """Set the embed footer.
 
         Leave blank for default author. Use `{bot}` in your message to
         display bot name. Enter `None` to disable the description.
@@ -156,8 +143,7 @@ class ButtonInvite(commands.Cog):
     @commands.is_owner()
     @inviteset.command(name="author")
     async def invitesettings_author(self, ctx, *, text: str = ""):
-        """
-        Set the embed author.
+        """Set the embed author.
 
         Leave blank for default author. Use `{bot}` in your message to
         display bot name. Enter `None` to disable the author.
@@ -175,8 +161,7 @@ class ButtonInvite(commands.Cog):
     @commands.is_owner()
     @inviteset.command(name="text")
     async def invitesettings_text(self, ctx, *, text: str = ""):
-        """
-        Set the embed link text.
+        """Set the embed link text.
 
         Leave blank for default link text. Use `{bot}` in your message
         to display bot name. Enter `None` to disable the link text.
@@ -194,8 +179,7 @@ class ButtonInvite(commands.Cog):
     @commands.is_owner()
     @inviteset.command(name="thumbnail")
     async def invitesettings_thumbnail(self, ctx, *, link: str = ""):
-        """
-        Set the embed thumbnail url.
+        """Set the embed thumbnail url.
 
         Leave blank for default thumbnail.
 
@@ -214,8 +198,7 @@ class ButtonInvite(commands.Cog):
     @commands.is_owner()
     @inviteset.command(name="icon")
     async def invitesettings_icon(self, ctx, *, link: str = ""):
-        """
-        Set the embed icon url.
+        """Set the embed icon url.
 
         Leave blank for default icon.
 
@@ -233,9 +216,7 @@ class ButtonInvite(commands.Cog):
 
     @commands.command(name="invite")
     async def invite(self, ctx):
-        """
-        Send personalized invite for the bot with a button!
-        """
+        """Send personalized invite for the bot with a button!"""
         view = discord.ui.View()
         bot_info = await self.bot.application_info()
         params = {"owner": f"{bot_info.owner}", "bot": f"{self.bot.user.name}"}
@@ -250,7 +231,7 @@ class ButtonInvite(commands.Cog):
         embed.set_thumbnail(url=(await self.config.thumbnail()))
         if await self.config.commandscope():
             embed.add_field(
-                name="\N{Zero Width Space}",
+                name="\N{ZERO WIDTH SPACE}",
                 value=f"[{(await self.config.link_text()).format(**params)}](https://discord.com/oauth2/authorize?client_id={self.bot.user.id}&scope=bot+applications.commands&permissions={await self.config.setpermissions()})",
             )
             view.add_item(
@@ -261,7 +242,7 @@ class ButtonInvite(commands.Cog):
             )
         else:
             embed.add_field(
-                name="\N{Zero Width Space}",
+                name="\N{ZERO WIDTH SPACE}",
                 value=f"[{(await self.config.link_text()).format(**params)}](https://discord.com/oauth2/authorize?client_id={self.bot.user.id}&scope=bot&permissions={await self.config.setpermissions()})",
             )
         view.add_item(

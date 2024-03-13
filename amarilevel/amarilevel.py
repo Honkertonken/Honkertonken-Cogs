@@ -5,9 +5,7 @@ from redbot.core.bot import Red
 
 
 class AmariLevel(commands.Cog):
-    """
-    View your amari rank.
-    """
+    """View your amari rank."""
 
     def __init__(self, bot: Red):
         self.bot = bot
@@ -15,9 +13,7 @@ class AmariLevel(commands.Cog):
     @commands.guild_only()
     @commands.command(name="amari")
     async def amari(self, ctx, *member: discord.Member):
-        """
-        View your amari rank.
-        """
+        """View your amari rank."""
         token = (await self.bot.get_shared_api_tokens("amari")).get("auth")
         if token:
             if not member:

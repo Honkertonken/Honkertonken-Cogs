@@ -5,32 +5,24 @@ from redbot.core import commands
 
 
 def get_replied_message(ctx: commands.Context) -> discord.Message:
-    """
-    Returns the message that the user is replying to, or None.
-    """
+    """Returns the message that the user is replying to, or None."""
     if hasattr(ctx.message, "reference") and ctx.message.reference is not None:
         return ctx.message.reference.resolved
 
 
 class WhoAsked(commands.Cog):
-    """
-    When you just have to ask who the hell asked?
-    """
+    """When you just have to ask who the hell asked?"""
 
     def __init__(self, bot: commands.Bot):
         self.bot = bot
 
     async def red_delete_data_for_user(self, **kwargs):
-        """
-        Nothing to delete.
-        """
+        """Nothing to delete."""
         return
 
     @commands.command()
     async def whoasked(self, ctx: commands.Context, *, message_id: int = None):
-        """
-        Who asked?
-        """
+        """Who asked?"""
         message = get_replied_message(ctx) or ctx.message
         if message_id:
             try:

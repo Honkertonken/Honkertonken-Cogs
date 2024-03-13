@@ -6,18 +6,15 @@
 import discord
 from redbot.core import Config, commands
 from redbot.core.bot import Red
-from pressf.view import PressFView, PressFButton
+
+from pressf.view import PressFButton, PressFView
 
 
 class PressF(commands.Cog):
-    """
-    Pay some respects.
-    """
+    """Pay some respects."""
 
     async def red_delete_data_for_user(self, **kwargs):
-        """
-        Nothing to delete.
-        """
+        """Nothing to delete."""
         return
 
     def __init__(self, bot: Red):
@@ -37,9 +34,7 @@ class PressF(commands.Cog):
     @commands.command(name="pressf")
     @commands.guild_only()
     async def pressf(self, ctx, member: discord.Member):
-        """
-        Pay respects by pressing F.
-        """
+        """Pay respects by pressing F."""
         name = member.display_name
         emoji = await self.get_guild_emoji(ctx.guild)
         button = PressFButton(emoji=emoji)
@@ -50,15 +45,12 @@ class PressF(commands.Cog):
     @commands.group(name="pressfset", aliases=["pfset"])
     @commands.admin_or_permissions(administrator=True)
     async def pressfset(self, ctx):
-        """
-        Customize the pressf command.
-        """
+        """Customize the pressf command."""
 
     @pressfset.command(name="emoji", usage="<emoji>")
     @commands.admin_or_permissions(administrator=True)
     async def pressfset_emoji(self, ctx, emoji: discord.Emoji):
-        """
-        Customize the pressf command.
+        """Customize the pressf command.
 
         reaction emoji The bot must have access to the emoji to be used.
 

@@ -10,10 +10,10 @@ search = re.compile(
     r"(i[',\s]*a?m|i.m)[.,\s]*\s*(.*)",
     flags=re.I,
 )
+
+
 class HiBack(commands.Cog):
-    """
-    Replies to "I'm X" with "Hi, X".
-    """
+    """Replies to "I'm X" with "Hi, X"."""
 
     def __init__(self, bot: Red):
         self.bot = bot
@@ -34,40 +34,30 @@ class HiBack(commands.Cog):
         self.config.register_guild(**default_guild)
 
     async def red_delete_data_for_user(self, **kwargs):
-        """
-        Nothing to delete.
-        """
+        """Nothing to delete."""
         return
 
     @commands.group()
     @commands.guild_only()
     @commands.admin_or_permissions()
     async def hibackset(self, ctx):
-        """
-        HiBack settings.
-        """
+        """HiBack settings."""
 
     @hibackset.command(name="enable")
     async def hibackset_enable(self, ctx):
-        """
-        Enable the hi back feature.
-        """
+        """Enable the hi back feature."""
         await self.config.guild(ctx.guild).enabled.set(True)
         await ctx.send("Hi back has been enabled for this guild.")
 
     @hibackset.command(name="disable")
     async def hibackset_disable(self, ctx):
-        """
-        Disable the hi back feature.
-        """
+        """Disable the hi back feature."""
         await self.config.guild(ctx.guild).enabled.set(False)
         await ctx.send("Hi back has been disabled for this guild.")
 
     @hibackset.command(name="dad")
     async def hibackset_dad(self, ctx, true_or_false: bool):
-        """
-        Add a `im dad` to the hi back messages.
-        """
+        """Add a `im dad` to the hi back messages."""
         if true_or_false:
             if not await self.config.guild(ctx.guild).bot():
                 await self.config.guild(ctx.guild).dad.set(true_or_false)
@@ -80,9 +70,7 @@ class HiBack(commands.Cog):
 
     @hibackset.command(name="bot")
     async def hibackset_bot(self, ctx, true_or_false: bool):
-        """
-        Add a `im {bot_name}` to the hi back messages.
-        """
+        """Add a `im {bot_name}` to the hi back messages."""
         if true_or_false:
             if not await self.config.guild(ctx.guild).dad():
                 await self.config.guild(ctx.guild).bot.set(true_or_false)
@@ -99,9 +87,7 @@ class HiBack(commands.Cog):
 
     @hibackset.command(name="ping")
     async def hibackset_ping(self, ctx, true_or_false: bool):
-        """
-        Ping users on the hi back messages.
-        """
+        """Ping users on the hi back messages."""
         await self.config.guild(ctx.guild).ping.set(true_or_false)
         if true_or_false:
             await ctx.send("Users will be pinged on hi back messages.")
@@ -110,9 +96,7 @@ class HiBack(commands.Cog):
 
     @hibackset.command(name="ignore", aliases=["blacklist", "bl"])
     async def hibackset_ignore(self, ctx, users: commands.Greedy[discord.User] = None):
-        """
-        Ignore a user from the hi back messages.
-        """
+        """Ignore a user from the hi back messages."""
         if users:
             async with self.config.guild(ctx.guild).blacklisted_users() as blacklisted_users:
                 for user in users:
@@ -130,9 +114,7 @@ class HiBack(commands.Cog):
 
     @hibackset.command(name="unignore", aliases=["unblacklist", "unbl"])
     async def hibackset_unignore(self, ctx, users: commands.Greedy[discord.User] = None):
-        """
-        Unignore a user from the hi back messages.
-        """
+        """Unignore a user from the hi back messages."""
         if users:
             async with self.config.guild(ctx.guild).blacklisted_users() as blacklisted_users:
                 for user in users:
@@ -150,9 +132,7 @@ class HiBack(commands.Cog):
 
     @hibackset.command(name="restrict")
     async def hibackset_restrict(self, ctx, restrict: str = None):
-        """
-        Restrict the hiback feature, supports blocklist and allowlist.
-        """
+        """Restrict the hiback feature, supports blocklist and allowlist."""
         with contextlib.suppress(Exception):
             restrict = restrict.lower()
         if restrict not in ["allowlist", "blocklist", None]:
@@ -168,9 +148,7 @@ class HiBack(commands.Cog):
 
     @hibackset.command(name="add")
     async def hibackset_add(self, ctx, channels: commands.Greedy[discord.TextChannel] = None):
-        """
-        Add channels to the hiback blocklist/allowlist.
-        """
+        """Add channels to the hiback blocklist/allowlist."""
         prefixes = await self.bot.get_prefix(ctx.message.channel)
         if f"<@!{self.bot.user.id}> " in prefixes:
             prefixes.remove(f"<@!{self.bot.user.id}> ")
@@ -179,7 +157,7 @@ class HiBack(commands.Cog):
             await ctx.send(
                 f"Please choose a restriction mode using `{sorted_prefixes[0]}hibackset restrict`.",
             )
-            return
+            return None
         if channels:
             async with self.config.guild(ctx.guild).restricted_channels() as restricted_channels:
                 for channel in channels:
@@ -188,16 +166,14 @@ class HiBack(commands.Cog):
 
             ids = len(list(channels))
             return await ctx.send(
-                f"Successfully added {ids} " f"{'channel.' if ids == 1 else 'channels.'} ",
+                f"Successfully added {ids} {'channel.' if ids == 1 else 'channels.'} ",
             )
         await ctx.send("`Channels` is a required argument.")
-        return
+        return None
 
     @hibackset.command(name="remove")
     async def hibackset_remove(self, ctx, channels: commands.Greedy[discord.TextChannel] = None):
-        """
-        Remove channels from the hiback blocklist/allowlist.
-        """
+        """Remove channels from the hiback blocklist/allowlist."""
         prefixes = await self.bot.get_prefix(ctx.message.channel)
         if f"<@!{self.bot.user.id}> " in prefixes:
             prefixes.remove(f"<@!{self.bot.user.id}> ")
@@ -206,7 +182,7 @@ class HiBack(commands.Cog):
             await ctx.send(
                 f"Please choose a restriction mode using `{sorted_prefixes[0]}hibackset restrict`.",
             )
-            return
+            return None
         if channels:
             async with self.config.guild(ctx.guild).restricted_channels() as restricted_channels:
                 for channel in channels:
@@ -214,16 +190,14 @@ class HiBack(commands.Cog):
                         restricted_channels.remove(channel.id)
             ids = len(list(channels))
             return await ctx.send(
-                f"Successfully removed {ids} " f"{'channel.' if ids == 1 else 'channels.'} ",
+                f"Successfully removed {ids} {'channel.' if ids == 1 else 'channels.'} ",
             )
         await ctx.send("`Channels` is a required argument.")
-        return
+        return None
 
     @hibackset.command(name="clean")
     async def hibackset_clean(self, ctx):
-        """
-        Clean deleted channels from restricted channels list.
-        """
+        """Clean deleted channels from restricted channels list."""
         clean = []
         restricted_channels = await self.config.guild(ctx.guild).restricted_channels()
         for i, channel in enumerate(restricted_channels):
@@ -241,9 +215,7 @@ class HiBack(commands.Cog):
 
     @hibackset.command(name="settings", aliases=["showsettings"])
     async def hibackset_settings(self, ctx):
-        """
-        Check your hi back settings.
-        """
+        """Check your hi back settings."""
         enabled = await self.config.guild(ctx.guild).enabled()
         ping = await self.config.guild(ctx.guild).ping()
         dad = await self.config.guild(ctx.guild).dad()
@@ -275,9 +247,7 @@ class HiBack(commands.Cog):
     @commands.Cog.listener()
     @commands.guild_only()
     async def on_message_without_command(self, message: discord.Message):
-        """
-        Handle on_message.
-        """
+        """Handle on_message."""
         if (
             not isinstance(message.channel, discord.TextChannel)
             or message.type != discord.MessageType.default

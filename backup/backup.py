@@ -6,24 +6,19 @@ from redbot.core.utils.chat_formatting import humanize_list, text_to_file
 
 
 class Backup(commands.Cog):
-    """
-    Some useful commands when backing up your bot.
-    """
+    """Some useful commands when backing up your bot."""
 
     def __init__(self, bot: Red):
         self.bot = bot
 
     async def red_delete_data_for_user(self):
-        """
-        Nothing to delete.
-        """
+        """Nothing to delete."""
         return
 
     @commands.command(name="backup")
     @commands.is_owner()
     async def backup(self, ctx):
-        """
-        All in one command to list all repo names, links and cogs installed
+        """All in one command to list all repo names, links and cogs installed
         from that repo.
         """
         downloader = ctx.bot.get_cog("Downloader")
@@ -39,24 +34,24 @@ class Backup(commands.Cog):
     @commands.command(name="coglist")
     @commands.is_owner()
     async def cogslist(self, ctx, repo_name: str):
-        """
-        List all installed cogs from a specific repo.
-        """
+        """List all installed cogs from a specific repo."""
         downloader = ctx.bot.get_cog("Downloader")
         cogs = await downloader.installed_cogs()
         cogs_list = [cog.name for cog in cogs if cog.repo_name == repo_name]
-        await ctx.send(
-            f"Cogs installed from the repo named {repo_name} are : \n{', '.join(cogs_list)} ",
-        ) if cogs_list else await ctx.send(
-            f"No cogs were installed from the repo named {repo_name}. Make sure to check the spelling and case.",
+        (
+            await ctx.send(
+                f"Cogs installed from the repo named {repo_name} are : \n{', '.join(cogs_list)} ",
+            )
+            if cogs_list
+            else await ctx.send(
+                f"No cogs were installed from the repo named {repo_name}. Make sure to check the spelling and case.",
+            )
         )
 
     @commands.command(name="listrepos")
     @commands.is_owner()
     async def listrepos(self, ctx):
-        """
-        List all repos and their respective repo links.
-        """
+        """List all repos and their respective repo links."""
         downloader = ctx.bot.get_cog("Downloader")
         all_repos = list(downloader._repo_manager.repos)
         repos = [f"{repo.name} - {repo.url}" for repo in all_repos]
@@ -66,8 +61,6 @@ class Backup(commands.Cog):
     @commands.command(name="listcogs")
     @commands.is_owner()
     async def listcogs(self, ctx):
-        """
-        List all cogs installed on the bot.
-        """
+        """List all cogs installed on the bot."""
         cogs_list = await ctx.bot._cog_mgr.available_modules()
         await ctx.send(file=text_to_file(", ".join(cogs_list), "cogs.txt"))
