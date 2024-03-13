@@ -41,5 +41,5 @@ lint.select = [
 ]
 lint.isort.combine-as-imports = true
 
-[lint.per-file-ignores]
+[tool.ruff.lint.per-file-ignores]
 "__init__.py" = ["F401"]

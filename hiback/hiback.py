@@ -99,7 +99,7 @@ class HiBack(commands.Cog):
         """Ignore a user from the hi back messages."""
         if users:
             async with self.config.guild(
-                ctx.guild
+                ctx.guild,
             ).blacklisted_users() as blacklisted_users:
                 for user in users:
                     if user.id not in blacklisted_users:
@@ -116,12 +116,12 @@ class HiBack(commands.Cog):
 
     @hibackset.command(name="unignore", aliases=["unblacklist", "unbl"])
     async def hibackset_unignore(
-        self, ctx, users: commands.Greedy[discord.User] = None
+        self, ctx, users: commands.Greedy[discord.User] = None,
     ):
         """Unignore a user from the hi back messages."""
         if users:
             async with self.config.guild(
-                ctx.guild
+                ctx.guild,
             ).blacklisted_users() as blacklisted_users:
                 for user in users:
                     if user.id in blacklisted_users:
@@ -154,7 +154,7 @@ class HiBack(commands.Cog):
 
     @hibackset.command(name="add")
     async def hibackset_add(
-        self, ctx, channels: commands.Greedy[discord.TextChannel] = None
+        self, ctx, channels: commands.Greedy[discord.TextChannel] = None,
     ):
         """Add channels to the hiback blocklist/allowlist."""
         prefixes = await self.bot.get_prefix(ctx.message.channel)
@@ -168,7 +168,7 @@ class HiBack(commands.Cog):
             return None
         if channels:
             async with self.config.guild(
-                ctx.guild
+                ctx.guild,
             ).restricted_channels() as restricted_channels:
                 for channel in channels:
                     if channel.id not in restricted_channels:
@@ -183,7 +183,7 @@ class HiBack(commands.Cog):
 
     @hibackset.command(name="remove")
     async def hibackset_remove(
-        self, ctx, channels: commands.Greedy[discord.TextChannel] = None
+        self, ctx, channels: commands.Greedy[discord.TextChannel] = None,
     ):
         """Remove channels from the hiback blocklist/allowlist."""
         prefixes = await self.bot.get_prefix(ctx.message.channel)
@@ -197,7 +197,7 @@ class HiBack(commands.Cog):
             return None
         if channels:
             async with self.config.guild(
-                ctx.guild
+                ctx.guild,
             ).restricted_channels() as restricted_channels:
                 for channel in channels:
                     if channel.id in restricted_channels:

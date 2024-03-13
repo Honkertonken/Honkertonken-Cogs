@@ -43,7 +43,7 @@ class AutoKick(commands.Cog):
             if ctx.channel.permissions_for(channel.guild.me).send_messages is True:
                 await self.config.guild(ctx.guild).channel.set(channel.id)
                 await ctx.send(
-                    f"The auto kick log channel has been set to {channel.mention}"
+                    f"The auto kick log channel has been set to {channel.mention}",
                 )
             else:
                 await ctx.send(
@@ -58,7 +58,7 @@ class AutoKick(commands.Cog):
         """Enable the autokick feature."""
         await self.config.guild(ctx.guild).enabled.set(True)
         await ctx.send(
-            "Auto kicking blacklisted members has been enabled for this guild."
+            "Auto kicking blacklisted members has been enabled for this guild.",
         )
 
     @autokickset.command(name="disable")
@@ -66,7 +66,7 @@ class AutoKick(commands.Cog):
         """Disable the autokick feature."""
         await self.config.guild(ctx.guild).enabled.set(False)
         await ctx.send(
-            "Auto kicking blacklisted members has been disabled for this guild."
+            "Auto kicking blacklisted members has been disabled for this guild.",
         )
 
     @autokickset.command(name="add", aliases=["blacklist", "bl"])
@@ -103,7 +103,7 @@ class AutoKick(commands.Cog):
     async def autokickset_clear(self, ctx):
         """Clear the autokick list."""
         confirmation_msg = await ctx.send(
-            "Are you sure you want to clear the auto kick list. ?"
+            "Are you sure you want to clear the auto kick list. ?",
         )
         pred = ReactionPredicate.yes_or_no(confirmation_msg, ctx.author)
         start_adding_reactions(confirmation_msg, ReactionPredicate.YES_OR_NO_EMOJIS)
@@ -129,7 +129,7 @@ class AutoKick(commands.Cog):
             )
             e.set_footer(text=f"{member.guild.name}", icon_url=f"{member.guild.icon}")
             e.set_author(
-                name=f"{member.display_name}", icon_url=f"{member.display_avatar.url}"
+                name=f"{member.display_name}", icon_url=f"{member.display_avatar.url}",
             )
             e.timestamp = datetime.datetime.now(datetime.UTC)
             if member.id in await self.config.guild(member.guild).blacklisted_ids():

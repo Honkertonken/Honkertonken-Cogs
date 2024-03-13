@@ -47,7 +47,7 @@ class ReactionLog(commands.Cog):
         if ctx.channel.permissions_for(channel.guild.me).send_messages is True:
             await self.config.guild(ctx.guild).channel.set(channel.id)
             await ctx.send(
-                f"The reaction log channel has been set to {channel.mention}"
+                f"The reaction log channel has been set to {channel.mention}",
             )
         else:
             await ctx.send(
@@ -67,7 +67,7 @@ class ReactionLog(commands.Cog):
     async def reactionlogset_reactionremove(self, ctx, enable_or_disable: bool):
         """Enable/disable logs for reactions removed."""
         await self.config.guild(ctx.guild).reaction_remove_enabled.set(
-            enable_or_disable
+            enable_or_disable,
         )
         if enable_or_disable:
             await ctx.send("Reactions logs for reactions removed has been enabled.")
@@ -110,7 +110,7 @@ class ReactionLog(commands.Cog):
         ):
             view = discord.ui.View()
             view.add_item(
-                discord.ui.Button(label="Message", url=reaction.message.jump_url)
+                discord.ui.Button(label="Message", url=reaction.message.jump_url),
             )
             description = (
                 f"**Channel : ** {reaction.message.channel.mention}\n"
@@ -133,7 +133,7 @@ class ReactionLog(commands.Cog):
 
     @commands.Cog.listener()
     async def on_reaction_remove(
-        self, reaction: discord.Reaction, member: discord.Member
+        self, reaction: discord.Reaction, member: discord.Member,
     ):
         logs_channel = await self.config.guild(member.guild).channel()
         channel = bool(logs_channel)
@@ -145,7 +145,7 @@ class ReactionLog(commands.Cog):
         ):
             view = discord.ui.View()
             view.add_item(
-                discord.ui.Button(label="Message", url=reaction.message.jump_url)
+                discord.ui.Button(label="Message", url=reaction.message.jump_url),
             )
             description = (
                 f"**Channel : ** {reaction.message.channel.mention}\n"
@@ -168,7 +168,7 @@ class ReactionLog(commands.Cog):
 
     @commands.Cog.listener()
     async def on_reaction_clear(
-        self, message: discord.Message, reaction: discord.Reaction
+        self, message: discord.Message, reaction: discord.Reaction,
     ):
         logs_channel = await self.config.guild(message.guild).channel()
         channel = bool(logs_channel)

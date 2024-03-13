@@ -32,7 +32,7 @@ class Pp(commands.Cog):
         """
         await self.config.random.set(toggle)
         await ctx.send(
-            f'Random pp length is now {"enabled" if toggle else "disabled"}.'
+            f'Random pp length is now {"enabled" if toggle else "disabled"}.',
         )
 
     @commands.command(name="pp")
